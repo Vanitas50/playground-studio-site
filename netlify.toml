@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  command = ""
+
+[dev]
+  framework = "#static"
+
+[[headers]]
+  for = "/scripts.js"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    cache-control = "public, max-age=0, must-revalidate"

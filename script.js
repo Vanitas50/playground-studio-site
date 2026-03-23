@@ -50,18 +50,22 @@ if (contactForm) {
         body: formData,
       });
 
-      if (response.ok) {
-        if (formStatus) {
-          formStatus.textContent = 'Danke! Wir melden uns in Kürze.';
-          formStatus.classList.add('is-success');
-        }
-        contactForm.reset();
-      } else {
-        throw new Error('Failed to send');
+      const result = await response.json();
+
+      if (!response.ok || result.success === 'false') {
+        throw new Error(result.message || 'Failed to send');
       }
+
+      if (formStatus) {
+        formStatus.textContent = result.message || 'Danke! Wir melden uns in Kürze.';
+        formStatus.classList.add('is-success');
+      }
+
+      contactForm.reset();
     } catch (error) {
       if (formStatus) {
-        formStatus.textContent = 'Ups, das hat nicht geklappt. Bitte versuche es später erneut.';
+        formStatus.textContent =
+          error.message || 'Ups, das hat nicht geklappt. Bitte versuche es später erneut.';
         formStatus.classList.add('is-error');
       }
       console.error(error);

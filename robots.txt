@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vanitas50.github.io/playground-studio-site/sitemap.xml

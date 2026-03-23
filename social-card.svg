@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05060a" />
+      <stop offset="100%" stop-color="#151823" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5de4c7" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="48" fill="url(#bg)" />
+  <text x="80" y="200" fill="#ffffff" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="64" font-weight="600">
+    Playground Studio
+  </text>
+  <text x="80" y="280" fill="#9ea2b6" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="36">
+    Webagentur Berlin • Strategie · Design · SEO · Development
+  </text>
+  <rect x="80" y="360" width="520" height="80" rx="40" fill="url(#accent)" />
+  <text x="110" y="413" fill="#05060a" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="34" font-weight="600">
+    Digitale Produkte mit Ranking-Power
+  </text>
+</svg>

@@ -305,6 +305,40 @@ h1 {
   border-color: transparent;
 }
 
+.faq {
+  display: grid;
+  gap: 1rem;
+}
+
+.faq details {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.faq details[open] {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
 .form-status {
   min-height: 1.2rem;
   font-size: 0.9rem;

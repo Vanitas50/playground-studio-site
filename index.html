@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Playground Studio – Digitale Ideen zum Leben erwecken</title>
+    <meta
+      name="description"
+      content="Playground Studio konzipiert und baut performante Websites für moderne Marken."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">Playground Studio</div>
+        <nav class="main-nav" aria-label="Hauptnavigation">
+          <a href="#leistungen">Leistungen</a>
+          <a href="#projekte">Projekte</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <button class="theme-toggle" aria-label="Darstellung wechseln">
+          <span>◐</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="start">
+        <div class="container hero-grid">
+          <div>
+            <p class="badge">Digitale Produkte made in Berlin</p>
+            <h1>Wir entwickeln Websites, die Marken erlebbar machen.</h1>
+            <p class="lead">
+              Von der ersten Idee bis zum Launch kümmern wir uns um Strategie, Design
+              und Code – mit Fokus auf klare Botschaften, Performance und Barrierefreiheit.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#kontakt">Projekt anfragen</a>
+              <a class="btn ghost" href="#projekte">Letzte Arbeiten</a>
+            </div>
+          </div>
+          <div class="hero-card" role="presentation">
+            <p class="hero-card__title">Nächstes freie Zeitfenster</p>
+            <p class="hero-card__time">April 2026</p>
+            <ul>
+              <li>3 Wochen Sprint</li>
+              <li>Remote & vor Ort</li>
+              <li>GitHub-basiertes Delivery</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="leistungen">
+        <div class="container">
+          <header class="section-header">
+            <p class="badge">Leistungen</p>
+            <h2>Alles, was eine moderne Webpräsenz braucht.</h2>
+          </header>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Brand & UX</h3>
+              <p>Wir übersetzen Markenwerte in zugängliche Design-Systeme und prototypen live.</p>
+            </article>
+            <article class="card">
+              <h3>Full-Stack Entwicklung</h3>
+              <p>Sauber strukturierter Code mit CI/CD, Performance-Budgets und Testing.</p>
+            </article>
+            <article class="card">
+              <h3>Content & SEO</h3>
+              <p>Storytelling, das gefunden wird – inklusive strukturierter Daten und Analytics.</p>
+            </article>
+            <article class="card">
+              <h3>Care & Growth</h3>
+              <p>Laufende Betreuung, Monitoring und zielgerichtete Experimente nach dem Launch.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projekte">
+        <div class="container">
+          <header class="section-header">
+            <p class="badge">Case Studies</p>
+            <h2>Proof of Work</h2>
+          </header>
+          <div class="projects">
+            <article>
+              <p class="project-meta">E-Commerce · 2025</p>
+              <h3>Nordic Supply</h3>
+              <p>
+                Migration auf eine Headless-Architektur, 35% schnellerer Checkout, und modulare Komponenten
+                für das Marketing-Team.
+              </p>
+            </article>
+            <article>
+              <p class="project-meta">SaaS · 2024</p>
+              <h3>Relay OS</h3>
+              <p>
+                Interaktive Produktstory mit Scroll-Animationen, React + Astro Stack und
+                automatisierten Lighthouse-Checks vor jedem Merge.
+              </p>
+            </article>
+            <article>
+              <p class="project-meta">Impact · 2023</p>
+              <h3>Urban Forest</h3>
+              <p>
+                Spendenplattform mit Storytelling, CMS-Workflow und Echtzeit-Datenvisualisierung.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--accent" id="workflow">
+        <div class="container">
+          <header class="section-header">
+            <p class="badge">Workflow</p>
+            <h2>Transparente Zusammenarbeit in vier Phasen.</h2>
+          </header>
+          <ol class="timeline" aria-label="Workflow Schritte">
+            <li>
+              <h3>Kick-off</h3>
+              <p>Gemeinsame Ziele, Messgrößen und Roadmap definieren.</p>
+            </li>
+            <li>
+              <h3>Design & Content</h3>
+              <p>Prototypen testen, Inhalte verdichten, QA mit echten Nutzern.</p>
+            </li>
+            <li>
+              <h3>Build & Automate</h3>
+              <p>Komponenten, Infrastruktur und Integrationen implementieren.</p>
+            </li>
+            <li>
+              <h3>Launch & Learn</h3>
+              <p>Deployment auf GitHub Pages oder kundeneigenen Stacks + Monitoring.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="kontakt">
+        <div class="container contact">
+          <div>
+            <p class="badge">Kontakt</p>
+            <h2>Lass uns über dein Projekt sprechen.</h2>
+            <p>
+              Schreib uns kurz, was du erreichen möchtest, und wir melden uns innerhalb von 24 Stunden mit einem
+              konkreten Vorschlag.
+            </p>
+          </div>
+          <form class="contact-form" aria-label="Kontaktformular">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Max Mustermann" required />
+            </label>
+            <label>
+              E-Mail
+              <input type="email" name="email" placeholder="hi@playground.studio" required />
+            </label>
+            <label>
+              Projektbeschreibung
+              <textarea name="message" rows="4" placeholder="Erzähl uns mehr..." required></textarea>
+            </label>
+            <button type="submit" class="btn primary">Nachricht senden</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Playground Studio. Berlin · GitHub-ready Deployments.</p>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

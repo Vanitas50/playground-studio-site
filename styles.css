@@ -305,6 +305,21 @@ h1 {
   border-color: transparent;
 }
 
+.form-status {
+  min-height: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+.form-status.is-success {
+  color: #36d399;
+}
+
+.form-status.is-error {
+  color: #ff6584;
+}
+
 .site-footer {
   padding: 2rem 0 3rem;
   border-top: 1px solid var(--border);

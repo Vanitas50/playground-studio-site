@@ -1,6 +1,8 @@
 const body = document.body;
 const toggle = document.querySelector('.theme-toggle');
 const yearEl = document.getElementById('year');
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
 const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
 const storedTheme = localStorage.getItem('theme');
@@ -26,4 +28,43 @@ if (toggle) {
 
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
+}
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (formStatus) {
+      formStatus.textContent = 'Nachricht wird gesendet …';
+      formStatus.className = 'form-status';
+    }
+
+    const formData = new FormData(contactForm);
+    formData.append('_subject', 'Neue Projektanfrage über playground.studio');
+    formData.append('_captcha', 'false');
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+
+      if (response.ok) {
+        if (formStatus) {
+          formStatus.textContent = 'Danke! Wir melden uns in Kürze.';
+          formStatus.classList.add('is-success');
+        }
+        contactForm.reset();
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      if (formStatus) {
+        formStatus.textContent = 'Ups, das hat nicht geklappt. Bitte versuche es später erneut.';
+        formStatus.classList.add('is-error');
+      }
+      console.error(error);
+    }
+  });
 }

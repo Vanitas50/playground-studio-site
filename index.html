@@ -158,11 +158,11 @@
             </p>
           </div>
           <form
+            id="contactForm"
             class="contact-form"
             aria-label="Kontaktformular"
-            action="mailto:mehrose56@gmail.com?subject=Neue%20Projektanfrage"
+            action="https://formsubmit.co/ajax/mehrose56@gmail.com"
             method="post"
-            enctype="text/plain"
           >
             <label>
               Name
@@ -177,6 +177,7 @@
               <textarea name="message" rows="4" placeholder="Erzähl uns mehr..." required></textarea>
             </label>
             <button type="submit" class="btn primary">Nachricht senden</button>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>

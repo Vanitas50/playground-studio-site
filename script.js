@@ -491,12 +491,12 @@ const supabaseEnabled = Boolean(
   !String(supabaseConfig.anonKey).includes("YOUR_"),
 );
 
-let supabase = null;
+let supabaseClient = null;
 let supabaseReady = false;
 
 if (supabaseEnabled && window.supabase && typeof window.supabase.createClient === "function") {
   try {
-    supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
+    supabaseClient = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
       auth: { persistSession: true, autoRefreshToken: true },
     });
     supabaseReady = true;
@@ -799,7 +799,7 @@ function refreshQuizFeedbackTexts() {
 }
 
 async function saveRemoteState() {
-  if (!supabase || !currentUser) return;
+  if (!supabaseClient || !currentUser) return;
 
   setSyncStatus(getLangCopy().status.syncing);
   const payload = {
@@ -811,7 +811,7 @@ async function saveRemoteState() {
     updated_at: new Date().toISOString(),
   };
 
-  const { error } = await supabase.from("user_progress").upsert(payload);
+  const { error } = await supabaseClient.from("user_progress").upsert(payload);
   if (error) {
     console.error(error);
     setSyncStatus(getLangCopy().status.syncError);
@@ -823,7 +823,7 @@ async function saveRemoteState() {
 
 function queueRemoteSave() {
   saveLocalState();
-  if (!currentUser || !supabase) return;
+  if (!currentUser || !supabaseClient) return;
   clearTimeout(syncTimer);
   syncTimer = window.setTimeout(() => {
     void saveRemoteState();
@@ -831,8 +831,8 @@ function queueRemoteSave() {
 }
 
 async function loadRemoteState() {
-  if (!supabase || !currentUser) return;
-  const { data, error } = await supabase
+  if (!supabaseClient || !currentUser) return;
+  const { data, error } = await supabaseClient
     .from("user_progress")
     .select("progress_state, quiz_state, input_state, language")
     .eq("user_id", currentUser.id)
@@ -865,7 +865,7 @@ async function loadRemoteState() {
 
 async function handleRegister(event) {
   event.preventDefault();
-  if (!supabase) {
+  if (!supabaseClient) {
     setAuthModalStatus(getLangCopy().status.authConfigMissing);
     return;
   }
@@ -880,7 +880,7 @@ async function handleRegister(event) {
     return;
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { error } = await supabaseClient.auth.signUp({
     email,
     password,
     options: { emailRedirectTo: window.location.href },
@@ -896,7 +896,7 @@ async function handleRegister(event) {
 
 async function handleLogin(event) {
   event.preventDefault();
-  if (!supabase) {
+  if (!supabaseClient) {
     setAuthModalStatus(getLangCopy().status.authConfigMissing);
     return;
   }
@@ -905,7 +905,7 @@ async function handleLogin(event) {
   const email = String(formData.get("email") || "").trim();
   const password = String(formData.get("password") || "");
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
   if (error) {
     setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
     return;
@@ -914,14 +914,14 @@ async function handleLogin(event) {
 
 async function handleReset(event) {
   event.preventDefault();
-  if (!supabase) {
+  if (!supabaseClient) {
     setAuthModalStatus(getLangCopy().status.authConfigMissing);
     return;
   }
 
   const formData = new FormData(resetForm);
   const email = String(formData.get("email") || "").trim();
-  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
     redirectTo: window.location.href,
   });
 
@@ -934,8 +934,8 @@ async function handleReset(event) {
 }
 
 async function handleLogout() {
-  if (!supabase) return;
-  const { error } = await supabase.auth.signOut();
+  if (!supabaseClient) return;
+  const { error } = await supabaseClient.auth.signOut();
   if (error) {
     setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
   }
@@ -1027,12 +1027,12 @@ function bindLearningInteractions() {
 }
 
 async function initAuth() {
-  if (!supabase) {
+  if (!supabaseClient) {
     updateAuthUI();
     return;
   }
 
-  const { data } = await supabase.auth.getSession();
+  const { data } = await supabaseClient.auth.getSession();
   currentUser = data && data.session ? data.session.user || null : null;
   updateAuthUI();
 
@@ -1040,7 +1040,7 @@ async function initAuth() {
     await loadRemoteState();
   }
 
-  supabase.auth.onAuthStateChange((_event, session) => {
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
     currentUser = session ? session.user || null : null;
     updateAuthUI();
 

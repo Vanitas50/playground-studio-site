@@ -68,7 +68,7 @@ function loadProgress() {
         item.checked = Boolean(states[index]);
       });
     } catch (error) {
-      console.error("Fortschritt konnte nicht geladen werden.", error);
+      console.error("Could not load saved progress.", error);
     }
   }
 
@@ -91,11 +91,11 @@ function updateQuizScore() {
   }
 
   if (solved === 0) {
-    quizMessage.textContent = "Starte mit der ersten Frage und arbeite dich durch.";
+    quizMessage.textContent = "Start with the first question and work your way through.";
   } else if (solved < quizCards.length) {
-    quizMessage.textContent = "Gut. Halte das Tempo. Aktives Erinnern ist genau der richtige Weg.";
+    quizMessage.textContent = "Good. Keep going. Active recall is exactly the right move.";
   } else {
-    quizMessage.textContent = "Stark. Alle Fragen geloest. Wiederhole sie morgen noch einmal fuer Langzeiteffekt.";
+    quizMessage.textContent = "Strong work. You solved every question. Repeat them tomorrow for long-term retention.";
   }
 }
 
@@ -134,17 +134,17 @@ function applyQuizState() {
             if (isCorrect) {
               card.dataset.solved = "true";
               if (feedback) {
-                feedback.textContent = "Richtig. Du hast das Kernprinzip erkannt.";
+                feedback.textContent = "Correct. You recognized the core idea.";
               }
             } else if (feedback) {
-              feedback.textContent = "Noch nicht. Denk an das Grundmodell dieser Lektion.";
+              feedback.textContent = "Not yet. Think back to the core model from this lesson.";
             }
           }
         });
       }
     });
   } catch (error) {
-    console.error("Quiz-Status konnte nicht geladen werden.", error);
+    console.error("Could not load saved quiz state.", error);
   }
 
   updateQuizScore();
@@ -186,8 +186,8 @@ quizCards.forEach((card) => {
 
       if (feedback) {
         feedback.textContent = isCorrect
-          ? "Richtig. Du hast das Kernprinzip erkannt."
-          : "Noch nicht. Lies den Merksatz der passenden Lektion erneut und versuche es dann nochmal.";
+          ? "Correct. You recognized the core idea."
+          : "Not yet. Read the memory line from the matching lesson again and try once more.";
       }
 
       saveQuizState();

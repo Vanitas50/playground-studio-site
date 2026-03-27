@@ -51,9 +51,9 @@
           <button class="theme-toggle" type="button" aria-label="Switch color theme" data-i18n="theme.mode" data-i18n-aria-label="theme.aria">
             Mode
           </button>
-          <button class="auth-open auth-link" type="button" data-auth-jump="login" data-i18n="auth.open">
+          <a class="auth-open auth-link" href="#auth-access" data-auth-jump="login" data-i18n="auth.open">
             Login
-          </button>
+          </a>
         </div>
       </div>
     </header>
@@ -92,12 +92,12 @@
                 Register or sign in to sync your roadmap, quiz state, and course progress across devices.
               </p>
               <div class="account-actions" id="authGuestActions">
-                <button class="btn btn-primary" type="button" data-auth-jump="login" data-i18n="auth.login">
+                <a class="btn btn-primary" href="#auth-access" data-auth-jump="login" data-i18n="auth.login">
                   Login
-                </button>
-                <button class="btn btn-secondary" type="button" data-auth-jump="register" data-i18n="auth.register">
+                </a>
+                <a class="btn btn-secondary" href="#auth-access" data-auth-jump="register" data-i18n="auth.register">
                   Register
-                </button>
+                </a>
               </div>
               <div class="account-actions account-actions--hidden" id="authUserActions">
                 <p class="account-email" id="authUserEmail"></p>

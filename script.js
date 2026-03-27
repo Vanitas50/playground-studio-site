@@ -908,7 +908,8 @@ async function handleLogout() {
 
 function bindAuthPanels() {
   authJumpButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
       const nextTab = button.dataset.authJump || "login";
       setAuthTab(nextTab);
       authAccessSection?.scrollIntoView({ behavior: "smooth", block: "start" });

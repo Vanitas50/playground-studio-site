@@ -1,23 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#05060a" />
-      <stop offset="100%" stop-color="#151823" />
+      <stop offset="0%" stop-color="#f4efe4" />
+      <stop offset="100%" stop-color="#dbcdb7" />
     </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5de4c7" />
-      <stop offset="100%" stop-color="#8b5cf6" />
+      <stop offset="0%" stop-color="#c5532d" />
+      <stop offset="100%" stop-color="#204b57" />
     </linearGradient>
   </defs>
   <rect width="1200" height="630" rx="48" fill="url(#bg)" />
-  <text x="80" y="200" fill="#ffffff" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="64" font-weight="600">
-    Playground Studio
+  <rect x="72" y="72" width="164" height="64" rx="20" fill="url(#accent)" />
+  <text x="116" y="115" fill="#fffaf2" font-family="'IBM Plex Mono', monospace" font-size="30" font-weight="500">
+    BEAM
   </text>
-  <text x="80" y="280" fill="#9ea2b6" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="36">
-    Webagentur Berlin • Strategie · Design · SEO · Development
+  <text x="80" y="240" fill="#1b1a17" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="78" font-weight="700">
+    Erlang Campus
   </text>
-  <rect x="80" y="360" width="520" height="80" rx="40" fill="url(#accent)" />
-  <text x="110" y="413" fill="#05060a" font-family="'Space Grotesk', 'Inter', 'Segoe UI', sans-serif" font-size="34" font-weight="600">
-    Digitale Produkte mit Ranking-Power
+  <text x="80" y="318" fill="#665f54" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="34">
+    Erlang online lernen mit Roadmap, Modulen
+  </text>
+  <text x="80" y="364" fill="#665f54" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="34">
+    und Fokus auf OTP, Prozesse und verteilte Systeme
+  </text>
+  <rect x="80" y="430" width="500" height="78" rx="39" fill="url(#accent)" />
+  <text x="116" y="480" fill="#fffaf2" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-size="30" font-weight="700">
+    Statische Lernplattform auf GitHub Pages
   </text>
 </svg>

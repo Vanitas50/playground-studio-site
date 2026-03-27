@@ -301,6 +301,36 @@ const germanText = {
   "quiz.q4.a2": "Er speichert Logs in einer ETS-Tabelle.",
   "quiz.q4.a3": "Er ueberwacht Prozesse und startet sie nach definierten Regeln neu.",
   "quiz.score": "Quiz-Score",
+  "retention.eyebrow": "Wiederholungslabor",
+  "retention.title": "Komm so oft zu den Kernideen zurueck, bis sie sich selbstverstaendlich anfuehlen.",
+  "retention.body":
+    "Echter Lernerfolg entsteht dann, wenn du die Idee ohne Nachschauen abrufen kannst. Nutze diese Karten fuer schnelle Wiederholungsrunden.",
+  "retention.card1q": "Warum ist unveraenderlicher Zustand in Erlang so hilfreich?",
+  "retention.card1a":
+    "Weil Prozesse nicht um gemeinsam veraenderbaren Zustand kaempfen und Concurrency dadurch deutlich einfacher wird.",
+  "retention.card2q": "Was ist das Denkmodell hinter Rekursion?",
+  "retention.card2a":
+    "Verkleinere das Problem, halte die Regel klar und stoppe bei einem einfachen Endfall.",
+  "retention.card3q": "Warum ist Message Passing so zentral?",
+  "retention.card3a":
+    "Weil isolierte Prozesse ueber Nachrichten koordinieren statt ueber versteckte Aenderungen in gemeinsamem Speicher.",
+  "retention.card4q": "Was liefert dir OTP eigentlich?",
+  "retention.card4a":
+    "Eine standardisierte Struktur fuer zustandsbehaftete Prozesse, Supervision und wiederherstellbare Systeme.",
+  "pitfalls.eyebrow": "Fehler-Radar",
+  "pitfalls.title": "Das sind die Fallen, die Erlang schwieriger wirken lassen, als es ist.",
+  "pitfalls.p1t": "Zuerst in Schleifen denken",
+  "pitfalls.p1b":
+    "Viele suchen zuerst nach Loop-Syntax. In Erlang solltest du in rekursiven Formveraenderungen denken.",
+  "pitfalls.p2t": "Prozesse wie Objekte behandeln",
+  "pitfalls.p2b":
+    "Ein Prozess ist nicht einfach nur eine Klasseninstanz, sondern ein isolierter Actor mit Mailbox und Protokoll.",
+  "pitfalls.p3t": "Crashes um jeden Preis vermeiden",
+  "pitfalls.p3b":
+    "In BEAM-Systemen sollten manche Fehler bewusst schnell crashen, damit Supervision sauberen Zustand wiederherstellen kann.",
+  "pitfalls.p4t": "Zu frueh verteilt denken",
+  "pitfalls.p4b":
+    "Erst einen Node sauber bauen, dann Verteilung, Timeouts, Retries und Monitoring dazunehmen.",
   "projects.eyebrow": "Mini-Projekte",
   "projects.title": "Hier wird aus Wissen langsam Koennen.",
   "projects.p1label": "Projekt 1",
@@ -324,6 +354,24 @@ const germanText = {
   "projects.p3a": "Den Counter als GenServer modellieren",
   "projects.p3b": "Die Supervisor-Struktur planen",
   "projects.p3c": "Einen Crash simulieren und den Neustart beobachten",
+  "capstone.eyebrow": "Capstone",
+  "capstone.title": "Baue eine Sache, die wirklich zeigt, dass du Erlang benutzen kannst.",
+  "capstone.body":
+    "Der staerkste Selbstbewusstseins-Booster ist ein kleines, aber echtes System. Nutze dieses Panel fuer dein Abschlussprojekt.",
+  "capstone.check1": "Ich habe eine konkrete Service-Idee gewaehlt",
+  "capstone.check2": "Ich habe das Nachrichtenprotokoll definiert",
+  "capstone.check3": "Ich habe Worker und State-Besitz getrennt",
+  "capstone.check4": "Ich habe eine Supervisionsstrategie geplant",
+  "capstone.planTitle": "Dein Abschlussprojekt-Plan",
+  "capstone.idea": "Projektidee",
+  "capstone.protocol": "Protokoll-Design",
+  "capstone.supervision": "Supervisions-Idee",
+  "capstone.ideaPlaceholder":
+    "Beispiel: eine kleine Job-Queue, ein Chat-Hub, ein Telemetrie-Sammler oder ein Todo-Service.",
+  "capstone.protocolPlaceholder":
+    "Schreibe die wichtigsten Nachrichten auf, z. B. {add, Job}, {get, From}, {stop}.",
+  "capstone.supervisionPlaceholder":
+    "Erklaere, welche Prozesse crashen duerfen, welcher Prozess sie neu startet und warum diese Strategie sinnvoll ist.",
   "faq.title": "Die wichtigsten Fragen fuer konstante Fortschritte.",
   "faq.q1": "Wie nutze ich diesen Kurs am effektivsten?",
   "faq.a1":

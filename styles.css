@@ -551,7 +551,9 @@ body.dark .lesson-grid pre {
 .quiz-grid,
 .project-grid,
 .faq-list,
-.roadmap-grid {
+.roadmap-grid,
+.retention-grid,
+.pitfall-grid {
   display: grid;
   gap: 1rem;
 }
@@ -559,6 +561,11 @@ body.dark .lesson-grid pre {
 .roadmap-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-bottom: 1.5rem;
+}
+
+.retention-grid,
+.pitfall-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .roadmap-card {
@@ -690,8 +697,34 @@ body.dark .progress-bar {
 }
 
 .quiz-card,
-.project-card {
+.project-card,
+.pitfall-card,
+.retention-card,
+.capstone-card {
   padding: 1.4rem;
+}
+
+.retention-card,
+.pitfall-card,
+.capstone-card {
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.retention-card summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.retention-card p {
+  margin-top: 0.8rem;
+  color: var(--muted);
+}
+
+.capstone-card {
+  margin-top: 1.5rem;
 }
 
 .quiz-options {
@@ -770,6 +803,8 @@ body.dark .progress-bar {
   .split-heading,
   .lesson-grid,
   .roadmap-grid,
+  .retention-grid,
+  .pitfall-grid,
   .quiz-grid,
   .project-grid,
   .checklist-grid,

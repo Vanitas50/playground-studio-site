@@ -668,6 +668,65 @@ end.</code></pre>
         </div>
       </section>
 
+      <section class="section" id="retention">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="retention.eyebrow">Retention Lab</p>
+            <h2 data-i18n="retention.title">Come back to the core ideas until they feel obvious.</h2>
+            <p data-i18n="retention.body">
+              Real learning happens when you can recall the idea without looking. Use these cards as fast review rounds.
+            </p>
+          </div>
+
+          <div class="retention-grid">
+            <details class="retention-card">
+              <summary data-i18n="retention.card1q">Why is immutable state so helpful in Erlang?</summary>
+              <p data-i18n="retention.card1a">Because processes do not fight over shared mutable state, reasoning and concurrency get much simpler.</p>
+            </details>
+            <details class="retention-card">
+              <summary data-i18n="retention.card2q">What is the mental model behind recursion?</summary>
+              <p data-i18n="retention.card2a">Shrink the problem, keep the rule clear, and stop on a simple base case.</p>
+            </details>
+            <details class="retention-card">
+              <summary data-i18n="retention.card3q">Why does message passing matter so much?</summary>
+              <p data-i18n="retention.card3a">Because isolated processes coordinate by messages instead of hidden shared memory changes.</p>
+            </details>
+            <details class="retention-card">
+              <summary data-i18n="retention.card4q">What does OTP really give you?</summary>
+              <p data-i18n="retention.card4a">A standard structure for stateful processes, supervision, and recoverable systems.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-accent" id="pitfalls">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="pitfalls.eyebrow">Mistake Radar</p>
+            <h2 data-i18n="pitfalls.title">These are the traps that make Erlang feel harder than it is.</h2>
+          </div>
+
+          <div class="pitfall-grid">
+            <article class="pitfall-card">
+              <h3 data-i18n="pitfalls.p1t">Thinking in loops first</h3>
+              <p data-i18n="pitfalls.p1b">Beginners often search for loop syntax. In Erlang, think in recursive shape transformations instead.</p>
+            </article>
+            <article class="pitfall-card">
+              <h3 data-i18n="pitfalls.p2t">Treating processes like objects</h3>
+              <p data-i18n="pitfalls.p2b">A process is not just a class instance. It is an isolated actor with a mailbox and explicit protocol.</p>
+            </article>
+            <article class="pitfall-card">
+              <h3 data-i18n="pitfalls.p3t">Avoiding crashes at all costs</h3>
+              <p data-i18n="pitfalls.p3b">In BEAM systems, some failures should crash fast so supervision can restore clean state predictably.</p>
+            </article>
+            <article class="pitfall-card">
+              <h3 data-i18n="pitfalls.p4t">Starting distributed design too early</h3>
+              <p data-i18n="pitfalls.p4b">First get one node right, then think about distribution, timeouts, retries, and monitoring.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="projects">
         <div class="container">
           <div class="section-heading">
@@ -706,6 +765,51 @@ end.</code></pre>
                 <li data-i18n="projects.p3c">Simulate a crash and observe the restart</li>
               </ul>
             </article>
+          </div>
+
+          <div class="capstone-card">
+            <div class="section-heading">
+              <p class="eyebrow" data-i18n="capstone.eyebrow">Capstone</p>
+              <h2 data-i18n="capstone.title">Build one thing that proves you can actually use Erlang.</h2>
+              <p data-i18n="capstone.body">
+                The strongest confidence boost comes from shipping a small but real system. Use this panel to design your final project.
+              </p>
+            </div>
+
+            <div class="checklist checklist-grid">
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span data-i18n="capstone.check1">I chose one concrete service idea</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span data-i18n="capstone.check2">I defined the message protocol</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span data-i18n="capstone.check3">I separated worker and state ownership</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span data-i18n="capstone.check4">I planned one supervision strategy</span>
+              </label>
+            </div>
+
+            <div class="practice-lab">
+              <h4 data-i18n="capstone.planTitle">Your final project plan</h4>
+              <label class="practice-field">
+                <span data-i18n="capstone.idea">Project idea</span>
+                <textarea data-user-input="capstone_idea" rows="3" data-i18n-placeholder="capstone.ideaPlaceholder" placeholder="Example: a tiny job queue, chat hub, telemetry collector, or todo service."></textarea>
+              </label>
+              <label class="practice-field">
+                <span data-i18n="capstone.protocol">Protocol design</span>
+                <textarea data-user-input="capstone_protocol" rows="4" data-i18n-placeholder="capstone.protocolPlaceholder" placeholder="Write the key messages the system should support, for example {add, Job}, {get, From}, {stop}."></textarea>
+              </label>
+              <label class="practice-field">
+                <span data-i18n="capstone.supervision">Supervision idea</span>
+                <textarea data-user-input="capstone_supervision" rows="4" data-i18n-placeholder="capstone.supervisionPlaceholder" placeholder="Explain which processes can crash, which one restarts them, and why that restart strategy makes sense."></textarea>
+              </label>
+            </div>
           </div>
         </div>
       </section>

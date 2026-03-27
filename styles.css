@@ -380,6 +380,50 @@ body.dark .lesson-grid pre {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.donation-card {
+  margin-bottom: 1.5rem;
+  padding: 1.15rem;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(196, 79, 41, 0.2);
+  background:
+    radial-gradient(circle at top right, rgba(255, 139, 90, 0.16), transparent 36%),
+    linear-gradient(135deg, rgba(196, 79, 41, 0.08), rgba(23, 73, 86, 0.08)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.donation-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.donation-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(23, 73, 86, 0.12);
+  color: var(--accent-alt);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.donation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.donation-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .account-card__header {
   display: flex;
   align-items: center;

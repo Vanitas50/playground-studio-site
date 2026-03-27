@@ -93,6 +93,13 @@ const germanText = {
   "auth.modalTitle": "Login, Registrierung und gespeicherter Lernfortschritt.",
   "auth.notConnected":
     "Backend noch nicht verbunden. Trage zuerst deine Supabase-Keys in config.js ein.",
+  "donation.eyebrow": "Support",
+  "donation.optional": "Freiwillig",
+  "donation.title": "Gib dem Programmierer einen 1-Dollar-Kaffee aus.",
+  "donation.body":
+    "Wenn dir der Kurs hilft, kannst du mit einer kleinen 1-Dollar-Spende neue Lektionen und Verbesserungen unterstuetzen.",
+  "donation.cta": "1 $ spenden",
+  "donation.note": "Komplett freiwillig. Der Kurs bleibt kostenlos.",
   "hero.eyebrow": "Ein vollstaendiger Erlang-Kurs fuer echten Lernerfolg",
   "hero.title": "Lerne Erlang so, dass es haengen bleibt und auch Spass macht.",
   "hero.lead":

@@ -34,14 +34,22 @@
           <span class="brand-mark">BEAM</span>
           <span>Erlang Campus</span>
         </a>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#course-start">Start</a>
-          <a href="#roadmap">Roadmap</a>
-          <a href="#lessons">Lessons</a>
-          <a href="#quiz">Quiz</a>
-          <a href="#projects">Projects</a>
+        <nav class="main-nav" aria-label="Main navigation" data-i18n-aria-label="nav.aria">
+          <a href="#course-start" data-i18n="nav.start">Start</a>
+          <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+          <a href="#lessons" data-i18n="nav.lessons">Lessons</a>
+          <a href="#quiz" data-i18n="nav.quiz">Quiz</a>
+          <a href="#projects" data-i18n="nav.projects">Projects</a>
         </nav>
-        <button class="theme-toggle" type="button" aria-label="Switch color theme">Mode</button>
+        <div class="header-controls">
+          <div class="lang-switch" role="group" aria-label="Language switcher" data-i18n-aria-label="lang.aria">
+            <button class="lang-toggle" type="button" data-lang="en">EN</button>
+            <button class="lang-toggle" type="button" data-lang="de">DE</button>
+          </div>
+          <button class="theme-toggle" type="button" aria-label="Switch color theme" data-i18n="theme.mode" data-i18n-aria-label="theme.aria">
+            Mode
+          </button>
+        </div>
       </div>
     </header>
 
@@ -49,39 +57,39 @@
       <section class="hero" id="course-start">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">A complete Erlang course built for real learning</p>
-            <h1>Learn Erlang in a way that makes it stick and makes it fun.</h1>
-            <p class="lead">
+            <p class="eyebrow" data-i18n="hero.eyebrow">A complete Erlang course built for real learning</p>
+            <h1 data-i18n="hero.title">Learn Erlang in a way that makes it stick and makes it fun.</h1>
+            <p class="lead" data-i18n="hero.lead">
               This course takes you from the basics to OTP and distributed systems in small,
               clear stages. Every stage combines understanding, repetition, application,
               and visible progress.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#roadmap">Start the course</a>
-              <a class="btn btn-secondary" href="#today">Today’s mission</a>
+              <a class="btn btn-primary" href="#roadmap" data-i18n="hero.start">Start the course</a>
+              <a class="btn btn-secondary" href="#today" data-i18n="hero.today">Today's mission</a>
             </div>
-            <ul class="hero-metrics" aria-label="Course metrics">
-              <li><strong>6</strong><span>Modules</span></li>
-              <li><strong>24</strong><span>Lessons</span></li>
-              <li><strong>36</strong><span>Checks</span></li>
-              <li><strong>3</strong><span>Mini projects</span></li>
+            <ul class="hero-metrics" aria-label="Course metrics" data-i18n-aria-label="hero.metricsAria">
+              <li><strong>6</strong><span data-i18n="hero.modules">Modules</span></li>
+              <li><strong>24</strong><span data-i18n="hero.lessons">Lessons</span></li>
+              <li><strong>36</strong><span data-i18n="hero.checks">Checks</span></li>
+              <li><strong>3</strong><span data-i18n="hero.projects">Mini projects</span></li>
             </ul>
           </div>
 
           <aside class="hero-panel">
-            <p class="panel-label">Why this course works</p>
+            <p class="panel-label" data-i18n="hero.why">Why this course works</p>
             <div class="hero-stack">
               <div class="stack-card">
-                <strong>1. Understand</strong>
-                <p>Each lesson begins with a clear mental model instead of dry theory.</p>
+                <strong data-i18n="hero.card1Title">1. Understand</strong>
+                <p data-i18n="hero.card1Body">Each lesson begins with a clear mental model instead of dry theory.</p>
               </div>
               <div class="stack-card">
-                <strong>2. Recall</strong>
-                <p>Memory lines and quiz questions reinforce what you just learned.</p>
+                <strong data-i18n="hero.card2Title">2. Recall</strong>
+                <p data-i18n="hero.card2Body">Memory lines and quiz questions reinforce what you just learned.</p>
               </div>
               <div class="stack-card">
-                <strong>3. Apply</strong>
-                <p>Mini challenges push you to think like an Erlang engineer.</p>
+                <strong data-i18n="hero.card3Title">3. Apply</strong>
+                <p data-i18n="hero.card3Body">Mini challenges push you to think like an Erlang engineer.</p>
               </div>
             </div>
             <pre><code>-module(mailbox_demo).
@@ -103,9 +111,9 @@ loop() ->
         <div class="container">
           <div class="daily-card">
             <div>
-              <p class="eyebrow">Today’s mission</p>
-              <h2>Twenty focused minutes beat two chaotic hours.</h2>
-              <p>
+              <p class="eyebrow" data-i18n="today.eyebrow">Today's mission</p>
+              <h2 data-i18n="today.title">Twenty focused minutes beat two chaotic hours.</h2>
+              <p data-i18n="today.body">
                 Follow this order today: read one lesson, solve one mini challenge,
                 then answer the quiz. That sequence creates much stronger retention.
               </p>
@@ -113,19 +121,19 @@ loop() ->
             <div class="daily-checklist">
               <label class="check-item">
                 <input type="checkbox" data-progress-item />
-                <span>Read today’s lesson</span>
+                <span data-i18n="today.step1">Read today's lesson</span>
               </label>
               <label class="check-item">
                 <input type="checkbox" data-progress-item />
-                <span>Walk through one code example actively</span>
+                <span data-i18n="today.step2">Walk through one code example actively</span>
               </label>
               <label class="check-item">
                 <input type="checkbox" data-progress-item />
-                <span>Solve one challenge</span>
+                <span data-i18n="today.step3">Solve one challenge</span>
               </label>
               <label class="check-item">
                 <input type="checkbox" data-progress-item />
-                <span>Finish the quick quiz</span>
+                <span data-i18n="today.step4">Finish the quick quiz</span>
               </label>
             </div>
           </div>
@@ -136,14 +144,14 @@ loop() ->
         <div class="container">
           <div class="section-heading split-heading">
             <div>
-              <p class="eyebrow">Roadmap</p>
-              <h2>The course is divided into six learnable stages.</h2>
+              <p class="eyebrow" data-i18n="roadmap.eyebrow">Roadmap</p>
+              <h2 data-i18n="roadmap.title">The course is divided into six learnable stages.</h2>
             </div>
             <div class="progress-shell">
               <div class="progress-summary">
-                <p class="progress-kicker">Overall progress</p>
+                <p class="progress-kicker" data-i18n="roadmap.progress">Overall progress</p>
                 <strong id="progressValue">0%</strong>
-                <p><span id="progressCount">0</span> of <span id="progressTotal">16</span> learning steps completed</p>
+                <p><span id="progressCount">0</span> <span data-i18n="roadmap.of">of</span> <span id="progressTotal">16</span> <span data-i18n="roadmap.steps">learning steps completed</span></p>
               </div>
               <div class="progress-bar" aria-hidden="true">
                 <span id="progressBar"></span>
@@ -154,101 +162,53 @@ loop() ->
           <div class="roadmap-grid">
             <article class="roadmap-card">
               <span class="module-index">01</span>
-              <h3>Think in values</h3>
-              <p>Atoms, tuples, lists, pattern matching, and the mindset behind immutable data.</p>
+              <h3 data-i18n="roadmap.card1Title">Think in values</h3>
+              <p data-i18n="roadmap.card1Body">Atoms, tuples, lists, pattern matching, and the mindset behind immutable data.</p>
             </article>
             <article class="roadmap-card">
               <span class="module-index">02</span>
-              <h3>Think in functions</h3>
-              <p>Guards, recursion, and case-based logic instead of classic loops.</p>
+              <h3 data-i18n="roadmap.card2Title">Think in functions</h3>
+              <p data-i18n="roadmap.card2Body">Guards, recursion, and case-based logic instead of classic loops.</p>
             </article>
             <article class="roadmap-card">
               <span class="module-index">03</span>
-              <h3>Think in processes</h3>
-              <p>Lightweight processes, mailboxes, messages, and asynchronous collaboration.</p>
+              <h3 data-i18n="roadmap.card3Title">Think in processes</h3>
+              <p data-i18n="roadmap.card3Body">Lightweight processes, mailboxes, messages, and asynchronous collaboration.</p>
             </article>
             <article class="roadmap-card">
               <span class="module-index">04</span>
-              <h3>Think in resilience</h3>
-              <p>Links, monitors, supervisors, and the logic behind “let it crash”.</p>
+              <h3 data-i18n="roadmap.card4Title">Think in resilience</h3>
+              <p data-i18n="roadmap.card4Body">Links, monitors, supervisors, and the logic behind let it crash.</p>
             </article>
             <article class="roadmap-card">
               <span class="module-index">05</span>
-              <h3>Think in patterns</h3>
-              <p>Workers, pipelines, state isolation, and common Erlang architecture patterns.</p>
+              <h3 data-i18n="roadmap.card5Title">Think in patterns</h3>
+              <p data-i18n="roadmap.card5Body">Workers, pipelines, state isolation, and common Erlang architecture patterns.</p>
             </article>
             <article class="roadmap-card">
               <span class="module-index">06</span>
-              <h3>Think in systems</h3>
-              <p>Nodes, distribution, deployment, and why BEAM is so strong in production.</p>
+              <h3 data-i18n="roadmap.card6Title">Think in systems</h3>
+              <p data-i18n="roadmap.card6Body">Nodes, distribution, deployment, and why BEAM is so strong in production.</p>
             </article>
           </div>
 
-          <div class="checklist checklist-grid" aria-label="Course progress">
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 1 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 2 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 3 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 4 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 5 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Module 6 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Mini project 1 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Mini project 2 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Mini project 3 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Syntax quiz passed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Recursion quiz passed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Process quiz passed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>OTP quiz passed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Review round 1 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Review round 2 completed</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Course fully completed</span>
-            </label>
+          <div class="checklist checklist-grid" aria-label="Course progress" data-i18n-aria-label="roadmap.checklistAria">
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check1">Module 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check2">Module 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check3">Module 3 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check4">Module 4 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check5">Module 5 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check6">Module 6 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check7">Mini project 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check8">Mini project 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check9">Mini project 3 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check10">Syntax quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check11">Recursion quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check12">Process quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check13">OTP quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check14">Review round 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check15">Review round 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item /><span data-i18n="roadmap.check16">Course fully completed</span></label>
           </div>
         </div>
       </section>
@@ -256,22 +216,22 @@ loop() ->
       <section class="section" id="lessons">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Lessons</p>
-            <h2>Every module combines a model, a rule, an example, and a challenge.</h2>
-            <p>That is how understanding replaces memorization.</p>
+            <p class="eyebrow" data-i18n="lessons.eyebrow">Lessons</p>
+            <h2 data-i18n="lessons.title">Every module combines a model, a rule, an example, and a challenge.</h2>
+            <p data-i18n="lessons.body">That is how understanding replaces memorization.</p>
           </div>
 
           <div class="lesson-stack">
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 1</span>
-                <h3>Syntax and data types</h3>
+                <span class="module-index" data-i18n="m1.label">Module 1</span>
+                <h3 data-i18n="m1.title">Syntax and data types</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 1: Atoms, numbers, strings</h4>
-                  <p>Erlang clearly separates atoms like <code>ok</code>, numbers like <code>42</code>, and binaries like <code>&lt;&lt;"hi"&gt;&gt;</code>.</p>
-                  <p class="memory-line">Memory line: An atom often describes meaning, a binary often carries actual data.</p>
+                  <h4 data-i18n="m1.l1t">Lesson 1: Atoms, numbers, strings</h4>
+                  <p data-i18n="m1.l1b">Erlang clearly separates atoms like ok, numbers like 42, and binaries like &lt;&lt;"hi"&gt;&gt;.</p>
+                  <p class="memory-line" data-i18n="m1.l1m">Memory line: An atom often describes meaning, a binary often carries actual data.</p>
                 </div>
                 <pre><code>State = idle,
 Count = 3,
@@ -279,37 +239,37 @@ Name = <<"Ada">>.</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 2: Pattern matching</h4>
-                  <p>Pattern matching is not just “comparison”. It is structured unpacking of values.</p>
-                  <p class="memory-line">Memory line: Erlang always asks, “Does the shape fit?”</p>
+                  <h4 data-i18n="m1.l2t">Lesson 2: Pattern matching</h4>
+                  <p data-i18n="m1.l2b">Pattern matching is not just comparison. It is structured unpacking of values.</p>
+                  <p class="memory-line" data-i18n="m1.l2m">Memory line: Erlang always asks, Does the shape fit?</p>
                 </div>
                 <pre><code>{ok, User} = {ok, #{name => <<"Ada">>}}.</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>Which parts of <code>{error, timeout}</code> can you extract directly with pattern matching?</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m1.challenge">Which parts of {error, timeout} can you extract directly with pattern matching?</p>
               </div>
             </article>
 
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 2</span>
-                <h3>Functions, guards, and recursion</h3>
+                <span class="module-index" data-i18n="m2.label">Module 2</span>
+                <h3 data-i18n="m2.title">Functions, guards, and recursion</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 3: Multiple function heads</h4>
-                  <p>A function can have multiple shapes. Erlang checks them from top to bottom.</p>
-                  <p class="memory-line">Memory line: First pattern, then guard, then function body.</p>
+                  <h4 data-i18n="m2.l1t">Lesson 3: Multiple function heads</h4>
+                  <p data-i18n="m2.l1b">A function can have multiple shapes. Erlang checks them from top to bottom.</p>
+                  <p class="memory-line" data-i18n="m2.l1m">Memory line: First pattern, then guard, then function body.</p>
                 </div>
                 <pre><code>size([]) -> 0;
 size([_ | Tail]) -> 1 + size(Tail).</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 4: Guards</h4>
-                  <p>Guards make rules readable and keep logic out of the body when possible.</p>
-                  <p class="memory-line">Memory line: Guards clarify cases before work begins.</p>
+                  <h4 data-i18n="m2.l2t">Lesson 4: Guards</h4>
+                  <p data-i18n="m2.l2b">Guards make rules readable and keep logic out of the body when possible.</p>
+                  <p class="memory-line" data-i18n="m2.l2m">Memory line: Guards clarify cases before work begins.</p>
                 </div>
                 <pre><code>kind(N) when N &gt; 0 -> positive;
 kind(0) -> zero;
@@ -317,45 +277,45 @@ kind(_) -> negative.</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 5: Recursion instead of loops</h4>
-                  <p>In Erlang, recursion is the normal way to move through data.</p>
-                  <p class="memory-line">Memory line: Every recursion needs a start, a step, and an end.</p>
+                  <h4 data-i18n="m2.l3t">Lesson 5: Recursion instead of loops</h4>
+                  <p data-i18n="m2.l3b">In Erlang, recursion is the normal way to move through data.</p>
+                  <p class="memory-line" data-i18n="m2.l3m">Memory line: Every recursion needs a start, a step, and an end.</p>
                 </div>
                 <pre><code>sum([]) -> 0;
 sum([H | T]) -> H + sum(T).</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>Mentally design a function <code>all_even/1</code> that returns <code>true</code> only if every element is even.</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m2.challenge">Mentally design a function all_even/1 that returns true only if every element is even.</p>
               </div>
             </article>
 
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 3</span>
-                <h3>Processes and message passing</h3>
+                <span class="module-index" data-i18n="m3.label">Module 3</span>
+                <h3 data-i18n="m3.title">Processes and message passing</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 6: Starting processes</h4>
-                  <p>An Erlang process is extremely lightweight and owns its own state.</p>
-                  <p class="memory-line">Memory line: Do not share state, send messages.</p>
+                  <h4 data-i18n="m3.l1t">Lesson 6: Starting processes</h4>
+                  <p data-i18n="m3.l1b">An Erlang process is extremely lightweight and owns its own state.</p>
+                  <p class="memory-line" data-i18n="m3.l1m">Memory line: Do not share state, send messages.</p>
                 </div>
                 <pre><code>Pid = spawn(fun loop/0).</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 7: Sending messages</h4>
-                  <p>With <code>!</code>, you send messages asynchronously into a process mailbox.</p>
-                  <p class="memory-line">Memory line: Sending is immediate, processing comes later.</p>
+                  <h4 data-i18n="m3.l2t">Lesson 7: Sending messages</h4>
+                  <p data-i18n="m3.l2b">With !, you send messages asynchronously into a process mailbox.</p>
+                  <p class="memory-line" data-i18n="m3.l2m">Memory line: Sending is immediate, processing comes later.</p>
                 </div>
                 <pre><code>Pid ! {self(), ping}.</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 8: Receive loops</h4>
-                  <p>A process is often modeled as a loop: receive a message, react, continue.</p>
-                  <p class="memory-line">Memory line: Behavior emerges from receiving plus the next loop.</p>
+                  <h4 data-i18n="m3.l3t">Lesson 8: Receive loops</h4>
+                  <p data-i18n="m3.l3b">A process is often modeled as a loop: receive a message, react, continue.</p>
+                  <p class="memory-line" data-i18n="m3.l3m">Memory line: Behavior emerges from receiving plus the next loop.</p>
                 </div>
                 <pre><code>receive
     stop -> ok;
@@ -363,65 +323,65 @@ sum([H | T]) -> H + sum(T).</code></pre>
 end.</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>How would you design a counter process that reacts to <code>increment</code> and <code>get</code>?</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m3.challenge">How would you design a counter process that reacts to increment and get?</p>
               </div>
             </article>
 
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 4</span>
-                <h3>OTP and fault tolerance</h3>
+                <span class="module-index" data-i18n="m4.label">Module 4</span>
+                <h3 data-i18n="m4.title">OTP and fault tolerance</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 9: Let it crash</h4>
-                  <p>In Erlang, error handling is often structural: one process may crash while another restores it.</p>
-                  <p class="memory-line">Memory line: Not every error should be fixed inside the same process.</p>
+                  <h4 data-i18n="m4.l1t">Lesson 9: Let it crash</h4>
+                  <p data-i18n="m4.l1b">In Erlang, error handling is often structural: one process may crash while another restores it.</p>
+                  <p class="memory-line" data-i18n="m4.l1m">Memory line: Not every error should be fixed inside the same process.</p>
                 </div>
                 <pre><code>link(WorkerPid).</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 10: GenServer thinking</h4>
-                  <p>GenServer encapsulates state and standardizes the message flow.</p>
-                  <p class="memory-line">Memory line: OTP gives you structure for repeating process patterns.</p>
+                  <h4 data-i18n="m4.l2t">Lesson 10: GenServer thinking</h4>
+                  <p data-i18n="m4.l2b">GenServer encapsulates state and standardizes the message flow.</p>
+                  <p class="memory-line" data-i18n="m4.l2m">Memory line: OTP gives you structure for repeating process patterns.</p>
                 </div>
                 <pre><code>handle_call(get, _From, State) ->
     {reply, State, State}.</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 11: Supervisors</h4>
-                  <p>Supervisors decide whether a single worker or an entire group should restart.</p>
-                  <p class="memory-line">Memory line: Resilience is a tree structure, not an accident.</p>
+                  <h4 data-i18n="m4.l3t">Lesson 11: Supervisors</h4>
+                  <p data-i18n="m4.l3b">Supervisors decide whether a single worker or an entire group should restart.</p>
+                  <p class="memory-line" data-i18n="m4.l3m">Memory line: Resilience is a tree structure, not an accident.</p>
                 </div>
                 <pre><code>{one_for_one, 5, 10}</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>When would a <code>one_for_one</code> strategy make more sense than <code>one_for_all</code>?</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m4.challenge">When would a one_for_one strategy make more sense than one_for_all?</p>
               </div>
             </article>
 
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 5</span>
-                <h3>Concurrency patterns</h3>
+                <span class="module-index" data-i18n="m5.label">Module 5</span>
+                <h3 data-i18n="m5.title">Concurrency patterns</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 12: Worker pools</h4>
-                  <p>Multiple processes can handle the same kind of task in parallel without blocking one another.</p>
-                  <p class="memory-line">Memory line: Parallelism needs work distribution, not just more CPU.</p>
+                  <h4 data-i18n="m5.l1t">Lesson 12: Worker pools</h4>
+                  <p data-i18n="m5.l1b">Multiple processes can handle the same kind of task in parallel without blocking one another.</p>
+                  <p class="memory-line" data-i18n="m5.l1m">Memory line: Parallelism needs work distribution, not just more CPU.</p>
                 </div>
                 <pre><code>Workers = [spawn(fun worker/0) || _ &lt;- lists:seq(1, 4)].</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 13: Isolating state</h4>
-                  <p>State should ideally live inside a single process and never be shared directly.</p>
-                  <p class="memory-line">Memory line: Isolation reduces side effects.</p>
+                  <h4 data-i18n="m5.l2t">Lesson 13: Isolating state</h4>
+                  <p data-i18n="m5.l2b">State should ideally live inside a single process and never be shared directly.</p>
+                  <p class="memory-line" data-i18n="m5.l2m">Memory line: Isolation reduces side effects.</p>
                 </div>
                 <pre><code>store_loop(State) ->
     receive
@@ -430,37 +390,37 @@ end.</code></pre>
     end.</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>Sketch a three-step pipeline with one process for receiving, one for validating, and one for storing.</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m5.challenge">Sketch a three-step pipeline with one process for receiving, one for validating, and one for storing.</p>
               </div>
             </article>
 
             <article class="lesson-card">
               <div class="lesson-head">
-                <span class="module-index">Module 6</span>
-                <h3>Distributed Erlang</h3>
+                <span class="module-index" data-i18n="m6.label">Module 6</span>
+                <h3 data-i18n="m6.title">Distributed Erlang</h3>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 14: Nodes</h4>
-                  <p>A node is a running Erlang instance that can cooperate with other nodes.</p>
-                  <p class="memory-line">Memory line: Distribution starts with explicit connection, not magic.</p>
+                  <h4 data-i18n="m6.l1t">Lesson 14: Nodes</h4>
+                  <p data-i18n="m6.l1b">A node is a running Erlang instance that can cooperate with other nodes.</p>
+                  <p class="memory-line" data-i18n="m6.l1m">Memory line: Distribution starts with explicit connection, not magic.</p>
                 </div>
                 <pre><code>net_kernel:connect_node('worker@host').</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 15: Remote messaging</h4>
-                  <p>Messages can cross nodes as long as naming and connectivity are correct.</p>
-                  <p class="memory-line">Memory line: A distributed system is only as good as its failure assumptions.</p>
+                  <h4 data-i18n="m6.l2t">Lesson 15: Remote messaging</h4>
+                  <p data-i18n="m6.l2b">Messages can cross nodes as long as naming and connectivity are correct.</p>
+                  <p class="memory-line" data-i18n="m6.l2m">Memory line: A distributed system is only as good as its failure assumptions.</p>
                 </div>
                 <pre><code>{service, 'worker@host'} ! ping.</code></pre>
               </div>
               <div class="lesson-grid">
                 <div>
-                  <h4>Lesson 16: Production thinking</h4>
-                  <p>In distributed systems, timeouts, retries, monitoring, and ownership matter.</p>
-                  <p class="memory-line">Memory line: Strong systems plan for network failure from the start.</p>
+                  <h4 data-i18n="m6.l3t">Lesson 16: Production thinking</h4>
+                  <p data-i18n="m6.l3b">In distributed systems, timeouts, retries, monitoring, and ownership matter.</p>
+                  <p class="memory-line" data-i18n="m6.l3m">Memory line: Strong systems plan for network failure from the start.</p>
                 </div>
                 <pre><code>receive
     reply -> ok
@@ -469,8 +429,8 @@ after 2000 ->
 end.</code></pre>
               </div>
               <div class="challenge-box">
-                <strong>Mini challenge</strong>
-                <p>What kinds of failures can happen when a remote node is temporarily unreachable?</p>
+                <strong data-i18n="common.challenge">Mini challenge</strong>
+                <p data-i18n="m6.challenge">What kinds of failures can happen when a remote node is temporarily unreachable?</p>
               </div>
             </article>
           </div>
@@ -480,59 +440,59 @@ end.</code></pre>
       <section class="section section-accent" id="quiz">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Quiz arena</p>
-            <h2>Short questions turn passive reading into active recall.</h2>
-            <p>Answer every question immediately. This is one of the strongest learning levers you have.</p>
+            <p class="eyebrow" data-i18n="quiz.eyebrow">Quiz arena</p>
+            <h2 data-i18n="quiz.title">Short questions turn passive reading into active recall.</h2>
+            <p data-i18n="quiz.body">Answer every question immediately. This is one of the strongest learning levers you have.</p>
           </div>
 
           <div class="quiz-grid">
             <article class="quiz-card" data-quiz-card>
-              <p class="quiz-topic">Syntax</p>
-              <h3>What does pattern matching mainly do in Erlang?</h3>
+              <p class="quiz-topic" data-i18n="quiz.q1.topic">Syntax</p>
+              <h3 data-i18n="quiz.q1.question">What does pattern matching mainly do in Erlang?</h3>
               <div class="quiz-options">
-                <button type="button" class="quiz-option" data-correct="true">It checks structure and binds matching values.</button>
-                <button type="button" class="quiz-option">It changes variables repeatedly inside a loop.</button>
-                <button type="button" class="quiz-option">It replaces functions with macros.</button>
+                <button type="button" class="quiz-option" data-correct="true" data-i18n="quiz.q1.a1">It checks structure and binds matching values.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q1.a2">It changes variables repeatedly inside a loop.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q1.a3">It replaces functions with macros.</button>
               </div>
               <p class="quiz-feedback" aria-live="polite"></p>
             </article>
 
             <article class="quiz-card" data-quiz-card>
-              <p class="quiz-topic">Recursion</p>
-              <h3>Why is recursion so central in Erlang?</h3>
+              <p class="quiz-topic" data-i18n="quiz.q2.topic">Recursion</p>
+              <h3 data-i18n="quiz.q2.question">Why is recursion so central in Erlang?</h3>
               <div class="quiz-options">
-                <button type="button" class="quiz-option">Because OTP loops run faster than data traversal.</button>
-                <button type="button" class="quiz-option" data-correct="true">Because data is usually processed by repeatedly breaking it into smaller parts.</button>
-                <button type="button" class="quiz-option">Because guards cannot check conditions.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q2.a1">Because OTP loops run faster than data traversal.</button>
+                <button type="button" class="quiz-option" data-correct="true" data-i18n="quiz.q2.a2">Because data is usually processed by repeatedly breaking it into smaller parts.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q2.a3">Because guards cannot check conditions.</button>
               </div>
               <p class="quiz-feedback" aria-live="polite"></p>
             </article>
 
             <article class="quiz-card" data-quiz-card>
-              <p class="quiz-topic">Processes</p>
-              <h3>What is the key difference between threads and Erlang processes in the Erlang mental model?</h3>
+              <p class="quiz-topic" data-i18n="quiz.q3.topic">Processes</p>
+              <h3 data-i18n="quiz.q3.question">What is the key difference between threads and Erlang processes in the Erlang mental model?</h3>
               <div class="quiz-options">
-                <button type="button" class="quiz-option">Erlang processes directly access shared memory.</button>
-                <button type="button" class="quiz-option" data-correct="true">Erlang processes do not share state and communicate through messages.</button>
-                <button type="button" class="quiz-option">Erlang processes cannot run in parallel.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q3.a1">Erlang processes directly access shared memory.</button>
+                <button type="button" class="quiz-option" data-correct="true" data-i18n="quiz.q3.a2">Erlang processes do not share state and communicate through messages.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q3.a3">Erlang processes cannot run in parallel.</button>
               </div>
               <p class="quiz-feedback" aria-live="polite"></p>
             </article>
 
             <article class="quiz-card" data-quiz-card>
-              <p class="quiz-topic">OTP</p>
-              <h3>What is a supervisor for?</h3>
+              <p class="quiz-topic" data-i18n="quiz.q4.topic">OTP</p>
+              <h3 data-i18n="quiz.q4.question">What is a supervisor for?</h3>
               <div class="quiz-options">
-                <button type="button" class="quiz-option">It compiles modules faster.</button>
-                <button type="button" class="quiz-option">It stores logs inside an ETS table.</button>
-                <button type="button" class="quiz-option" data-correct="true">It watches processes and restarts them according to defined rules.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q4.a1">It compiles modules faster.</button>
+                <button type="button" class="quiz-option" data-i18n="quiz.q4.a2">It stores logs inside an ETS table.</button>
+                <button type="button" class="quiz-option" data-correct="true" data-i18n="quiz.q4.a3">It watches processes and restarts them according to defined rules.</button>
               </div>
               <p class="quiz-feedback" aria-live="polite"></p>
             </article>
           </div>
 
           <div class="score-card">
-            <p class="eyebrow">Quiz score</p>
+            <p class="eyebrow" data-i18n="quiz.score">Quiz score</p>
             <strong><span id="quizScore">0</span> / <span id="quizTotal">4</span></strong>
             <p id="quizMessage">Start with the first question and work your way through.</p>
           </div>
@@ -542,39 +502,39 @@ end.</code></pre>
       <section class="section" id="projects">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Mini projects</p>
-            <h2>This is where knowledge starts turning into skill.</h2>
+            <p class="eyebrow" data-i18n="projects.eyebrow">Mini projects</p>
+            <h2 data-i18n="projects.title">This is where knowledge starts turning into skill.</h2>
           </div>
 
           <div class="project-grid">
             <article class="project-card">
-              <p class="exercise-level">Project 1</p>
-              <h3>Todo store as a process</h3>
-              <p>Build a process that accepts tasks, stores them, and returns them on request.</p>
+              <p class="exercise-level" data-i18n="projects.p1label">Project 1</p>
+              <h3 data-i18n="projects.p1title">Todo store as a process</h3>
+              <p data-i18n="projects.p1body">Build a process that accepts tasks, stores them, and returns them on request.</p>
               <ul>
-                <li>Keep state only inside the process</li>
-                <li>Support <code>add</code>, <code>list</code>, and <code>clear</code></li>
-                <li>Use messages instead of direct access</li>
+                <li data-i18n="projects.p1a">Keep state only inside the process</li>
+                <li data-i18n="projects.p1b">Support add, list, and clear</li>
+                <li data-i18n="projects.p1c">Use messages instead of direct access</li>
               </ul>
             </article>
             <article class="project-card">
-              <p class="exercise-level">Project 2</p>
-              <h3>Multi-client echo chat</h3>
-              <p>Connect multiple processes to one central hub that distributes messages.</p>
+              <p class="exercise-level" data-i18n="projects.p2label">Project 2</p>
+              <h3 data-i18n="projects.p2title">Multi-client echo chat</h3>
+              <p data-i18n="projects.p2body">Connect multiple processes to one central hub that distributes messages.</p>
               <ul>
-                <li>Use registered processes</li>
-                <li>Define clean message formats</li>
-                <li>Handle stop signals correctly</li>
+                <li data-i18n="projects.p2a">Use registered processes</li>
+                <li data-i18n="projects.p2b">Define clean message formats</li>
+                <li data-i18n="projects.p2c">Handle stop signals correctly</li>
               </ul>
             </article>
             <article class="project-card">
-              <p class="exercise-level">Project 3</p>
-              <h3>OTP counter service</h3>
-              <p>Use an OTP behavior for a stateful service with a restart strategy.</p>
+              <p class="exercise-level" data-i18n="projects.p3label">Project 3</p>
+              <h3 data-i18n="projects.p3title">OTP counter service</h3>
+              <p data-i18n="projects.p3body">Use an OTP behavior for a stateful service with a restart strategy.</p>
               <ul>
-                <li>Model the counter as a GenServer</li>
-                <li>Plan the supervisor structure</li>
-                <li>Simulate a crash and observe the restart</li>
+                <li data-i18n="projects.p3a">Model the counter as a GenServer</li>
+                <li data-i18n="projects.p3b">Plan the supervisor structure</li>
+                <li data-i18n="projects.p3c">Simulate a crash and observe the restart</li>
               </ul>
             </article>
           </div>
@@ -585,25 +545,25 @@ end.</code></pre>
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">FAQ</p>
-            <h2>The key questions for steady progress.</h2>
+            <h2 data-i18n="faq.title">The key questions for steady progress.</h2>
           </div>
 
           <div class="faq-list">
             <details open>
-              <summary>How should I use this course most effectively?</summary>
-              <p>Do not just read passively. Always go in this order: lesson, repeat the memory line, think through the challenge, answer the quiz.</p>
+              <summary data-i18n="faq.q1">How should I use this course most effectively?</summary>
+              <p data-i18n="faq.a1">Do not just read passively. Always go in this order: lesson, repeat the memory line, think through the challenge, answer the quiz.</p>
             </details>
             <details>
-              <summary>What if recursion still feels unfamiliar?</summary>
-              <p>Draw the input, the next step, and the end case on paper. Recursion becomes easier when you can see the data flow.</p>
+              <summary data-i18n="faq.q2">What if recursion still feels unfamiliar?</summary>
+              <p data-i18n="faq.a2">Draw the input, the next step, and the end case on paper. Recursion becomes easier when you can see the data flow.</p>
             </details>
             <details>
-              <summary>When am I ready for OTP?</summary>
-              <p>Once you can confidently model processes, messages, and stateful loops in your head, OTP starts to feel natural.</p>
+              <summary data-i18n="faq.q3">When am I ready for OTP?</summary>
+              <p data-i18n="faq.a3">Once you can confidently model processes, messages, and stateful loops in your head, OTP starts to feel natural.</p>
             </details>
             <details>
-              <summary>Is this course for beginners or more advanced developers?</summary>
-              <p>Both. The progression is beginner-friendly, but the later modules move toward production-level concepts.</p>
+              <summary data-i18n="faq.q4">Is this course for beginners or more advanced developers?</summary>
+              <p data-i18n="faq.a4">Both. The progression is beginner-friendly, but the later modules move toward production-level concepts.</p>
             </details>
           </div>
         </div>
@@ -614,9 +574,9 @@ end.</code></pre>
       <div class="container footer-shell">
         <div>
           <p class="footer-title">Erlang Campus</p>
-          <p>From the first atoms to OTP and distributed systems. Clear, motivating, and directly usable.</p>
+          <p data-i18n="footer.body">From the first atoms to OTP and distributed systems. Clear, motivating, and directly usable.</p>
         </div>
-        <a class="footer-link" href="https://github.com/Vanitas50/erlang-campus" target="_blank" rel="noreferrer">
+        <a class="footer-link" href="https://github.com/Vanitas50/erlang-campus" target="_blank" rel="noreferrer" data-i18n="footer.repo">
           Repository on GitHub
         </a>
       </div>

@@ -3,336 +3,284 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Playground Studio – Digitale Ideen zum Leben erwecken</title>
+    <title>Erlang Campus | Erlang online lernen</title>
     <meta
       name="description"
-      content="Playground Studio konzipiert und baut performante Websites für moderne Marken."
+      content="Ein moderner Erlang-Kurs mit Roadmap, Modulen, Code-Beispielen und Lernfortschritt direkt im Browser."
     />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="author" content="Playground Studio" />
-    <meta
-      name="keywords"
-      content="Webagentur Berlin, Webdesign Agentur, Website erstellen lassen, SEO Agentur Berlin, digitale Produkte"
-    />
-    <meta name="theme-color" content="#05060a" />
-    <link rel="canonical" href="https://playgroundstudio.de/" />
-    <link rel="alternate" hreflang="de-DE" href="https://playgroundstudio.de/" />
+    <meta name="theme-color" content="#f4efe4" />
+    <meta name="robots" content="index,follow" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Playground Studio" />
-    <meta property="og:locale" content="de_DE" />
-    <meta
-      property="og:title"
-      content="Playground Studio – Webagentur Berlin für performante Websites & Produkte"
-    />
+    <meta property="og:title" content="Erlang Campus | Erlang online lernen" />
     <meta
       property="og:description"
-      content="Digitale Markenführung, Webdesign und Entwicklung aus Berlin – mit Fokus auf Performance, SEO und GitHub-basierte Workflows."
+      content="Lerne Erlang mit einem klar strukturierten Kurs von Syntax bis OTP und verteilten Systemen."
     />
-    <meta property="og:url" content="https://playgroundstudio.de/" />
-    <meta property="og:image" content="https://playgroundstudio.de/social-card.svg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Playground Studio – Webagentur Berlin für performante Websites & Produkte"
-    />
-    <meta
-      name="twitter:description"
-      content="Von Strategie über Design bis Deployment: Playground Studio baut Websites, die auf Google gefunden werden."
-    />
-    <meta name="twitter:image" content="https://playgroundstudio.de/social-card.svg" />
+    <meta property="og:image" content="social-card.svg" />
+    <meta property="og:locale" content="de_DE" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <div class="container">
-        <div class="logo">Playground Studio</div>
+      <div class="container nav-shell">
+        <a class="brand" href="#top">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
         <nav class="main-nav" aria-label="Hauptnavigation">
-          <a href="#leistungen">Leistungen</a>
-          <a href="#projekte">Projekte</a>
-          <a href="#workflow">Workflow</a>
+          <a href="#kurs">Kurs</a>
+          <a href="#lernplan">Lernplan</a>
+          <a href="#praxis">Praxis</a>
           <a href="#faq">FAQ</a>
-          <a href="#kontakt">Kontakt</a>
         </nav>
-        <button class="theme-toggle" aria-label="Darstellung wechseln">
-          <span>◐</span>
-        </button>
+        <button class="theme-toggle" type="button" aria-label="Farbschema wechseln">Modus</button>
       </div>
     </header>
 
-    <main>
-      <section class="hero" id="start">
+    <main id="top">
+      <section class="hero">
         <div class="container hero-grid">
-          <div>
-            <p class="badge">Digitale Produkte made in Berlin</p>
-            <h1>Wir entwickeln Websites, die Marken erlebbar machen.</h1>
+          <div class="hero-copy">
+            <p class="eyebrow">Online-Kurs fuer funktionale Systeme</p>
+            <h1>Lerne Erlang strukturiert, praxisnah und ohne Setup-Huerden.</h1>
             <p class="lead">
-              Von der ersten Idee bis zum Launch kümmern wir uns um Strategie, Design
-              und Code – mit Fokus auf klare Botschaften, Performance und Barrierefreiheit.
+              Erlang Campus fuehrt dich von den Grundlagen ueber Pattern Matching und Prozesse
+              bis zu OTP, Supervision und verteilten Systemen.
             </p>
             <div class="hero-actions">
-              <a class="btn primary" href="#kontakt">Projekt anfragen</a>
-              <a class="btn ghost" href="#projekte">Letzte Arbeiten</a>
+              <a class="btn btn-primary" href="#kurs">Jetzt starten</a>
+              <a class="btn btn-secondary" href="#lernplan">Roadmap ansehen</a>
             </div>
-          </div>
-          <div class="hero-card" role="presentation">
-            <p class="hero-card__title">Nächstes freie Zeitfenster</p>
-            <p class="hero-card__time">April 2026</p>
-            <ul>
-              <li>3 Wochen Sprint</li>
-              <li>Remote & vor Ort</li>
-              <li>GitHub-basiertes Delivery</li>
+            <ul class="hero-metrics" aria-label="Kurs-Metriken">
+              <li><strong>6</strong><span>Module</span></li>
+              <li><strong>18</strong><span>Lektionen</span></li>
+              <li><strong>12h</strong><span>Lernzeit</span></li>
             </ul>
           </div>
+
+          <aside class="hero-panel">
+            <p class="panel-label">Schneller Einblick</p>
+            <pre><code>-module(hello_beam).
+-export([start/0]).
+
+start() ->
+    Message = <<"Hallo Erlang">>,
+    io:format("~s~n", [Message]).</code></pre>
+            <div class="panel-note">
+              <span>Fokus</span>
+              <p>Immutable Daten, leichte Prozesse und fehlertolerante Architekturen.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section class="section" id="leistungen">
+      <section class="section" id="kurs">
         <div class="container">
-          <header class="section-header">
-            <p class="badge">Leistungen</p>
-            <h2>Alles, was eine moderne Webpräsenz braucht.</h2>
-          </header>
-          <div class="card-grid">
-            <article class="card">
-              <h3>Brand & UX</h3>
-              <p>Wir übersetzen Markenwerte in zugängliche Design-Systeme und prototypen live.</p>
+          <div class="section-heading">
+            <p class="eyebrow">Kursmodule</p>
+            <h2>Ein kompletter Lernpfad fuer deinen Einstieg in Erlang.</h2>
+            <p>
+              Jedes Modul kombiniert Theorie, kurze Code-Beispiele und konkrete Lernziele.
+            </p>
+          </div>
+
+          <div class="module-grid">
+            <article class="module-card">
+              <span class="module-index">01</span>
+              <h3>Syntax und Denkweise</h3>
+              <p>Variablenbindung, Atome, Tupel, Listen und warum Werte in Erlang immutable sind.</p>
+              <ul>
+                <li>Shell und REPL</li>
+                <li>Pattern Matching verstehen</li>
+                <li>Funktionsdefinitionen lesen</li>
+              </ul>
             </article>
-            <article class="card">
-              <h3>Full-Stack Entwicklung</h3>
-              <p>Sauber strukturierter Code mit CI/CD, Performance-Budgets und Testing.</p>
+            <article class="module-card">
+              <span class="module-index">02</span>
+              <h3>Funktionen und Rekursion</h3>
+              <p>Statt Schleifen nutzt Erlang Rekursion, Guards und klare Fallunterscheidungen.</p>
+              <ul>
+                <li>Head und Tail Rekursion</li>
+                <li>Guards sinnvoll einsetzen</li>
+                <li>Module strukturieren</li>
+              </ul>
             </article>
-            <article class="card">
-              <h3>Content & SEO</h3>
-              <p>Storytelling, das gefunden wird – inklusive strukturierter Daten und Analytics.</p>
+            <article class="module-card">
+              <span class="module-index">03</span>
+              <h3>Nachrichten und Prozesse</h3>
+              <p>Lerne, wie du leichte Prozesse spawnst und mit Message Passing kommunizierst.</p>
+              <ul>
+                <li>`spawn/1` und `receive`</li>
+                <li>Mailbox verstehen</li>
+                <li>Asynchrone Architektur</li>
+              </ul>
             </article>
-            <article class="card">
-              <h3>Care & Growth</h3>
-              <p>Laufende Betreuung, Monitoring und zielgerichtete Experimente nach dem Launch.</p>
+            <article class="module-card">
+              <span class="module-index">04</span>
+              <h3>Fehlertoleranz mit OTP</h3>
+              <p>GenServer, Supervisoren und die Grundlagen produktionsreifer BEAM-Systeme.</p>
+              <ul>
+                <li>OTP-Verhalten</li>
+                <li>Supervision Trees</li>
+                <li>Crash early, recover clean</li>
+              </ul>
+            </article>
+            <article class="module-card">
+              <span class="module-index">05</span>
+              <h3>Concurrency Patterns</h3>
+              <p>Worker Pools, Pipelines und robuste Architekturmuster fuer parallele Workloads.</p>
+              <ul>
+                <li>Backpressure Denken</li>
+                <li>State isolieren</li>
+                <li>Skalierbare Prozesse</li>
+              </ul>
+            </article>
+            <article class="module-card">
+              <span class="module-index">06</span>
+              <h3>Distributed Erlang</h3>
+              <p>Nodes verbinden, Cluster-Grundlagen verstehen und Services uebergreifend denken.</p>
+              <ul>
+                <li>Node-Kommunikation</li>
+                <li>Remote Shell</li>
+                <li>Verteilte Fehlerszenarien</li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="projekte">
+      <section class="section section-accent" id="lernplan">
         <div class="container">
-          <header class="section-header">
-            <p class="badge">Case Studies</p>
-            <h2>Proof of Work</h2>
-          </header>
-          <div class="projects">
-            <article>
-              <p class="project-meta">E-Commerce · 2025</p>
-              <h3>Nordic Supply</h3>
-              <p>
-                Migration auf eine Headless-Architektur, 35% schnellerer Checkout, und modulare Komponenten
-                für das Marketing-Team.
-              </p>
-            </article>
-            <article>
-              <p class="project-meta">SaaS · 2024</p>
-              <h3>Relay OS</h3>
-              <p>
-                Interaktive Produktstory mit Scroll-Animationen, React + Astro Stack und
-                automatisierten Lighthouse-Checks vor jedem Merge.
-              </p>
-            </article>
-            <article>
-              <p class="project-meta">Impact · 2023</p>
-              <h3>Urban Forest</h3>
-              <p>
-                Spendenplattform mit Storytelling, CMS-Workflow und Echtzeit-Datenvisualisierung.
-              </p>
-            </article>
+          <div class="section-heading">
+            <p class="eyebrow">Lernplan</p>
+            <h2>Folge dem Plan und markiere deinen Fortschritt lokal im Browser.</h2>
+          </div>
+
+          <div class="progress-shell">
+            <div class="progress-summary">
+              <p class="progress-kicker">Fortschritt</p>
+              <strong id="progressValue">0%</strong>
+              <p><span id="progressCount">0</span> von 6 Modulen abgeschlossen</p>
+            </div>
+            <div class="progress-bar" aria-hidden="true">
+              <span id="progressBar"></span>
+            </div>
+          </div>
+
+          <div class="checklist" aria-label="Modul Fortschritt">
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 1: Syntax, Datentypen und Pattern Matching</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 2: Funktionen, Guards und Rekursion</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 3: Prozesse, Mailbox und Nachrichtenaustausch</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 4: OTP, GenServer und Supervisoren</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 5: Concurrency Patterns und Architektur</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 6: Distributed Erlang und Deployment-Grundlagen</span>
+            </label>
           </div>
         </div>
       </section>
 
-      <section class="section section--accent" id="workflow">
-        <div class="container">
-          <header class="section-header">
-            <p class="badge">Workflow</p>
-            <h2>Transparente Zusammenarbeit in vier Phasen.</h2>
-          </header>
-          <ol class="timeline" aria-label="Workflow Schritte">
-            <li>
-              <h3>Kick-off</h3>
-              <p>Gemeinsame Ziele, Messgrößen und Roadmap definieren.</p>
-            </li>
-            <li>
-              <h3>Design & Content</h3>
-              <p>Prototypen testen, Inhalte verdichten, QA mit echten Nutzern.</p>
-            </li>
-            <li>
-              <h3>Build & Automate</h3>
-              <p>Komponenten, Infrastruktur und Integrationen implementieren.</p>
-            </li>
-            <li>
-              <h3>Launch & Learn</h3>
-              <p>Deployment auf GitHub Pages oder kundeneigenen Stacks + Monitoring.</p>
-            </li>
-          </ol>
+      <section class="section" id="praxis">
+        <div class="container practice-grid">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Praxis</p>
+              <h2>Kurze Uebungen, die dich direkt in die Erlang-Denkweise bringen.</h2>
+            </div>
+
+            <div class="exercise-list">
+              <article class="exercise-card">
+                <p class="exercise-level">Starter</p>
+                <h3>Listen filtern</h3>
+                <p>Schreibe eine rekursive Funktion, die alle geraden Werte aus einer Liste extrahiert.</p>
+              </article>
+              <article class="exercise-card">
+                <p class="exercise-level">Core</p>
+                <h3>Echo-Prozess bauen</h3>
+                <p>Starte einen Prozess, sende Nachrichten hinein und gib sie kontrolliert wieder aus.</p>
+              </article>
+              <article class="exercise-card">
+                <p class="exercise-level">Advanced</p>
+                <h3>Mini Supervisor skizzieren</h3>
+                <p>Definiere, wie ein Worker nach einem absichtlichen Crash neu gestartet werden soll.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="resource-panel">
+            <p class="panel-label">Warum Erlang?</p>
+            <ul class="resource-list">
+              <li>Ideal fuer hochverfuegbare Systeme</li>
+              <li>Klare Trennung von Zustand und Kommunikation</li>
+              <li>Stark bei Messaging, Telecom, Fintech und Chat-Systemen</li>
+            </ul>
+            <a class="btn btn-primary btn-block" href="https://www.erlang.org/" target="_blank" rel="noreferrer">
+              Offizielle Erlang-Docs
+            </a>
+          </aside>
         </div>
       </section>
 
       <section class="section" id="faq">
         <div class="container">
-          <header class="section-header">
-            <p class="badge">FAQ</p>
-            <h2>Antworten auf häufige Fragen zu SEO & Launch.</h2>
-            <p class="lead">
-              Wir verbinden Branding, Webentwicklung und Suchmaschinenoptimierung, damit deine Seite langfristig
-              organisch wächst.
-            </p>
-          </header>
-          <div class="faq" itemscope itemtype="https://schema.org/FAQPage">
-            <details open itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-              <summary itemprop="name">Wie sorgt Playground Studio für Top-Rankings in Berlin?</summary>
-              <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                <p itemprop="text">
-                  Wir starten mit einer Keyword- & Wettbewerbsanalyse, setzen technische SEO (strukturierte Daten,
-                  Pagespeed, Core Web Vitals) um und veröffentlichen regelmäßig Content-Hooks, die auf deine
-                  Geschäftsziele einzahlen.
-                </p>
-              </div>
-            </details>
-            <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-              <summary itemprop="name">Unterstützt ihr auch nach dem Launch?</summary>
-              <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                <p itemprop="text">
-                  Ja, wir bieten Monitoring, Backlink-Outreach, redaktionelle Updates und A/B-Tests, damit Rankings
-                  stabil bleiben und Conversions steigen.
-                </p>
-              </div>
-            </details>
-            <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-              <summary itemprop="name">Kann ich bestehende Inhalte übernehmen?</summary>
-              <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                <p itemprop="text">
-                  Wir migrieren Inhalte inklusive Redirect-Plan, optimieren Texte auf Suchintentionen und binden
-                  bestehende CMS-Workflows oder Headless-Setups an.
-                </p>
-              </div>
-            </details>
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Die wichtigsten Fragen vor dem Start.</h2>
           </div>
-        </div>
-      </section>
 
-      <section class="section" id="kontakt">
-        <div class="container contact">
-          <div>
-            <p class="badge">Kontakt</p>
-            <h2>Lass uns über dein Projekt sprechen.</h2>
-            <p>
-              Schreib uns kurz, was du erreichen möchtest, und wir melden uns innerhalb von 24 Stunden mit einem
-              konkreten Vorschlag.
-            </p>
+          <div class="faq-list">
+            <details open>
+              <summary>Brauche ich Vorkenntnisse in funktionaler Programmierung?</summary>
+              <p>Nein. Grundlagen in einer anderen Sprache reichen. Der Kurs fuehrt die Konzepte Schritt fuer Schritt ein.</p>
+            </details>
+            <details>
+              <summary>Ist der Kurs eher fuer Backend oder verteilte Systeme gedacht?</summary>
+              <p>Beides. Der Fokus liegt auf den Staerken von Erlang: Prozesse, Robustheit und verteilte Architektur.</p>
+            </details>
+            <details>
+              <summary>Kann ich die Seite direkt auf GitHub Pages deployen?</summary>
+              <p>Ja. Das Projekt ist als statische Website aufgebaut und kann ohne Build-Schritt auf GitHub Pages laufen.</p>
+            </details>
           </div>
-          <form
-            id="contactForm"
-            class="contact-form"
-            aria-label="Kontaktformular"
-            action="https://formsubmit.co/ajax/mehrose56@gmail.com"
-            method="post"
-          >
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Max Mustermann" required />
-            </label>
-            <label>
-              E-Mail
-              <input type="email" name="email" placeholder="hi@playground.studio" required />
-            </label>
-            <label>
-              Projektbeschreibung
-              <textarea name="message" rows="4" placeholder="Erzähl uns mehr..." required></textarea>
-            </label>
-            <button type="submit" class="btn primary">Nachricht senden</button>
-            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
-          </form>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>© <span id="year"></span> Playground Studio. Berlin · GitHub-ready Deployments.</p>
-        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      <div class="container footer-shell">
+        <div>
+          <p class="footer-title">Erlang Campus</p>
+          <p>Ein fokussierter Einstieg in die BEAM-Welt fuer schnelle, fehlertolerante Systeme.</p>
+        </div>
+        <a class="footer-link" href="https://github.com/Vanitas50/playground-studio-site" target="_blank" rel="noreferrer">
+          Repository auf GitHub
+        </a>
       </div>
     </footer>
 
     <script src="script.js" defer></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Playground Studio",
-        "description": "Webagentur aus Berlin mit Fokus auf Strategie, UX, Entwicklung und SEO.",
-        "url": "https://playgroundstudio.de/",
-        "logo": "https://playgroundstudio.de/favicon.svg",
-        "image": "https://playgroundstudio.de/social-card.svg",
-        "priceRange": "€€",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Torstraße 1",
-          "addressLocality": "Berlin",
-          "postalCode": "10119",
-          "addressCountry": "DE"
-        },
-        "areaServed": {
-          "@type": "City",
-          "name": "Berlin"
-        },
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "contactType": "sales",
-            "email": "mehrose56@gmail.com",
-            "availableLanguage": ["de", "en"]
-          }
-        ],
-        "sameAs": ["https://github.com/Vanitas50"]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Wie sorgt Playground Studio für Top-Rankings in Berlin?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Keyword- und Wettbewerbsanalysen, strukturierte Daten, schnelles Hosting sowie kontinuierlicher Content sorgen für bessere Google-Rankings."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Unterstützt ihr auch nach dem Launch?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, wir übernehmen Monitoring, Backlink-Aufbau, redaktionelle Updates und Experimente zur Conversion-Optimierung."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Kann ich bestehende Inhalte übernehmen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wir planen Redirects, überarbeiten Inhalte für die Suchintention und integrieren vorhandene CMS- oder Headless-Stacks."
-            }
-          }
-        ]
-      }
-    </script>
   </body>
 </html>

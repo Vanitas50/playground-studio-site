@@ -1,74 +1,84 @@
 const body = document.body;
-const toggle = document.querySelector('.theme-toggle');
-const yearEl = document.getElementById('year');
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
+const themeToggle = document.querySelector(".theme-toggle");
+const progressItems = Array.from(document.querySelectorAll("[data-progress-item]"));
+const progressValue = document.getElementById("progressValue");
+const progressCount = document.getElementById("progressCount");
+const progressBar = document.getElementById("progressBar");
 
-const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-const storedTheme = localStorage.getItem('theme');
+const themeKey = "erlang-campus-theme";
+const progressKey = "erlang-campus-progress";
 
 function applyTheme(theme) {
-  if (theme === 'light') {
-    body.classList.add('light');
-  } else {
-    body.classList.remove('light');
+  body.classList.toggle("dark", theme === "dark");
+}
+
+function loadTheme() {
+  const storedTheme = localStorage.getItem(themeKey);
+  if (storedTheme) {
+    applyTheme(storedTheme);
+    return;
+  }
+
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(prefersDark ? "dark" : "light");
+}
+
+function saveProgress() {
+  const checkedStates = progressItems.map((item) => item.checked);
+  localStorage.setItem(progressKey, JSON.stringify(checkedStates));
+}
+
+function updateProgress() {
+  const completed = progressItems.filter((item) => item.checked).length;
+  const total = progressItems.length;
+  const percentage = total ? Math.round((completed / total) * 100) : 0;
+
+  if (progressValue) {
+    progressValue.textContent = `${percentage}%`;
+  }
+
+  if (progressCount) {
+    progressCount.textContent = String(completed);
+  }
+
+  if (progressBar) {
+    progressBar.style.width = `${percentage}%`;
   }
 }
 
-const initialTheme = storedTheme || (prefersLight.matches ? 'light' : 'dark');
-applyTheme(initialTheme);
+function loadProgress() {
+  const stored = localStorage.getItem(progressKey);
+  if (!stored) {
+    updateProgress();
+    return;
+  }
 
-if (toggle) {
-  toggle.addEventListener('click', () => {
-    const nextTheme = body.classList.contains('light') ? 'dark' : 'light';
+  try {
+    const states = JSON.parse(stored);
+    progressItems.forEach((item, index) => {
+      item.checked = Boolean(states[index]);
+    });
+  } catch (error) {
+    console.error("Fortschritt konnte nicht geladen werden.", error);
+  }
+
+  updateProgress();
+}
+
+loadTheme();
+loadProgress();
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = body.classList.contains("dark") ? "light" : "dark";
     applyTheme(nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    localStorage.setItem(themeKey, nextTheme);
   });
 }
 
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
-
-if (contactForm) {
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    if (formStatus) {
-      formStatus.textContent = 'Nachricht wird gesendet …';
-      formStatus.className = 'form-status';
-    }
-
-    const formData = new FormData(contactForm);
-    formData.append('_subject', 'Neue Projektanfrage über playground.studio');
-    formData.append('_captcha', 'false');
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || result.success === 'false') {
-        throw new Error(result.message || 'Failed to send');
-      }
-
-      if (formStatus) {
-        formStatus.textContent = result.message || 'Danke! Wir melden uns in Kürze.';
-        formStatus.classList.add('is-success');
-      }
-
-      contactForm.reset();
-    } catch (error) {
-      if (formStatus) {
-        formStatus.textContent =
-          error.message || 'Ups, das hat nicht geklappt. Bitte versuche es später erneut.';
-        formStatus.classList.add('is-error');
-      }
-      console.error(error);
-    }
+progressItems.forEach((item) => {
+  item.addEventListener("change", () => {
+    saveProgress();
+    updateProgress();
   });
-}
+});

@@ -508,18 +508,46 @@ if (supabaseEnabled && window.supabase?.createClient) {
 let currentUser = null;
 let syncTimer = null;
 
+function readStorage(key, fallback = null) {
+  try {
+    const value = window.localStorage.getItem(key);
+    return value ?? fallback;
+  } catch (error) {
+    console.warn(`Storage read failed for ${key}.`, error);
+    return fallback;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    window.localStorage.setItem(key, value);
+    return true;
+  } catch (error) {
+    console.warn(`Storage write failed for ${key}.`, error);
+    return false;
+  }
+}
+
+function removeStorage(key) {
+  try {
+    window.localStorage.removeItem(key);
+  } catch (error) {
+    console.warn(`Storage remove failed for ${key}.`, error);
+  }
+}
+
 function getLanguage() {
-  return localStorage.getItem(languageKey) || "en";
+  return readStorage(languageKey, "en") || "en";
 }
 
 function readStoredJson(key, fallback) {
   try {
-    const rawValue = localStorage.getItem(key);
+    const rawValue = readStorage(key, null);
     if (!rawValue) return fallback;
     return JSON.parse(rawValue);
   } catch (error) {
     console.warn(`Ignoring invalid localStorage value for ${key}.`, error);
-    localStorage.removeItem(key);
+    removeStorage(key);
     return fallback;
   }
 }
@@ -533,7 +561,7 @@ function applyTheme(theme) {
 }
 
 function loadTheme() {
-  const storedTheme = localStorage.getItem(themeKey);
+  const storedTheme = readStorage(themeKey, null);
   if (storedTheme) {
     applyTheme(storedTheme);
     return;
@@ -544,7 +572,7 @@ function loadTheme() {
 
 function setLanguage(language) {
   const lang = language === "de" ? "de" : "en";
-  localStorage.setItem(languageKey, lang);
+  writeStorage(languageKey, lang);
   html.lang = lang;
 
   const meta = copy[lang].meta;
@@ -645,7 +673,7 @@ function updateAuthUI() {
 
 function setAuthTab(tab) {
   const nextTab = ["login", "register", "reset"].includes(tab) ? tab : "login";
-  localStorage.setItem(authTabKey, nextTab);
+  writeStorage(authTabKey, nextTab);
 
   authTabs.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.authTab === nextTab);
@@ -674,9 +702,9 @@ function getLocalState() {
 
 function saveLocalState() {
   const state = getLocalState();
-  localStorage.setItem(progressKey, JSON.stringify(state.progress_state));
-  localStorage.setItem(quizKey, JSON.stringify(state.quiz_state));
-  localStorage.setItem(inputKey, JSON.stringify(state.input_state));
+  writeStorage(progressKey, JSON.stringify(state.progress_state));
+  writeStorage(quizKey, JSON.stringify(state.quiz_state));
+  writeStorage(inputKey, JSON.stringify(state.input_state));
 }
 
 function applyProgressState(states = []) {
@@ -1029,7 +1057,7 @@ function bootApp() {
   themeToggle?.addEventListener("click", () => {
     const nextTheme = body.classList.contains("dark") ? "light" : "dark";
     applyTheme(nextTheme);
-    localStorage.setItem(themeKey, nextTheme);
+    writeStorage(themeKey, nextTheme);
   });
 
   langToggles.forEach((toggle) => {
@@ -1041,7 +1069,7 @@ function bootApp() {
   resetForm?.addEventListener("submit", (event) => void handleReset(event));
   logoutButton?.addEventListener("click", () => void handleLogout());
 
-  setAuthTab(localStorage.getItem(authTabKey) || "login");
+  setAuthTab(readStorage(authTabKey, "login") || "login");
   void initAuth();
 }
 

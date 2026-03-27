@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Erlang Campus | Erlang online lernen</title>
+    <title>Erlang Campus | Vollstaendiger Erlang-Kurs</title>
     <meta
       name="description"
-      content="Ein moderner Erlang-Kurs mit Roadmap, Modulen, Code-Beispielen und Lernfortschritt direkt im Browser."
+      content="Ein vollstaendiger Erlang-Kurs mit Lektionen, Quiz, Mini-Challenges, Lernpfad und motivierendem Fortschritt."
     />
     <meta name="theme-color" content="#f4efe4" />
     <meta name="robots" content="index,follow" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Erlang Campus | Erlang online lernen" />
+    <meta property="og:title" content="Erlang Campus | Vollstaendiger Erlang-Kurs" />
     <meta
       property="og:description"
-      content="Lerne Erlang mit einem klar strukturierten Kurs von Syntax bis OTP und verteilten Systemen."
+      content="Lerne Erlang systematisch mit Spass: Syntax, Rekursion, Prozesse, OTP und verteilte Systeme."
     />
     <meta property="og:image" content="social-card.svg" />
     <meta property="og:locale" content="de_DE" />
@@ -35,212 +35,549 @@
           <span>Erlang Campus</span>
         </a>
         <nav class="main-nav" aria-label="Hauptnavigation">
-          <a href="#kurs">Kurs</a>
-          <a href="#lernplan">Lernplan</a>
-          <a href="#praxis">Praxis</a>
-          <a href="#faq">FAQ</a>
+          <a href="#kursstart">Start</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#lektionen">Lektionen</a>
+          <a href="#quiz">Quiz</a>
+          <a href="#projekte">Projekte</a>
         </nav>
         <button class="theme-toggle" type="button" aria-label="Farbschema wechseln">Modus</button>
       </div>
     </header>
 
     <main id="top">
-      <section class="hero">
+      <section class="hero" id="kursstart">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Online-Kurs fuer funktionale Systeme</p>
-            <h1>Lerne Erlang strukturiert, praxisnah und ohne Setup-Huerden.</h1>
+            <p class="eyebrow">Vollstaendiger Erlang-Kurs fuer echten Lernerfolg</p>
+            <h1>Lerne Erlang so, dass du es nicht nur verstehst, sondern wirklich benutzen kannst.</h1>
             <p class="lead">
-              Erlang Campus fuehrt dich von den Grundlagen ueber Pattern Matching und Prozesse
-              bis zu OTP, Supervision und verteilten Systemen.
+              Dieser Kurs fuehrt dich in kleinen, klaren Etappen von den Grundlagen bis zu
+              OTP und verteilten Systemen. Jede Etappe kombiniert Verstehen, Wiederholen,
+              Anwenden und spielerischen Fortschritt.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#kurs">Jetzt starten</a>
-              <a class="btn btn-secondary" href="#lernplan">Roadmap ansehen</a>
+              <a class="btn btn-primary" href="#roadmap">Kurs starten</a>
+              <a class="btn btn-secondary" href="#heute">Heutige Mission</a>
             </div>
             <ul class="hero-metrics" aria-label="Kurs-Metriken">
               <li><strong>6</strong><span>Module</span></li>
-              <li><strong>18</strong><span>Lektionen</span></li>
-              <li><strong>12h</strong><span>Lernzeit</span></li>
+              <li><strong>24</strong><span>Lektionen</span></li>
+              <li><strong>36</strong><span>Checks</span></li>
+              <li><strong>3</strong><span>Mini-Projekte</span></li>
             </ul>
           </div>
 
           <aside class="hero-panel">
-            <p class="panel-label">Schneller Einblick</p>
-            <pre><code>-module(hello_beam).
--export([start/0]).
-
-start() ->
-    Message = <<"Hallo Erlang">>,
-    io:format("~s~n", [Message]).</code></pre>
-            <div class="panel-note">
-              <span>Fokus</span>
-              <p>Immutable Daten, leichte Prozesse und fehlertolerante Architekturen.</p>
+            <p class="panel-label">Warum dieser Kurs funktioniert</p>
+            <div class="hero-stack">
+              <div class="stack-card">
+                <strong>1. Verstehen</strong>
+                <p>Jede Lektion startet mit einem klaren Bild statt trockener Theorie.</p>
+              </div>
+              <div class="stack-card">
+                <strong>2. Wiederholen</strong>
+                <p>Merksaetze und Quizfragen verankern das Gelernte sofort.</p>
+              </div>
+              <div class="stack-card">
+                <strong>3. Anwenden</strong>
+                <p>Mini-Challenges zwingen dich ins Denken wie ein Erlang-Entwickler.</p>
+              </div>
             </div>
+            <pre><code>-module(mailbox_demo).
+-export([loop/0]).
+
+loop() ->
+    receive
+        {From, ping} ->
+            From ! pong,
+            loop();
+        stop ->
+            ok
+    end.</code></pre>
           </aside>
         </div>
       </section>
 
-      <section class="section" id="kurs">
+      <section class="section section-accent" id="heute">
         <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Kursmodule</p>
-            <h2>Ein kompletter Lernpfad fuer deinen Einstieg in Erlang.</h2>
-            <p>
-              Jedes Modul kombiniert Theorie, kurze Code-Beispiele und konkrete Lernziele.
-            </p>
+          <div class="daily-card">
+            <div>
+              <p class="eyebrow">Heutige Mission</p>
+              <h2>20 Minuten Fokus schlagen 2 Stunden Chaos.</h2>
+              <p>
+                Arbeite heute genau diese Reihenfolge ab: eine Lektion lesen, eine Mini-Challenge loesen,
+                dann das Quiz beantworten. So bleibt das Wissen haengen.
+              </p>
+            </div>
+            <div class="daily-checklist">
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span>Lektion des Tages lesen</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span>Ein Code-Beispiel aktiv nachvollziehen</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span>Eine Challenge loesen</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-progress-item />
+                <span>Das Kurzquiz abschliessen</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap">
+        <div class="container">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">Roadmap</p>
+              <h2>Der Kurs ist in sechs lernbare Stufen aufgeteilt.</h2>
+            </div>
+            <div class="progress-shell">
+              <div class="progress-summary">
+                <p class="progress-kicker">Gesamtfortschritt</p>
+                <strong id="progressValue">0%</strong>
+                <p><span id="progressCount">0</span> von <span id="progressTotal">16</span> Lernschritten erledigt</p>
+              </div>
+              <div class="progress-bar" aria-hidden="true">
+                <span id="progressBar"></span>
+              </div>
+            </div>
           </div>
 
-          <div class="module-grid">
-            <article class="module-card">
+          <div class="roadmap-grid">
+            <article class="roadmap-card">
               <span class="module-index">01</span>
-              <h3>Syntax und Denkweise</h3>
-              <p>Variablenbindung, Atome, Tupel, Listen und warum Werte in Erlang immutable sind.</p>
-              <ul>
-                <li>Shell und REPL</li>
-                <li>Pattern Matching verstehen</li>
-                <li>Funktionsdefinitionen lesen</li>
-              </ul>
+              <h3>Denken in Werten</h3>
+              <p>Atome, Tupel, Listen, Pattern Matching und die Denkweise hinter immutablen Daten.</p>
             </article>
-            <article class="module-card">
+            <article class="roadmap-card">
               <span class="module-index">02</span>
-              <h3>Funktionen und Rekursion</h3>
-              <p>Statt Schleifen nutzt Erlang Rekursion, Guards und klare Fallunterscheidungen.</p>
-              <ul>
-                <li>Head und Tail Rekursion</li>
-                <li>Guards sinnvoll einsetzen</li>
-                <li>Module strukturieren</li>
-              </ul>
+              <h3>Denken in Funktionen</h3>
+              <p>Guards, Rekursion und Fallunterscheidungen statt klassischer Schleifen.</p>
             </article>
-            <article class="module-card">
+            <article class="roadmap-card">
               <span class="module-index">03</span>
-              <h3>Nachrichten und Prozesse</h3>
-              <p>Lerne, wie du leichte Prozesse spawnst und mit Message Passing kommunizierst.</p>
-              <ul>
-                <li>`spawn/1` und `receive`</li>
-                <li>Mailbox verstehen</li>
-                <li>Asynchrone Architektur</li>
-              </ul>
+              <h3>Denken in Prozessen</h3>
+              <p>Leichte Prozesse, Mailboxen, Nachrichten und asynchrone Zusammenarbeit.</p>
             </article>
-            <article class="module-card">
+            <article class="roadmap-card">
               <span class="module-index">04</span>
-              <h3>Fehlertoleranz mit OTP</h3>
-              <p>GenServer, Supervisoren und die Grundlagen produktionsreifer BEAM-Systeme.</p>
-              <ul>
-                <li>OTP-Verhalten</li>
-                <li>Supervision Trees</li>
-                <li>Crash early, recover clean</li>
-              </ul>
+              <h3>Denken in Robustheit</h3>
+              <p>Links, Monitore, Supervisors und das Prinzip "let it crash".</p>
             </article>
-            <article class="module-card">
+            <article class="roadmap-card">
               <span class="module-index">05</span>
-              <h3>Concurrency Patterns</h3>
-              <p>Worker Pools, Pipelines und robuste Architekturmuster fuer parallele Workloads.</p>
-              <ul>
-                <li>Backpressure Denken</li>
-                <li>State isolieren</li>
-                <li>Skalierbare Prozesse</li>
-              </ul>
+              <h3>Denken in Mustern</h3>
+              <p>Worker, Pipelines, State Isolation und typische Erlang-Architekturen.</p>
             </article>
-            <article class="module-card">
+            <article class="roadmap-card">
               <span class="module-index">06</span>
-              <h3>Distributed Erlang</h3>
-              <p>Nodes verbinden, Cluster-Grundlagen verstehen und Services uebergreifend denken.</p>
-              <ul>
-                <li>Node-Kommunikation</li>
-                <li>Remote Shell</li>
-                <li>Verteilte Fehlerszenarien</li>
-              </ul>
+              <h3>Denken in Systemen</h3>
+              <p>Nodes, Verteilung, Deployments und warum BEAM in der Praxis so stark ist.</p>
             </article>
+          </div>
+
+          <div class="checklist checklist-grid" aria-label="Kursfortschritt">
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 1 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 2 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 3 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 4 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 5 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Modul 6 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Mini-Projekt 1 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Mini-Projekt 2 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Mini-Projekt 3 abgeschlossen</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Syntax-Quiz bestanden</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Rekursions-Quiz bestanden</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Prozess-Quiz bestanden</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>OTP-Quiz bestanden</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Wiederholungsrunde 1 erledigt</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Wiederholungsrunde 2 erledigt</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" data-progress-item />
+              <span>Kurs komplett abgeschlossen</span>
+            </label>
           </div>
         </div>
       </section>
 
-      <section class="section section-accent" id="lernplan">
+      <section class="section" id="lektionen">
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Lernplan</p>
-            <h2>Folge dem Plan und markiere deinen Fortschritt lokal im Browser.</h2>
+            <p class="eyebrow">Lektionen</p>
+            <h2>Jedes Modul kombiniert Bild, Regel, Beispiel und Challenge.</h2>
+            <p>So entsteht Verstaendnis statt Auswendiglernen.</p>
           </div>
 
-          <div class="progress-shell">
-            <div class="progress-summary">
-              <p class="progress-kicker">Fortschritt</p>
-              <strong id="progressValue">0%</strong>
-              <p><span id="progressCount">0</span> von 6 Modulen abgeschlossen</p>
-            </div>
-            <div class="progress-bar" aria-hidden="true">
-              <span id="progressBar"></span>
-            </div>
-          </div>
+          <div class="lesson-stack">
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 1</span>
+                <h3>Syntax und Datentypen</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 1: Atome, Zahlen, Strings</h4>
+                  <p>Erlang unterscheidet klar zwischen Atomen wie <code>ok</code>, Zahlen wie <code>42</code> und Binaries wie <code>&lt;&lt;"hi"&gt;&gt;</code>.</p>
+                  <p class="memory-line">Merksatz: Ein Atom beschreibt oft Bedeutung, ein Binary oft echte Daten.</p>
+                </div>
+                <pre><code>State = idle,
+Count = 3,
+Name = <<"Ada">>.</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 2: Pattern Matching</h4>
+                  <p>Pattern Matching ist kein "Vergleichen", sondern strukturiertes Entpacken von Werten.</p>
+                  <p class="memory-line">Merksatz: Erlang fragt immer: "Passt die Form?"</p>
+                </div>
+                <pre><code>{ok, User} = {ok, #{name => <<"Ada">>}}.</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Welche Teile koennen in <code>{error, timeout}</code> direkt mit Pattern Matching extrahiert werden?</p>
+              </div>
+            </article>
 
-          <div class="checklist" aria-label="Modul Fortschritt">
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 1: Syntax, Datentypen und Pattern Matching</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 2: Funktionen, Guards und Rekursion</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 3: Prozesse, Mailbox und Nachrichtenaustausch</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 4: OTP, GenServer und Supervisoren</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 5: Concurrency Patterns und Architektur</span>
-            </label>
-            <label class="check-item">
-              <input type="checkbox" data-progress-item />
-              <span>Modul 6: Distributed Erlang und Deployment-Grundlagen</span>
-            </label>
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 2</span>
+                <h3>Funktionen, Guards und Rekursion</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 3: Mehrere Funktionskoepfe</h4>
+                  <p>Eine Funktion kann mehrere Formen haben. Erlang prueft sie von oben nach unten.</p>
+                  <p class="memory-line">Merksatz: Erst Pattern, dann Guard, dann Funktionskoerper.</p>
+                </div>
+                <pre><code>size([]) -> 0;
+size([_ | Tail]) -> 1 + size(Tail).</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 4: Guards</h4>
+                  <p>Guards machen Regeln lesbar und verhindern versteckte Logik im Body.</p>
+                  <p class="memory-line">Merksatz: Guards klaeren Faelle, bevor Arbeit beginnt.</p>
+                </div>
+                <pre><code>kind(N) when N &gt; 0 -> positive;
+kind(0) -> zero;
+kind(_) -> negative.</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 5: Rekursion statt Schleife</h4>
+                  <p>In Erlang ist Rekursion die normale Art, ueber Daten zu laufen.</p>
+                  <p class="memory-line">Merksatz: Jede Rekursion braucht Start, Schritt und Ende.</p>
+                </div>
+                <pre><code>sum([]) -> 0;
+sum([H | T]) -> H + sum(T).</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Schreibe gedanklich eine Funktion <code>all_even/1</code>, die nur dann <code>true</code> liefert, wenn alle Elemente gerade sind.</p>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 3</span>
+                <h3>Prozesse und Message Passing</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 6: Prozesse starten</h4>
+                  <p>Ein Erlang-Prozess ist extrem leichtgewichtig und hat seinen eigenen Zustand.</p>
+                  <p class="memory-line">Merksatz: Teile Zustand nicht, schicke Nachrichten.</p>
+                </div>
+                <pre><code>Pid = spawn(fun loop/0).</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 7: Nachrichten senden</h4>
+                  <p>Mit <code>!</code> sendest du Messages asynchron in die Mailbox eines Prozesses.</p>
+                  <p class="memory-line">Merksatz: Senden ist sofort, Verarbeiten spaeter.</p>
+                </div>
+                <pre><code>Pid ! {self(), ping}.</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 8: Receive-Loops</h4>
+                  <p>Ein Prozess wird meist als Schleife modelliert: Nachricht empfangen, reagieren, weitermachen.</p>
+                  <p class="memory-line">Merksatz: Verhalten entsteht aus Empfang + naechstem Loop.</p>
+                </div>
+                <pre><code>receive
+    stop -> ok;
+    Msg -> io:format("~p~n", [Msg]), loop()
+end.</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Wie wuerdest du einen Counter-Prozess entwerfen, der auf <code>increment</code> und <code>get</code> reagiert?</p>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 4</span>
+                <h3>OTP und Fehlertoleranz</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 9: Let it crash</h4>
+                  <p>In Erlang ist Fehlerbehandlung oft strukturell organisiert: Prozesse duerfen crashen, andere Prozesse stellen sie wieder her.</p>
+                  <p class="memory-line">Merksatz: Nicht jeder Fehler wird im selben Prozess gefixt.</p>
+                </div>
+                <pre><code>link(WorkerPid).</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 10: GenServer-Denken</h4>
+                  <p>GenServer kapselt Zustand und standardisiert das Nachrichtenschema.</p>
+                  <p class="memory-line">Merksatz: OTP gibt dir Struktur fuer wiederkehrende Prozessmuster.</p>
+                </div>
+                <pre><code>handle_call(get, _From, State) ->
+    {reply, State, State}.</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 11: Supervisors</h4>
+                  <p>Supervisors entscheiden, ob einzelne Worker oder ganze Gruppen neu gestartet werden.</p>
+                  <p class="memory-line">Merksatz: Robustheit ist eine Baumstruktur, kein Zufall.</p>
+                </div>
+                <pre><code>{one_for_one, 5, 10}</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Wann waere eine <code>one_for_one</code>-Strategie sinnvoller als <code>one_for_all</code>?</p>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 5</span>
+                <h3>Concurrency Patterns</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 12: Worker Pools</h4>
+                  <p>Mehrere Prozesse koennen dieselbe Aufgabe parallel bearbeiten, ohne sich gegenseitig zu blockieren.</p>
+                  <p class="memory-line">Merksatz: Parallelitaet braucht Aufgabenteilung, nicht nur mehr CPU.</p>
+                </div>
+                <pre><code>Workers = [spawn(fun worker/0) || _ &lt;- lists:seq(1, 4)].</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 13: State isolieren</h4>
+                  <p>Zustand lebt idealerweise nur in einem Prozess und wird nie direkt geteilt.</p>
+                  <p class="memory-line">Merksatz: Isolation reduziert Nebenwirkungen.</p>
+                </div>
+                <pre><code>store_loop(State) ->
+    receive
+        {put, Key, Val} -> store_loop(maps:put(Key, Val, State));
+        {get, From, Key} -> From ! maps:get(Key, State), store_loop(State)
+    end.</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Skizziere eine Pipeline mit drei Prozessen: empfangen, pruefen, speichern.</p>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <div class="lesson-head">
+                <span class="module-index">Modul 6</span>
+                <h3>Distributed Erlang</h3>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 14: Nodes</h4>
+                  <p>Ein Node ist eine laufende Erlang-Instanz, die mit anderen Nodes kooperieren kann.</p>
+                  <p class="memory-line">Merksatz: Verteilung beginnt mit expliziter Verbindung, nicht mit Magie.</p>
+                </div>
+                <pre><code>net_kernel:connect_node('worker@host').</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 15: Remote Messaging</h4>
+                  <p>Nachrichten koennen ueber Nodes hinweg verschickt werden, wenn Namensgebung und Verbindung stimmen.</p>
+                  <p class="memory-line">Merksatz: Ein verteiltes System ist nur so gut wie seine Fehlerannahmen.</p>
+                </div>
+                <pre><code>{service, 'worker@host'} ! ping.</code></pre>
+              </div>
+              <div class="lesson-grid">
+                <div>
+                  <h4>Lektion 16: Praxisdenken</h4>
+                  <p>Bei Verteilung zaehlen Timeouts, Retries, Ueberwachung und klare Verantwortlichkeiten.</p>
+                  <p class="memory-line">Merksatz: Erfolgreiche Systeme planen Netzwerkfehler fest ein.</p>
+                </div>
+                <pre><code>receive
+    reply -> ok
+after 2000 ->
+    timeout
+end.</code></pre>
+              </div>
+              <div class="challenge-box">
+                <strong>Mini-Challenge</strong>
+                <p>Welche Fehler koennen auftreten, wenn ein Remote-Node gerade nicht erreichbar ist?</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="praxis">
-        <div class="container practice-grid">
-          <div>
-            <div class="section-heading">
-              <p class="eyebrow">Praxis</p>
-              <h2>Kurze Uebungen, die dich direkt in die Erlang-Denkweise bringen.</h2>
-            </div>
-
-            <div class="exercise-list">
-              <article class="exercise-card">
-                <p class="exercise-level">Starter</p>
-                <h3>Listen filtern</h3>
-                <p>Schreibe eine rekursive Funktion, die alle geraden Werte aus einer Liste extrahiert.</p>
-              </article>
-              <article class="exercise-card">
-                <p class="exercise-level">Core</p>
-                <h3>Echo-Prozess bauen</h3>
-                <p>Starte einen Prozess, sende Nachrichten hinein und gib sie kontrolliert wieder aus.</p>
-              </article>
-              <article class="exercise-card">
-                <p class="exercise-level">Advanced</p>
-                <h3>Mini Supervisor skizzieren</h3>
-                <p>Definiere, wie ein Worker nach einem absichtlichen Crash neu gestartet werden soll.</p>
-              </article>
-            </div>
+      <section class="section section-accent" id="quiz">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Quiz Arena</p>
+            <h2>Kurze Fragen machen aus passivem Lesen aktives Erinnern.</h2>
+            <p>Beantworte jede Frage direkt. Das ist einer der staerksten Hebel fuer Lernerfolg.</p>
           </div>
 
-          <aside class="resource-panel">
-            <p class="panel-label">Warum Erlang?</p>
-            <ul class="resource-list">
-              <li>Ideal fuer hochverfuegbare Systeme</li>
-              <li>Klare Trennung von Zustand und Kommunikation</li>
-              <li>Stark bei Messaging, Telecom, Fintech und Chat-Systemen</li>
-            </ul>
-            <a class="btn btn-primary btn-block" href="https://www.erlang.org/" target="_blank" rel="noreferrer">
-              Offizielle Erlang-Docs
-            </a>
-          </aside>
+          <div class="quiz-grid">
+            <article class="quiz-card" data-quiz-card>
+              <p class="quiz-topic">Syntax</p>
+              <h3>Was macht Pattern Matching in Erlang hauptsaechlich?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="true">Es prueft die Struktur und bindet passende Werte.</button>
+                <button type="button" class="quiz-option">Es aendert Variablen mehrfach innerhalb einer Schleife.</button>
+                <button type="button" class="quiz-option">Es ersetzt Funktionen durch Makros.</button>
+              </div>
+              <p class="quiz-feedback" aria-live="polite"></p>
+            </article>
+
+            <article class="quiz-card" data-quiz-card>
+              <p class="quiz-topic">Rekursion</p>
+              <h3>Warum ist Rekursion in Erlang so zentral?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option">Weil Schleifen in OTP schneller sind.</button>
+                <button type="button" class="quiz-option" data-correct="true">Weil Daten typischerweise durch wiederholtes Zerlegen verarbeitet werden.</button>
+                <button type="button" class="quiz-option">Weil Guards keine Bedingungen pruefen koennen.</button>
+              </div>
+              <p class="quiz-feedback" aria-live="polite"></p>
+            </article>
+
+            <article class="quiz-card" data-quiz-card>
+              <p class="quiz-topic">Prozesse</p>
+              <h3>Was ist der wichtigste Unterschied zwischen Threads und Erlang-Prozessen im Denkmodell?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option">Erlang-Prozesse greifen direkt auf gemeinsamen Speicher zu.</button>
+                <button type="button" class="quiz-option" data-correct="true">Erlang-Prozesse teilen keinen Zustand und kommunizieren ueber Nachrichten.</button>
+                <button type="button" class="quiz-option">Erlang-Prozesse koennen nicht parallel laufen.</button>
+              </div>
+              <p class="quiz-feedback" aria-live="polite"></p>
+            </article>
+
+            <article class="quiz-card" data-quiz-card>
+              <p class="quiz-topic">OTP</p>
+              <h3>Wozu dient ein Supervisor?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option">Er kompiliert Module schneller.</button>
+                <button type="button" class="quiz-option">Er speichert Logs in einer ETS-Tabelle.</button>
+                <button type="button" class="quiz-option" data-correct="true">Er ueberwacht Prozesse und startet sie nach definierten Regeln neu.</button>
+              </div>
+              <p class="quiz-feedback" aria-live="polite"></p>
+            </article>
+          </div>
+
+          <div class="score-card">
+            <p class="eyebrow">Quiz-Score</p>
+            <strong><span id="quizScore">0</span> / <span id="quizTotal">4</span></strong>
+            <p id="quizMessage">Starte mit der ersten Frage und arbeite dich durch.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projekte">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Mini-Projekte</p>
+            <h2>Hier merkst du, ob aus Wissen schon Koennen wird.</h2>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card">
+              <p class="exercise-level">Projekt 1</p>
+              <h3>Todo-Store als Prozess</h3>
+              <p>Baue einen Prozess, der Aufgaben annimmt, speichert und auf Anfrage zurueckgibt.</p>
+              <ul>
+                <li>Zustand nur im Prozess halten</li>
+                <li><code>add</code>, <code>list</code>, <code>clear</code> unterstuetzen</li>
+                <li>Mit Nachrichten statt direktem Zugriff arbeiten</li>
+              </ul>
+            </article>
+            <article class="project-card">
+              <p class="exercise-level">Projekt 2</p>
+              <h3>Chat-Echo mit mehreren Clients</h3>
+              <p>Verbinde mehrere Prozesse mit einem zentralen Hub, der Nachrichten verteilt.</p>
+              <ul>
+                <li>Registrierte Prozesse verwenden</li>
+                <li>Nachrichtenformate definieren</li>
+                <li>Stop-Signale sauber behandeln</li>
+              </ul>
+            </article>
+            <article class="project-card">
+              <p class="exercise-level">Projekt 3</p>
+              <h3>OTP Counter Service</h3>
+              <p>Nutze ein OTP-Verhalten fuer einen zustandsbehafteten Service mit Neustartstrategie.</p>
+              <ul>
+                <li>Counter als GenServer modellieren</li>
+                <li>Supervisor-Struktur planen</li>
+                <li>Crash simulieren und Neustart beobachten</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -248,21 +585,25 @@ start() ->
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">FAQ</p>
-            <h2>Die wichtigsten Fragen vor dem Start.</h2>
+            <h2>Die wichtigsten Fragen fuer konstantes Vorankommen.</h2>
           </div>
 
           <div class="faq-list">
             <details open>
-              <summary>Brauche ich Vorkenntnisse in funktionaler Programmierung?</summary>
-              <p>Nein. Grundlagen in einer anderen Sprache reichen. Der Kurs fuehrt die Konzepte Schritt fuer Schritt ein.</p>
+              <summary>Wie lerne ich mit diesem Kurs am effektivsten?</summary>
+              <p>Lies nie nur passiv. Arbeite immer in der Reihenfolge: Lektion, Merksatz wiederholen, Challenge denken, Quiz beantworten.</p>
             </details>
             <details>
-              <summary>Ist der Kurs eher fuer Backend oder verteilte Systeme gedacht?</summary>
-              <p>Beides. Der Fokus liegt auf den Staerken von Erlang: Prozesse, Robustheit und verteilte Architektur.</p>
+              <summary>Was mache ich, wenn sich Rekursion ungewohnt anfuehlt?</summary>
+              <p>Male Eingabe, naechsten Schritt und Endfall auf Papier. Rekursion wird klar, wenn du den Datenfluss siehst.</p>
             </details>
             <details>
-              <summary>Kann ich die Seite direkt auf GitHub Pages deployen?</summary>
-              <p>Ja. Das Projekt ist als statische Website aufgebaut und kann ohne Build-Schritt auf GitHub Pages laufen.</p>
+              <summary>Wann bin ich bereit fuer OTP?</summary>
+              <p>Wenn du Prozesse, Nachrichten und zustandsbehaftete Loops mental sicher modellieren kannst. Dann macht OTP ploetzlich Sinn.</p>
+            </details>
+            <details>
+              <summary>Ist der Kurs eher fuer Einsteiger oder fortgeschrittene Entwickler?</summary>
+              <p>Beides. Die Progression ist anfängerfreundlich, aber die spaeteren Module fuehren bereits an produktionsnahe Konzepte heran.</p>
             </details>
           </div>
         </div>
@@ -273,7 +614,7 @@ start() ->
       <div class="container footer-shell">
         <div>
           <p class="footer-title">Erlang Campus</p>
-          <p>Ein fokussierter Einstieg in die BEAM-Welt fuer schnelle, fehlertolerante Systeme.</p>
+          <p>Von den ersten Atomen bis zu OTP und verteilten Systemen. Klar, motivierend und direkt anwendbar.</p>
         </div>
         <a class="footer-link" href="https://github.com/Vanitas50/erlang-campus" target="_blank" rel="noreferrer">
           Repository auf GitHub

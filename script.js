@@ -44,6 +44,7 @@ const progressKey = "erlang-campus-progress";
 const quizKey = "erlang-campus-quiz";
 const inputKey = "erlang-campus-inputs";
 const authTabKey = "erlang-campus-auth-tab";
+const authRedirectUrl = "https://vanitas50.github.io/erlang-campus/";
 
 const defaultText = new Map(
   Array.from(document.querySelectorAll("[data-i18n]")).map((element) => [
@@ -902,7 +903,7 @@ async function handleRegister(event) {
   const { error } = await supabaseClient.auth.signUp({
     email,
     password,
-    options: { emailRedirectTo: window.location.href },
+    options: { emailRedirectTo: authRedirectUrl },
   });
 
   if (error) {
@@ -941,7 +942,7 @@ async function handleReset(event) {
   const formData = new FormData(resetForm);
   const email = String(formData.get("email") || "").trim();
   const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.href,
+    redirectTo: authRedirectUrl,
   });
 
   if (error) {

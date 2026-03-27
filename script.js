@@ -7,12 +7,11 @@ const ogDescriptionMeta = document.querySelector('meta[property="og:description"
 const ogLocaleMeta = document.querySelector('meta[property="og:locale"]');
 const themeToggle = document.querySelector(".theme-toggle");
 const langToggles = Array.from(document.querySelectorAll(".lang-toggle"));
-const authOpenButtons = Array.from(document.querySelectorAll("[data-auth-open]"));
-const authCloseButtons = Array.from(document.querySelectorAll("[data-auth-close]"));
+const authJumpButtons = Array.from(document.querySelectorAll("[data-auth-jump]"));
 const authTabs = Array.from(document.querySelectorAll(".auth-tab"));
 const authPanels = Array.from(document.querySelectorAll("[data-auth-panel]"));
-const authModal = document.getElementById("authModal");
 const authModalStatus = document.getElementById("authModalStatus");
+const authAccessSection = document.getElementById("auth-access");
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const resetForm = document.getElementById("resetForm");
@@ -633,19 +632,6 @@ function setAuthTab(tab) {
   setAuthModalStatus("");
 }
 
-function openAuthModal(targetTab = localStorage.getItem(authTabKey) || "login") {
-  setAuthTab(targetTab);
-  if (authModal && !authModal.open) {
-    authModal.showModal();
-  }
-}
-
-function closeAuthModal() {
-  if (authModal?.open) {
-    authModal.close();
-  }
-}
-
 function getLocalState() {
   return {
     progress_state: progressItems.map((item) => item.checked),
@@ -898,31 +884,17 @@ async function handleLogout() {
   }
 }
 
-function bindAuthModal() {
-  authOpenButtons.forEach((button) => {
+function bindAuthPanels() {
+  authJumpButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      openAuthModal(button.dataset.authTarget);
+      const nextTab = button.dataset.authJump || "login";
+      setAuthTab(nextTab);
+      authAccessSection?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-  });
-
-  authCloseButtons.forEach((button) => {
-    button.addEventListener("click", closeAuthModal);
   });
 
   authTabs.forEach((button) => {
     button.addEventListener("click", () => setAuthTab(button.dataset.authTab));
-  });
-
-  authModal?.addEventListener("click", (event) => {
-    const rect = authModal.getBoundingClientRect();
-    const inside =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
-    if (!inside) {
-      closeAuthModal();
-    }
   });
 }
 
@@ -982,7 +954,6 @@ async function initAuth() {
     if (currentUser) {
       void loadRemoteState();
       setAuthModalStatus(getLangCopy().status.loginSuccess);
-      closeAuthModal();
     } else {
       setAuthModalStatus(getLangCopy().status.logoutSuccess);
       loadLocalState();
@@ -994,7 +965,7 @@ loadTheme();
 setLanguage(getLanguage());
 loadLocalState();
 updateAuthUI();
-bindAuthModal();
+bindAuthPanels();
 bindLearningInteractions();
 
 themeToggle?.addEventListener("click", () => {

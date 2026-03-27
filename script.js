@@ -706,13 +706,31 @@ function setAuthTab(tab) {
   setAuthModalStatus("");
 }
 
+function getProgressItemKey(item, index) {
+  return item.dataset.progressKey || `progress_${index}`;
+}
+
+function getQuizCardKey(card, index) {
+  return card.dataset.quizKey || `quiz_${index}`;
+}
+
 function getLocalState() {
-  return {
-    progress_state: progressItems.map((item) => item.checked),
-    quiz_state: quizCards.map((card) => ({
+  const progressState = {};
+  progressItems.forEach((item, index) => {
+    progressState[getProgressItemKey(item, index)] = item.checked;
+  });
+
+  const quizState = {};
+  quizCards.forEach((card, index) => {
+    quizState[getQuizCardKey(card, index)] = {
       solved: card.dataset.solved === "true",
       choice_index: card.dataset.choiceIndex ? Number(card.dataset.choiceIndex) : null,
-    })),
+    };
+  });
+
+  return {
+    progress_state: progressState,
+    quiz_state: quizState,
     input_state: Object.fromEntries(
       userInputs.map((input) => [input.dataset.userInput, input.value]),
     ),
@@ -729,7 +747,9 @@ function saveLocalState() {
 
 function applyProgressState(states = []) {
   progressItems.forEach((item, index) => {
-    item.checked = Boolean(states[index]);
+    const key = getProgressItemKey(item, index);
+    const value = Array.isArray(states) ? states[index] : states[key];
+    item.checked = Boolean(value);
   });
   updateProgress();
 }
@@ -750,8 +770,9 @@ function clearQuizVisuals() {
 
 function applyQuizState(state = []) {
   clearQuizVisuals();
-  state.forEach((entry, cardIndex) => {
-    const card = quizCards[cardIndex];
+  quizCards.forEach((card, cardIndex) => {
+    const key = getQuizCardKey(card, cardIndex);
+    const entry = Array.isArray(state) ? state[cardIndex] : state[key];
     if (!card) return;
     const options = Array.from(card.querySelectorAll(".quiz-option"));
     const feedback = card.querySelector(".quiz-feedback");

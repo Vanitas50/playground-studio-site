@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erlang Campus | Roadmap</title>
+    <meta name="description" content="Track the Erlang Campus roadmap, milestone checklist, retention cards, and common pitfalls." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js?v=2"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="/erlang-campus/"><span class="brand-mark">BEAM</span><span>Erlang Campus</span></a>
+        <nav class="main-nav" aria-label="Main navigation" data-i18n-aria-label="nav.aria">
+          <a href="/erlang-campus/index.html" data-i18n="nav.start">Start</a>
+          <a class="is-active" href="/erlang-campus/roadmap.html" data-i18n="nav.roadmap">Roadmap</a>
+          <a href="/erlang-campus/lessons.html" data-i18n="nav.lessons">Lessons</a>
+          <a href="/erlang-campus/quiz.html" data-i18n="nav.quiz">Quiz</a>
+          <a href="/erlang-campus/projects.html" data-i18n="nav.projects">Projects</a>
+        </nav>
+        <div class="header-controls">
+          <div class="lang-switch" role="group" aria-label="Language switcher" data-i18n-aria-label="lang.aria"><button class="lang-toggle" type="button" data-lang="en">EN</button><button class="lang-toggle" type="button" data-lang="de">DE</button></div>
+          <button class="theme-toggle" type="button" aria-label="Switch color theme" data-i18n="theme.mode" data-i18n-aria-label="theme.aria">Mode</button>
+          <a class="auth-open auth-link" href="#auth-access" data-auth-open data-auth-jump="login" data-i18n="auth.open">Login</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n="roadmap.eyebrow">Roadmap</p>
+            <h1 data-i18n="roadmap.title">The course is divided into six learnable stages.</h1>
+            <p class="lead">Use this page to track your milestones, review key concepts, and catch the classic Erlang misunderstandings early.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/erlang-campus/lessons.html" data-i18n="nav.lessons">Lessons</a>
+              <a class="btn btn-secondary" href="/erlang-campus/quiz.html" data-i18n="nav.quiz">Quiz</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="roadmap">
+        <div class="container">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow" data-i18n="roadmap.eyebrow">Roadmap</p>
+              <h2 data-i18n="roadmap.title">The course is divided into six learnable stages.</h2>
+            </div>
+            <div class="progress-shell">
+              <div class="progress-summary">
+                <p class="progress-kicker" data-i18n="roadmap.progress">Overall progress</p>
+                <strong id="progressValue">0%</strong>
+                <p><span id="progressCount">0</span> <span data-i18n="roadmap.of">of</span> <span id="progressTotal">16</span> <span data-i18n="roadmap.steps">learning steps completed</span></p>
+              </div>
+              <div class="progress-bar" aria-hidden="true"><span id="progressBar"></span></div>
+            </div>
+          </div>
+          <div class="roadmap-grid">
+            <article class="roadmap-card"><span class="module-index">01</span><h3 data-i18n="roadmap.card1Title">Think in values</h3><p data-i18n="roadmap.card1Body">Atoms, tuples, lists, pattern matching, and the mindset behind immutable data.</p></article>
+            <article class="roadmap-card"><span class="module-index">02</span><h3 data-i18n="roadmap.card2Title">Think in functions</h3><p data-i18n="roadmap.card2Body">Guards, recursion, and case-based logic instead of classic loops.</p></article>
+            <article class="roadmap-card"><span class="module-index">03</span><h3 data-i18n="roadmap.card3Title">Think in processes</h3><p data-i18n="roadmap.card3Body">Lightweight processes, mailboxes, messages, and asynchronous collaboration.</p></article>
+            <article class="roadmap-card"><span class="module-index">04</span><h3 data-i18n="roadmap.card4Title">Think in resilience</h3><p data-i18n="roadmap.card4Body">Links, monitors, supervisors, and the logic behind let it crash.</p></article>
+            <article class="roadmap-card"><span class="module-index">05</span><h3 data-i18n="roadmap.card5Title">Think in patterns</h3><p data-i18n="roadmap.card5Body">Workers, pipelines, state isolation, and common Erlang architecture patterns.</p></article>
+            <article class="roadmap-card"><span class="module-index">06</span><h3 data-i18n="roadmap.card6Title">Think in systems</h3><p data-i18n="roadmap.card6Body">Nodes, distribution, deployment, and why BEAM is so strong in production.</p></article>
+          </div>
+          <div class="checklist checklist-grid" aria-label="Course progress">
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m1" /><span data-i18n="roadmap.check1">Module 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m2" /><span data-i18n="roadmap.check2">Module 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m3" /><span data-i18n="roadmap.check3">Module 3 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m4" /><span data-i18n="roadmap.check4">Module 4 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m5" /><span data-i18n="roadmap.check5">Module 5 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_m6" /><span data-i18n="roadmap.check6">Module 6 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_p1" /><span data-i18n="roadmap.check7">Mini project 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_p2" /><span data-i18n="roadmap.check8">Mini project 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_p3" /><span data-i18n="roadmap.check9">Mini project 3 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_q1" /><span data-i18n="roadmap.check10">Syntax quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_q2" /><span data-i18n="roadmap.check11">Recursion quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_q3" /><span data-i18n="roadmap.check12">Process quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_q4" /><span data-i18n="roadmap.check13">OTP quiz passed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_review1" /><span data-i18n="roadmap.check14">Review round 1 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_review2" /><span data-i18n="roadmap.check15">Review round 2 completed</span></label>
+            <label class="check-item"><input type="checkbox" data-progress-item data-progress-key="roadmap_done" /><span data-i18n="roadmap.check16">Course fully completed</span></label>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="retention">
+        <div class="container">
+          <div class="section-heading"><p class="eyebrow" data-i18n="retention.eyebrow">Retention Lab</p><h2 data-i18n="retention.title">Come back to the core ideas until they feel obvious.</h2><p data-i18n="retention.body">Real learning happens when you can recall the idea without looking. Use these cards as fast review rounds.</p></div>
+          <div class="retention-grid">
+            <details class="retention-card"><summary data-i18n="retention.card1q">Why is immutable state so helpful in Erlang?</summary><p data-i18n="retention.card1a">Because processes do not fight over shared mutable state, reasoning and concurrency get much simpler.</p></details>
+            <details class="retention-card"><summary data-i18n="retention.card2q">What is the mental model behind recursion?</summary><p data-i18n="retention.card2a">Shrink the problem, keep the rule clear, and stop on a simple base case.</p></details>
+            <details class="retention-card"><summary data-i18n="retention.card3q">Why does message passing matter so much?</summary><p data-i18n="retention.card3a">Because isolated processes coordinate by messages instead of hidden shared memory changes.</p></details>
+            <details class="retention-card"><summary data-i18n="retention.card4q">What does OTP really give you?</summary><p data-i18n="retention.card4a">A standard structure for stateful processes, supervision, and recoverable systems.</p></details>
+          </div>
+        </div>
+      </section>
+      <section class="section section-accent" id="pitfalls">
+        <div class="container">
+          <div class="section-heading"><p class="eyebrow" data-i18n="pitfalls.eyebrow">Mistake Radar</p><h2 data-i18n="pitfalls.title">These are the traps that make Erlang feel harder than it is.</h2></div>
+          <div class="pitfall-grid">
+            <article class="pitfall-card"><h3 data-i18n="pitfalls.p1t">Thinking in loops first</h3><p data-i18n="pitfalls.p1b">Beginners often search for loop syntax. In Erlang, think in recursive shape transformations instead.</p></article>
+            <article class="pitfall-card"><h3 data-i18n="pitfalls.p2t">Treating processes like objects</h3><p data-i18n="pitfalls.p2b">A process is not just a class instance. It is an isolated actor with a mailbox and explicit protocol.</p></article>
+            <article class="pitfall-card"><h3 data-i18n="pitfalls.p3t">Avoiding crashes at all costs</h3><p data-i18n="pitfalls.p3b">In BEAM systems, some failures should crash fast so supervision can restore clean state predictably.</p></article>
+            <article class="pitfall-card"><h3 data-i18n="pitfalls.p4t">Starting distributed design too early</h3><p data-i18n="pitfalls.p4b">First get one node right, then think about distribution, timeouts, retries, and monitoring.</p></article>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="auth-access"><div class="container"><div class="section-heading"><p class="eyebrow" data-i18n="auth.modalEyebrow">Account</p><h2 data-i18n="auth.modalTitle">Login, register, and save your progress.</h2></div><div class="auth-panel"><div class="auth-tabs" role="tablist" aria-label="Authentication tabs"><button class="auth-tab is-active" type="button" data-auth-tab="login" data-i18n="auth.login">Login</button><button class="auth-tab" type="button" data-auth-tab="register" data-i18n="auth.register">Register</button><button class="auth-tab" type="button" data-auth-tab="reset" data-i18n="auth.reset">Reset password</button></div><p class="auth-modal-status" id="authModalStatus"></p><form class="auth-form is-active" id="loginForm" data-auth-panel="login"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><label><span data-i18n="auth.password">Password</span><input type="password" name="password" required autocomplete="current-password" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.login">Login</button></form><form class="auth-form" id="registerForm" data-auth-panel="register"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><label><span data-i18n="auth.password">Password</span><input type="password" name="password" minlength="8" required autocomplete="new-password" /></label><label><span data-i18n="auth.passwordRepeat">Repeat password</span><input type="password" name="password_repeat" minlength="8" required autocomplete="new-password" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.register">Register</button></form><form class="auth-form" id="resetForm" data-auth-panel="reset"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.reset">Reset password</button></form></div></div></section>
+    </main>
+    <footer class="site-footer"><div class="container footer-shell"><div><p class="footer-title">Erlang Campus</p><p data-i18n="footer.body">From the first atoms to OTP and distributed systems. Clear, motivating, and directly usable.</p></div><a class="footer-link" href="https://github.com/Vanitas50/erlang-campus" target="_blank" rel="noreferrer" data-i18n="footer.repo">Repository on GitHub</a></div></footer>
+    <dialog class="auth-modal" id="authModal"><div class="auth-modal__content"><div class="auth-modal__top"><div><p class="eyebrow" data-i18n="auth.modalEyebrow">Account</p><h2 data-i18n="auth.modalTitle">Login, register, and save your progress.</h2></div><button class="auth-close" type="button" data-auth-close aria-label="Close auth dialog">×</button></div><div id="authModalMount"></div></div></dialog>
+    <script src="script.js?v=9" defer></script>
+  </body>
+</html>

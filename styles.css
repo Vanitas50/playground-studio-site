@@ -135,6 +135,11 @@ body.dark .site-header {
   color: var(--text);
 }
 
+.main-nav a.is-active {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .header-controls {
   display: flex;
   align-items: center;

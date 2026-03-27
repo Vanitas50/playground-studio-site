@@ -1,5 +1,3 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
 const body = document.body;
 const html = document.documentElement;
 const titleEl = document.querySelector("title");
@@ -491,7 +489,7 @@ const supabaseEnabled = Boolean(
 );
 
 const supabase = supabaseEnabled
-  ? createClient(supabaseConfig.url, supabaseConfig.anonKey, {
+  ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
       auth: { persistSession: true, autoRefreshToken: true },
     })
   : null;

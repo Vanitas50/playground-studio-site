@@ -2,6 +2,7 @@ create table if not exists public.user_progress (
   user_id uuid primary key references auth.users (id) on delete cascade,
   progress_state jsonb not null default '[]'::jsonb,
   quiz_state jsonb not null default '[]'::jsonb,
+  input_state jsonb not null default '{}'::jsonb,
   language text not null default 'en',
   updated_at timestamptz not null default now()
 );

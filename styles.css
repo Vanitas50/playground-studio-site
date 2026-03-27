@@ -55,7 +55,9 @@ a {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -606,6 +608,36 @@ body.dark .progress-bar {
   border-radius: 1.1rem;
   border: 1px dashed rgba(196, 79, 41, 0.4);
   background: rgba(196, 79, 41, 0.06);
+}
+
+.practice-lab {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--line);
+  background: rgba(23, 73, 86, 0.06);
+}
+
+.practice-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.practice-field textarea,
+.practice-field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: var(--surface-strong);
+  color: var(--text);
+  padding: 0.85rem 0.95rem;
+}
+
+.practice-field textarea {
+  resize: vertical;
+  min-height: 110px;
 }
 
 .quiz-grid,

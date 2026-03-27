@@ -32,6 +32,7 @@ const progressCount = document.getElementById("progressCount");
 const progressTotal = document.getElementById("progressTotal");
 const progressBar = document.getElementById("progressBar");
 const quizCards = Array.from(document.querySelectorAll("[data-quiz-card]"));
+const userInputs = Array.from(document.querySelectorAll("[data-user-input]"));
 const quizScore = document.getElementById("quizScore");
 const quizTotal = document.getElementById("quizTotal");
 const quizMessage = document.getElementById("quizMessage");
@@ -40,6 +41,7 @@ const themeKey = "erlang-campus-theme";
 const languageKey = "erlang-campus-language";
 const progressKey = "erlang-campus-progress";
 const quizKey = "erlang-campus-quiz";
+const inputKey = "erlang-campus-inputs";
 const authTabKey = "erlang-campus-auth-tab";
 
 const defaultText = new Map(
@@ -53,6 +55,13 @@ const defaultAria = new Map(
   Array.from(document.querySelectorAll("[data-i18n-aria-label]")).map((element) => [
     element.dataset.i18nAriaLabel,
     element.getAttribute("aria-label") || "",
+  ]),
+);
+
+const defaultPlaceholders = new Map(
+  Array.from(document.querySelectorAll("[data-i18n-placeholder]")).map((element) => [
+    element.dataset.i18nPlaceholder,
+    element.getAttribute("placeholder") || "",
   ]),
 );
 
@@ -152,6 +161,14 @@ const germanText = {
   "lessons.title": "Jedes Modul kombiniert Denkmodell, Regel, Beispiel und Challenge.",
   "lessons.body": "So entsteht Verstaendnis statt Auswendiglernen.",
   "common.challenge": "Mini-Challenge",
+  "common.practiceLab": "Praxis-Labor",
+  "common.yourNotes": "Deine Notizen",
+  "common.yourAnswer": "Dein Loesungsansatz",
+  "common.confidence": "Selbsteinschaetzung",
+  "common.confidenceSelect": "Bitte waehlen",
+  "common.confidenceLow": "Noch unsicher",
+  "common.confidenceMedium": "Ich komme rein",
+  "common.confidenceHigh": "Ich kann es erklaeren",
   "m1.label": "Modul 1",
   "m1.title": "Syntax und Datentypen",
   "m1.l1t": "Lektion 1: Atome, Zahlen, Strings",
@@ -164,6 +181,10 @@ const germanText = {
   "m1.l2m": "Merksatz: Erlang fragt immer, passt die Form?",
   "m1.challenge":
     "Welche Teile von {error, timeout} kannst du direkt mit Pattern Matching extrahieren?",
+  "m1.notesPlaceholder":
+    "Erklaere mit deinen eigenen Worten Atome, Tupel und Pattern Matching.",
+  "m1.answerPlaceholder":
+    "Beschreibe, wie du {error, timeout} matchen und welche Variablen du binden wuerdest.",
   "m2.label": "Modul 2",
   "m2.title": "Funktionen, Guards und Rekursion",
   "m2.l1t": "Lektion 3: Mehrere Funktionskoepfe",
@@ -177,6 +198,10 @@ const germanText = {
   "m2.l3m": "Merksatz: Jede Rekursion braucht Start, Schritt und Ende.",
   "m2.challenge":
     "Entwirf gedanklich eine Funktion all_even/1, die nur dann true liefert, wenn alle Elemente gerade sind.",
+  "m2.notesPlaceholder":
+    "Erklaere mit deinen eigenen Worten, warum Rekursion in Erlang Schleifen ersetzt.",
+  "m2.answerPlaceholder":
+    "Skizziere Startfall, Rekursionsschritt und Endfall fuer all_even/1.",
   "m3.label": "Modul 3",
   "m3.title": "Prozesse und Message Passing",
   "m3.l1t": "Lektion 6: Prozesse starten",
@@ -191,6 +216,10 @@ const germanText = {
   "m3.l3m": "Merksatz: Verhalten entsteht aus Empfang plus naechstem Loop.",
   "m3.challenge":
     "Wie wuerdest du einen Counter-Prozess bauen, der auf increment und get reagiert?",
+  "m3.notesPlaceholder":
+    "Fasse die Beziehung zwischen Prozessen, Mailboxen und Nachrichten zusammen.",
+  "m3.answerPlaceholder":
+    "Schreibe den Nachrichtenfluss fuer einen Counter-Prozess mit increment und get auf.",
   "m4.label": "Modul 4",
   "m4.title": "OTP und Fehlertoleranz",
   "m4.l1t": "Lektion 9: Let it crash",
@@ -205,6 +234,10 @@ const germanText = {
     "Supervisoren entscheiden, ob ein einzelner Worker oder eine ganze Gruppe neu startet.",
   "m4.l3m": "Merksatz: Robustheit ist eine Baumstruktur, kein Zufall.",
   "m4.challenge": "Wann ist eine one_for_one-Strategie sinnvoller als one_for_all?",
+  "m4.notesPlaceholder":
+    "Erklaere let it crash mit deinen eigenen Worten und wann es hilft.",
+  "m4.answerPlaceholder":
+    "Beschreibe einen kleinen Service, bei dem one_for_one die bessere Strategie ist.",
   "m5.label": "Modul 5",
   "m5.title": "Concurrency Patterns",
   "m5.l1t": "Lektion 12: Worker Pools",
@@ -216,6 +249,10 @@ const germanText = {
     "Zustand sollte idealerweise in genau einem Prozess leben und nie direkt geteilt werden.",
   "m5.l2m": "Merksatz: Isolation reduziert Nebenwirkungen.",
   "m5.challenge": "Skizziere eine Pipeline mit drei Prozessen: empfangen, pruefen, speichern.",
+  "m5.notesPlaceholder":
+    "Erklaere, warum isolierter Zustand parallele Systeme leichter verstaendlich macht.",
+  "m5.answerPlaceholder":
+    "Skizziere die drei Prozesse deiner Pipeline und was jeder einzelne besitzt.",
   "m6.label": "Modul 6",
   "m6.l1t": "Lektion 14: Nodes",
   "m6.l1b":
@@ -231,6 +268,10 @@ const germanText = {
   "m6.l3m": "Merksatz: Starke Systeme planen Netzwerkfehler von Anfang an ein.",
   "m6.challenge":
     "Welche Fehler koennen auftreten, wenn ein Remote-Node kurzzeitig nicht erreichbar ist?",
+  "m6.notesPlaceholder":
+    "Fasse die wichtigsten Risiken zusammen, die auftreten, sobald ein System verteilt wird.",
+  "m6.answerPlaceholder":
+    "Liste die Fehlerfaelle auf, fuer die du designen wuerdest, wenn ein Remote-Node ausfaellt.",
   "quiz.eyebrow": "Quiz Arena",
   "quiz.title": "Kurze Fragen machen aus passivem Lesen aktives Erinnern.",
   "quiz.body":
@@ -450,6 +491,18 @@ function setLanguage(language) {
     element.setAttribute("aria-label", value);
   });
 
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    if (!key) return;
+    const value =
+      lang === "de"
+        ? germanText[key] || ""
+        : defaultPlaceholders.get(key) || element.getAttribute("placeholder") || "";
+    if (value) {
+      element.setAttribute("placeholder", value);
+    }
+  });
+
   langToggles.forEach((toggle) => {
     toggle.classList.toggle("is-active", toggle.dataset.lang === lang);
   });
@@ -547,6 +600,9 @@ function getLocalState() {
       solved: card.dataset.solved === "true",
       choice_index: card.dataset.choiceIndex ? Number(card.dataset.choiceIndex) : null,
     })),
+    input_state: Object.fromEntries(
+      userInputs.map((input) => [input.dataset.userInput, input.value]),
+    ),
     language: getLanguage(),
   };
 }
@@ -555,6 +611,7 @@ function saveLocalState() {
   const state = getLocalState();
   localStorage.setItem(progressKey, JSON.stringify(state.progress_state));
   localStorage.setItem(quizKey, JSON.stringify(state.quiz_state));
+  localStorage.setItem(inputKey, JSON.stringify(state.input_state));
 }
 
 function applyProgressState(states = []) {
@@ -604,8 +661,12 @@ function applyQuizState(state = []) {
 function loadLocalState() {
   const progress = JSON.parse(localStorage.getItem(progressKey) || "[]");
   const quiz = JSON.parse(localStorage.getItem(quizKey) || "[]");
+  const inputState = JSON.parse(localStorage.getItem(inputKey) || "{}");
   applyProgressState(progress);
   applyQuizState(quiz);
+  userInputs.forEach((input) => {
+    input.value = inputState[input.dataset.userInput] || "";
+  });
 }
 
 function updateProgress() {
@@ -652,6 +713,7 @@ async function saveRemoteState() {
     user_id: currentUser.id,
     progress_state: getLocalState().progress_state,
     quiz_state: getLocalState().quiz_state,
+    input_state: getLocalState().input_state,
     language: getLanguage(),
     updated_at: new Date().toISOString(),
   };
@@ -679,7 +741,7 @@ async function loadRemoteState() {
   if (!supabase || !currentUser) return;
   const { data, error } = await supabase
     .from("user_progress")
-    .select("progress_state, quiz_state, language")
+    .select("progress_state, quiz_state, input_state, language")
     .eq("user_id", currentUser.id)
     .maybeSingle();
 
@@ -696,6 +758,9 @@ async function loadRemoteState() {
 
   applyProgressState(data.progress_state || []);
   applyQuizState(data.quiz_state || []);
+  userInputs.forEach((input) => {
+    input.value = data.input_state?.[input.dataset.userInput] || "";
+  });
   if (data.language) {
     setLanguage(data.language);
   }
@@ -812,6 +877,13 @@ function bindLearningInteractions() {
   progressItems.forEach((item) => {
     item.addEventListener("change", () => {
       updateProgress();
+      queueRemoteSave();
+    });
+  });
+
+  userInputs.forEach((input) => {
+    const eventName = input.tagName === "SELECT" ? "change" : "input";
+    input.addEventListener(eventName, () => {
       queueRemoteSave();
     });
   });

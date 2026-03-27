@@ -552,6 +552,14 @@ function removeStorage(key) {
   }
 }
 
+function getStateScope(user = currentUser) {
+  return user && user.id ? `user:${user.id}` : "guest";
+}
+
+function getScopedStateStorageKey(baseKey, user = currentUser) {
+  return `${baseKey}:${getStateScope(user)}`;
+}
+
 function getLanguage() {
   return readStorage(languageKey, "en") || "en";
 }
@@ -797,9 +805,39 @@ function getLocalState() {
 
 function saveLocalState() {
   const state = getLocalState();
-  writeStorage(progressKey, JSON.stringify(state.progress_state));
-  writeStorage(quizKey, JSON.stringify(state.quiz_state));
-  writeStorage(inputKey, JSON.stringify(state.input_state));
+  writeStorage(getScopedStateStorageKey(progressKey), JSON.stringify(state.progress_state));
+  writeStorage(getScopedStateStorageKey(quizKey), JSON.stringify(state.quiz_state));
+  writeStorage(getScopedStateStorageKey(inputKey), JSON.stringify(state.input_state));
+}
+
+function resetLearningStateUI() {
+  progressItems.forEach((item) => {
+    item.checked = false;
+  });
+
+  clearQuizVisuals();
+
+  userInputs.forEach((input) => {
+    if (input.tagName === "SELECT") {
+      input.value = "";
+    } else {
+      input.value = "";
+    }
+  });
+
+  codeInputs.forEach((input) => {
+    renderCodeExerciseFeedback(input.dataset.codeInput || "");
+  });
+
+  updateProgress();
+  updateQuizScore();
+  updateLearningFeedback();
+}
+
+function clearScopedLocalState(user) {
+  removeStorage(getScopedStateStorageKey(progressKey, user));
+  removeStorage(getScopedStateStorageKey(quizKey, user));
+  removeStorage(getScopedStateStorageKey(inputKey, user));
 }
 
 function applyProgressState(states = []) {
@@ -1051,9 +1089,9 @@ function applyQuizState(state = []) {
 }
 
 function loadLocalState() {
-  const progress = readStoredJson(progressKey, []);
-  const quiz = readStoredJson(quizKey, []);
-  const inputState = readStoredJson(inputKey, {});
+  const progress = readStoredJson(getScopedStateStorageKey(progressKey), []);
+  const quiz = readStoredJson(getScopedStateStorageKey(quizKey), []);
+  const inputState = readStoredJson(getScopedStateStorageKey(inputKey), {});
   applyProgressState(progress);
   applyQuizState(quiz);
   userInputs.forEach((input) => {
@@ -1359,19 +1397,26 @@ async function initAuth() {
   updateAuthUI();
 
   if (currentUser) {
+    loadLocalState();
     await loadRemoteState();
   }
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
+    const previousUser = currentUser;
     currentUser = session ? session.user || null : null;
     updateAuthUI();
 
     if (currentUser) {
+      loadLocalState();
       void loadRemoteState();
       setAuthModalStatus(getLangCopy().status.loginSuccess);
       if (authModal) authModal.close();
     } else {
+      if (previousUser) {
+        clearScopedLocalState(previousUser);
+      }
       setAuthModalStatus(getLangCopy().status.logoutSuccess);
+      resetLearningStateUI();
       loadLocalState();
     }
   });

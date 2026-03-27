@@ -5,6 +5,6 @@ window.ERLANG_CAMPUS_SUPABASE = {
 
 window.ERLANG_CAMPUS_SUPPORT = {
   checkoutUrl:
-    "https://www.paypal.com/donate/?business=mehrose56%40gmail.com&item_name=Support+Erlang+Campus&currency_code=USD",
+    "https://www.paypal.com/donate/?business=muniversal786%40gmail.com&item_name=Support+Erlang+Campus&currency_code=USD",
   provider: "PayPal",
 };

@@ -27,6 +27,9 @@ const authGuestActions = document.getElementById("authGuestActions");
 const authUserActions = document.getElementById("authUserActions");
 const authUserEmail = document.getElementById("authUserEmail");
 const syncStatus = document.getElementById("syncStatus");
+const supportLink = document.querySelector("[data-support-link]");
+const supportCopyButton = document.querySelector("[data-support-copy]");
+const supportNote = document.querySelector("[data-support-note]");
 const progressItems = Array.from(document.querySelectorAll("[data-progress-item]"));
 const progressValue = document.getElementById("progressValue");
 const progressCount = document.getElementById("progressCount");
@@ -101,7 +104,8 @@ const germanText = {
   "donation.body":
     "Wenn dir der Kurs hilft, kannst du mit einer kleinen 1-Dollar-Spende neue Lektionen und Verbesserungen unterstuetzen.",
   "donation.cta": "1 $ spenden",
-  "donation.note": "Komplett freiwillig. Der Kurs bleibt kostenlos.",
+  "donation.copy": "Link kopieren",
+  "donation.note": "Externer Checkout. Komplett freiwillig. Der Kurs bleibt kostenlos.",
   "hero.eyebrow": "Ein vollstaendiger Erlang-Kurs fuer echten Lernerfolg",
   "hero.title": "Lerne Erlang so, dass es haengen bleibt und auch Spass macht.",
   "hero.lead":
@@ -485,6 +489,7 @@ const copy = {
 };
 
 const supabaseConfig = window.ERLANG_CAMPUS_SUPABASE || {};
+const supportConfig = window.ERLANG_CAMPUS_SUPPORT || {};
 const supabaseEnabled = Boolean(
   supabaseConfig.url &&
   supabaseConfig.anonKey &&
@@ -626,6 +631,48 @@ function setAuthModalStatus(message = "") {
 function setSyncStatus(message) {
   if (syncStatus) {
     syncStatus.textContent = message;
+  }
+}
+
+function setupSupportCheckout() {
+  const checkoutUrl = supportConfig.checkoutUrl || "";
+  const provider = supportConfig.provider || "external checkout";
+
+  if (supportLink) {
+    if (checkoutUrl) {
+      supportLink.href = checkoutUrl;
+    } else {
+      supportLink.setAttribute("aria-disabled", "true");
+      supportLink.removeAttribute("href");
+      supportLink.classList.add("is-disabled");
+    }
+  }
+
+  if (supportNote) {
+    supportNote.textContent = checkoutUrl
+      ? `External checkout via ${provider}. Fully voluntary. The course stays free.`
+      : "Support checkout is not configured yet.";
+  }
+
+  if (supportCopyButton) {
+    supportCopyButton.disabled = !checkoutUrl;
+    supportCopyButton.addEventListener("click", async () => {
+      if (!checkoutUrl) return;
+      try {
+        await navigator.clipboard.writeText(checkoutUrl);
+        if (supportNote) {
+          supportNote.textContent = getLanguage() === "de"
+            ? `Link kopiert. Externer Checkout via ${provider}.`
+            : `Link copied. External checkout via ${provider}.`;
+        }
+      } catch (error) {
+        if (supportNote) {
+          supportNote.textContent = getLanguage() === "de"
+            ? "Kopieren fehlgeschlagen. Bitte den Checkout direkt oeffnen."
+            : "Copy failed. Please open the checkout directly.";
+        }
+      }
+    });
   }
 }
 
@@ -1099,6 +1146,7 @@ async function initAuth() {
 function bootApp() {
   loadTheme();
   setLanguage(getLanguage());
+  setupSupportCheckout();
   loadLocalState();
   updateAuthUI();
   bindAuthPanels();

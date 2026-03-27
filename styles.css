@@ -140,6 +140,11 @@ body.dark .site-header {
   font-weight: 700;
 }
 
+.is-disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .header-controls {
   display: flex;
   align-items: center;

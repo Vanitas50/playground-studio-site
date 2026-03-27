@@ -51,7 +51,13 @@
           <button class="theme-toggle" type="button" aria-label="Switch color theme" data-i18n="theme.mode" data-i18n-aria-label="theme.aria">
             Mode
           </button>
-          <a class="auth-open auth-link" href="#auth-access" data-auth-jump="login" data-i18n="auth.open">
+          <a
+            class="auth-open auth-link"
+            href="#auth-access"
+            data-auth-open
+            data-auth-jump="login"
+            data-i18n="auth.open"
+          >
             Login
           </a>
         </div>
@@ -92,10 +98,22 @@
                 Register or sign in to sync your roadmap, quiz state, and course progress across devices.
               </p>
               <div class="account-actions" id="authGuestActions">
-                <a class="btn btn-primary" href="#auth-access" data-auth-jump="login" data-i18n="auth.login">
+                <a
+                  class="btn btn-primary"
+                  href="#auth-access"
+                  data-auth-open
+                  data-auth-jump="login"
+                  data-i18n="auth.login"
+                >
                   Login
                 </a>
-                <a class="btn btn-secondary" href="#auth-access" data-auth-jump="register" data-i18n="auth.register">
+                <a
+                  class="btn btn-secondary"
+                  href="#auth-access"
+                  data-auth-open
+                  data-auth-jump="register"
+                  data-i18n="auth.register"
+                >
                   Register
                 </a>
               </div>
@@ -915,6 +933,19 @@ end.</code></pre>
       </div>
     </footer>
 
-    <script src="script.js?v=3" defer></script>
+    <dialog class="auth-modal" id="authModal">
+      <div class="auth-modal__content">
+        <div class="auth-modal__top">
+          <div>
+            <p class="eyebrow" data-i18n="auth.modalEyebrow">Account</p>
+            <h2 data-i18n="auth.modalTitle">Login, register, and save your progress.</h2>
+          </div>
+          <button class="auth-close" type="button" data-auth-close aria-label="Close auth dialog">×</button>
+        </div>
+        <div id="authModalMount"></div>
+      </div>
+    </dialog>
+
+    <script src="script.js?v=4" defer></script>
   </body>
 </html>

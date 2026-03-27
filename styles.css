@@ -181,6 +181,10 @@ body.dark .site-header {
   text-decoration: none;
 }
 
+body.auth-modal-active #auth-access {
+  display: none;
+}
+
 .hero,
 .section {
   padding: 5.5rem 0;
@@ -479,6 +483,42 @@ body.dark .lesson-grid pre {
   border-radius: 1.5rem;
   background: var(--surface-strong);
   box-shadow: var(--shadow);
+}
+
+.auth-modal {
+  width: min(560px, calc(100vw - 1.5rem));
+  border: 0;
+  padding: 0;
+  border-radius: 1.5rem;
+  background: transparent;
+}
+
+.auth-modal::backdrop {
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.auth-modal__content {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.auth-modal__top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.auth-close {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
 .auth-tabs {

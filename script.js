@@ -12,6 +12,10 @@ const authTabs = Array.from(document.querySelectorAll(".auth-tab"));
 const authPanels = Array.from(document.querySelectorAll("[data-auth-panel]"));
 const authModalStatus = document.getElementById("authModalStatus");
 const authAccessSection = document.getElementById("auth-access");
+const authModal = document.getElementById("authModal");
+const authModalMount = document.getElementById("authModalMount");
+const authCloseButtons = Array.from(document.querySelectorAll("[data-auth-close]"));
+const authPanel = authAccessSection?.querySelector(".auth-panel") || null;
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const resetForm = document.getElementById("resetForm");
@@ -907,17 +911,46 @@ async function handleLogout() {
 }
 
 function bindAuthPanels() {
+  if (authModal && authModalMount && authPanel && typeof authModal.showModal === "function") {
+    authModalMount.appendChild(authPanel);
+    body.classList.add("auth-modal-active");
+  }
+
   authJumpButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      event.preventDefault();
       const nextTab = button.dataset.authJump || "login";
       setAuthTab(nextTab);
+
+      if (authModal?.querySelector(".auth-panel")) {
+        event.preventDefault();
+        if (!authModal.open) {
+          authModal.showModal();
+        }
+        return;
+      }
+
       authAccessSection?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
+  authCloseButtons.forEach((button) => {
+    button.addEventListener("click", () => authModal?.close());
+  });
+
   authTabs.forEach((button) => {
     button.addEventListener("click", () => setAuthTab(button.dataset.authTab));
+  });
+
+  authModal?.addEventListener("click", (event) => {
+    const rect = authModal.getBoundingClientRect();
+    const inside =
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width;
+    if (!inside) {
+      authModal.close();
+    }
   });
 }
 
@@ -977,6 +1010,7 @@ async function initAuth() {
     if (currentUser) {
       void loadRemoteState();
       setAuthModalStatus(getLangCopy().status.loginSuccess);
+      authModal?.close();
     } else {
       setAuthModalStatus(getLangCopy().status.logoutSuccess);
       loadLocalState();

@@ -1,4 +1,4 @@
 window.ERLANG_CAMPUS_SUPABASE = {
-  url: "YOUR_SUPABASE_URL",
-  anonKey: "YOUR_SUPABASE_ANON_KEY",
+  url: "https://jhvjfnctcmmmtdnugrnw.supabase.co",
+  anonKey: "sb_publishable_PMiHNRtWovZcrPrMy0FhNg_3WFPAj07",
 };

@@ -15,7 +15,7 @@ const authAccessSection = document.getElementById("auth-access");
 const authModal = document.getElementById("authModal");
 const authModalMount = document.getElementById("authModalMount");
 const authCloseButtons = Array.from(document.querySelectorAll("[data-auth-close]"));
-const authPanel = authAccessSection?.querySelector(".auth-panel") || null;
+const authPanel = authAccessSection ? authAccessSection.querySelector(".auth-panel") : null;
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const resetForm = document.getElementById("resetForm");
@@ -67,11 +67,11 @@ const defaultPlaceholders = new Map(
 );
 
 const defaultMeta = {
-  title: titleEl?.textContent || "",
-  description: descriptionMeta?.content || "",
-  ogTitle: ogTitleMeta?.content || "",
-  ogDescription: ogDescriptionMeta?.content || "",
-  locale: ogLocaleMeta?.content || "en_US",
+  title: titleEl ? titleEl.textContent : "",
+  description: descriptionMeta ? descriptionMeta.content : "",
+  ogTitle: ogTitleMeta ? ogTitleMeta.content : "",
+  ogDescription: ogDescriptionMeta ? ogDescriptionMeta.content : "",
+  locale: ogLocaleMeta ? ogLocaleMeta.content : "en_US",
 };
 
 const germanText = {
@@ -494,7 +494,7 @@ const supabaseEnabled = Boolean(
 let supabase = null;
 let supabaseReady = false;
 
-if (supabaseEnabled && window.supabase?.createClient) {
+if (supabaseEnabled && window.supabase && typeof window.supabase.createClient === "function") {
   try {
     supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
       auth: { persistSession: true, autoRefreshToken: true },
@@ -511,7 +511,7 @@ let syncTimer = null;
 function readStorage(key, fallback = null) {
   try {
     const value = window.localStorage.getItem(key);
-    return value ?? fallback;
+    return value === null || value === undefined ? fallback : value;
   } catch (error) {
     console.warn(`Storage read failed for ${key}.`, error);
     return fallback;
@@ -657,7 +657,7 @@ function updateAuthUI() {
   }
 
   if (authUserEmail) {
-    authUserEmail.textContent = currentUser?.email || "";
+    authUserEmail.textContent = currentUser && currentUser.email ? currentUser.email : "";
   }
 
   if (!supabaseEnabled) {
@@ -735,7 +735,7 @@ function applyQuizState(state = []) {
     if (!card) return;
     const options = Array.from(card.querySelectorAll(".quiz-option"));
     const feedback = card.querySelector(".quiz-feedback");
-    if (entry?.choice_index == null || !options[entry.choice_index]) {
+    if (!entry || entry.choice_index == null || !options[entry.choice_index]) {
       return;
     }
 
@@ -852,7 +852,10 @@ async function loadRemoteState() {
   applyProgressState(data.progress_state || []);
   applyQuizState(data.quiz_state || []);
   userInputs.forEach((input) => {
-    input.value = data.input_state?.[input.dataset.userInput] || "";
+    input.value =
+      data.input_state && data.input_state[input.dataset.userInput]
+        ? data.input_state[input.dataset.userInput]
+        : "";
   });
   if (data.language) {
     setLanguage(data.language);
@@ -949,7 +952,7 @@ function bindAuthPanels() {
       const nextTab = button.dataset.authJump || "login";
       setAuthTab(nextTab);
 
-      if (authModal?.querySelector(".auth-panel")) {
+      if (authModal && authModal.querySelector(".auth-panel")) {
         event.preventDefault();
         if (!authModal.open) {
           authModal.showModal();
@@ -957,29 +960,35 @@ function bindAuthPanels() {
         return;
       }
 
-      authAccessSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (authAccessSection) {
+        authAccessSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
   });
 
   authCloseButtons.forEach((button) => {
-    button.addEventListener("click", () => authModal?.close());
+    button.addEventListener("click", () => {
+      if (authModal) authModal.close();
+    });
   });
 
   authTabs.forEach((button) => {
     button.addEventListener("click", () => setAuthTab(button.dataset.authTab));
   });
 
-  authModal?.addEventListener("click", (event) => {
-    const rect = authModal.getBoundingClientRect();
-    const inside =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
-    if (!inside) {
-      authModal.close();
-    }
-  });
+  if (authModal) {
+    authModal.addEventListener("click", (event) => {
+      const rect = authModal.getBoundingClientRect();
+      const inside =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+      if (!inside) {
+        authModal.close();
+      }
+    });
+  }
 }
 
 function bindLearningInteractions() {
@@ -1024,7 +1033,7 @@ async function initAuth() {
   }
 
   const { data } = await supabase.auth.getSession();
-  currentUser = data.session?.user || null;
+  currentUser = data && data.session ? data.session.user || null : null;
   updateAuthUI();
 
   if (currentUser) {
@@ -1032,13 +1041,13 @@ async function initAuth() {
   }
 
   supabase.auth.onAuthStateChange((_event, session) => {
-    currentUser = session?.user || null;
+    currentUser = session ? session.user || null : null;
     updateAuthUI();
 
     if (currentUser) {
       void loadRemoteState();
       setAuthModalStatus(getLangCopy().status.loginSuccess);
-      authModal?.close();
+      if (authModal) authModal.close();
     } else {
       setAuthModalStatus(getLangCopy().status.logoutSuccess);
       loadLocalState();
@@ -1054,20 +1063,30 @@ function bootApp() {
   bindAuthPanels();
   bindLearningInteractions();
 
-  themeToggle?.addEventListener("click", () => {
-    const nextTheme = body.classList.contains("dark") ? "light" : "dark";
-    applyTheme(nextTheme);
-    writeStorage(themeKey, nextTheme);
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = body.classList.contains("dark") ? "light" : "dark";
+      applyTheme(nextTheme);
+      writeStorage(themeKey, nextTheme);
+    });
+  }
 
   langToggles.forEach((toggle) => {
     toggle.addEventListener("click", () => setLanguage(toggle.dataset.lang || "en"));
   });
 
-  loginForm?.addEventListener("submit", (event) => void handleLogin(event));
-  registerForm?.addEventListener("submit", (event) => void handleRegister(event));
-  resetForm?.addEventListener("submit", (event) => void handleReset(event));
-  logoutButton?.addEventListener("click", () => void handleLogout());
+  if (loginForm) {
+    loginForm.addEventListener("submit", (event) => void handleLogin(event));
+  }
+  if (registerForm) {
+    registerForm.addEventListener("submit", (event) => void handleRegister(event));
+  }
+  if (resetForm) {
+    resetForm.addEventListener("submit", (event) => void handleReset(event));
+  }
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => void handleLogout());
+  }
 
   setAuthTab(readStorage(authTabKey, "login") || "login");
   void initAuth();

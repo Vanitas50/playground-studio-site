@@ -487,17 +487,37 @@ const supabaseEnabled = Boolean(
   !String(supabaseConfig.anonKey).includes("YOUR_"),
 );
 
-const supabase = supabaseEnabled
-  ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
+let supabase = null;
+let supabaseReady = false;
+
+if (supabaseEnabled && window.supabase?.createClient) {
+  try {
+    supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey, {
       auth: { persistSession: true, autoRefreshToken: true },
-    })
-  : null;
+    });
+    supabaseReady = true;
+  } catch (error) {
+    console.error("Failed to initialize Supabase client.", error);
+  }
+}
 
 let currentUser = null;
 let syncTimer = null;
 
 function getLanguage() {
   return localStorage.getItem(languageKey) || "en";
+}
+
+function readStoredJson(key, fallback) {
+  try {
+    const rawValue = localStorage.getItem(key);
+    if (!rawValue) return fallback;
+    return JSON.parse(rawValue);
+  } catch (error) {
+    console.warn(`Ignoring invalid localStorage value for ${key}.`, error);
+    localStorage.removeItem(key);
+    return fallback;
+  }
 }
 
 function getLangCopy() {
@@ -610,6 +630,8 @@ function updateAuthUI() {
 
   if (!supabaseEnabled) {
     setSyncStatus(langCopy.status.notConnected);
+  } else if (!supabaseReady) {
+    setSyncStatus("Sync is temporarily unavailable in this browser session.");
   } else if (isLoggedIn) {
     setSyncStatus(langCopy.status.connectedUser);
   } else {
@@ -698,9 +720,9 @@ function applyQuizState(state = []) {
 }
 
 function loadLocalState() {
-  const progress = JSON.parse(localStorage.getItem(progressKey) || "[]");
-  const quiz = JSON.parse(localStorage.getItem(quizKey) || "[]");
-  const inputState = JSON.parse(localStorage.getItem(inputKey) || "{}");
+  const progress = readStoredJson(progressKey, []);
+  const quiz = readStoredJson(quizKey, []);
+  const inputState = readStoredJson(inputKey, {});
   applyProgressState(progress);
   applyQuizState(quiz);
   userInputs.forEach((input) => {
@@ -961,27 +983,36 @@ async function initAuth() {
   });
 }
 
-loadTheme();
-setLanguage(getLanguage());
-loadLocalState();
-updateAuthUI();
-bindAuthPanels();
-bindLearningInteractions();
+function bootApp() {
+  loadTheme();
+  setLanguage(getLanguage());
+  loadLocalState();
+  updateAuthUI();
+  bindAuthPanels();
+  bindLearningInteractions();
 
-themeToggle?.addEventListener("click", () => {
-  const nextTheme = body.classList.contains("dark") ? "light" : "dark";
-  applyTheme(nextTheme);
-  localStorage.setItem(themeKey, nextTheme);
-});
+  themeToggle?.addEventListener("click", () => {
+    const nextTheme = body.classList.contains("dark") ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem(themeKey, nextTheme);
+  });
 
-langToggles.forEach((toggle) => {
-  toggle.addEventListener("click", () => setLanguage(toggle.dataset.lang || "en"));
-});
+  langToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => setLanguage(toggle.dataset.lang || "en"));
+  });
 
-loginForm?.addEventListener("submit", (event) => void handleLogin(event));
-registerForm?.addEventListener("submit", (event) => void handleRegister(event));
-resetForm?.addEventListener("submit", (event) => void handleReset(event));
-logoutButton?.addEventListener("click", () => void handleLogout());
+  loginForm?.addEventListener("submit", (event) => void handleLogin(event));
+  registerForm?.addEventListener("submit", (event) => void handleRegister(event));
+  resetForm?.addEventListener("submit", (event) => void handleReset(event));
+  logoutButton?.addEventListener("click", () => void handleLogout());
 
-setAuthTab(localStorage.getItem(authTabKey) || "login");
-void initAuth();
+  setAuthTab(localStorage.getItem(authTabKey) || "login");
+  void initAuth();
+}
+
+try {
+  bootApp();
+} catch (error) {
+  console.error("Erlang Campus failed to initialize.", error);
+  updateAuthUI();
+}

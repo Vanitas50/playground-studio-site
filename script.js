@@ -37,9 +37,19 @@ const progressTotal = document.getElementById("progressTotal");
 const progressBar = document.getElementById("progressBar");
 const quizCards = Array.from(document.querySelectorAll("[data-quiz-card]"));
 const userInputs = Array.from(document.querySelectorAll("[data-user-input]"));
+const codeInputs = Array.from(document.querySelectorAll("[data-code-input]"));
+const codeRunButtons = Array.from(document.querySelectorAll("[data-code-run]"));
 const quizScore = document.getElementById("quizScore");
 const quizTotal = document.getElementById("quizTotal");
 const quizMessage = document.getElementById("quizMessage");
+const rewardXpValue = document.getElementById("rewardXpValue");
+const rewardMessage = document.getElementById("rewardMessage");
+const focusHeading = document.getElementById("focusHeading");
+const focusMessage = document.getElementById("focusMessage");
+const notesCount = document.getElementById("notesCount");
+const codeSuccessCount = document.getElementById("codeSuccessCount");
+const quizSolvedCount = document.getElementById("quizSolvedCount");
+const progressDoneCount = document.getElementById("progressDoneCount");
 
 const themeKey = "erlang-campus-theme";
 const languageKey = "erlang-campus-language";
@@ -815,6 +825,206 @@ function clearQuizVisuals() {
   });
 }
 
+function getCodeInputByExercise(exercise) {
+  return document.querySelector(`[data-code-input="${exercise}"]`);
+}
+
+function getCodeStatusEl(exercise) {
+  return document.querySelector(`[data-code-status="${exercise}"]`);
+}
+
+function getCodeFeedbackEl(exercise) {
+  return document.querySelector(`[data-code-feedback="${exercise}"]`);
+}
+
+function evaluateCodeExercise(exercise, source) {
+  const code = String(source || "").trim();
+  if (!code) {
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Warte auf deinen Versuch." : "Waiting for your attempt.",
+      feedback:
+        getLanguage() === "de"
+          ? "Schreibe zuerst etwas Eigenes hinein. Schon ein erster Entwurf ist besser als nur Lesen."
+          : "Write your own attempt first. Even a rough draft is better than passive reading.",
+    };
+  }
+
+  const normalized = code.replace(/\s+/g, " ").toLowerCase();
+  const has = (snippet) => normalized.includes(snippet);
+
+  if (exercise === "pattern") {
+    const checks = [
+      has("{ok, user}"),
+      has("="),
+      has("#{name =>"),
+    ];
+    const score = checks.filter(Boolean).length;
+    if (score === 3) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Drill geschafft." : "Drill cleared.",
+        feedback:
+          getLanguage() === "de"
+            ? "Stark. Du entpackst die Erfolgsform direkt und bindest den Inhalt ueber Pattern Matching."
+            : "Strong. You unpacked the success shape directly and bound the content with pattern matching.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Fast da." : "Close.",
+      feedback:
+        getLanguage() === "de"
+          ? "Achte auf die Form {ok, User} und darauf, dass rechts wirklich ein passendes Tupel steht."
+          : "Focus on the shape {ok, User} and make sure the right side is a matching tuple.",
+    };
+  }
+
+  if (exercise === "recursion") {
+    const checks = [
+      has("sum([])"),
+      has("[h | t]"),
+      has("sum(t)"),
+    ];
+    const score = checks.filter(Boolean).length;
+    if (score === 3) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Rekursion sitzt." : "Recursion looks solid.",
+        feedback:
+          getLanguage() === "de"
+            ? "Gut. Du hast Endfall, Zerlegung und rekursiven Schritt in der richtigen Form."
+            : "Good. You captured the base case, the list split, and the recursive step in the right shape.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Noch nicht stabil." : "Not stable yet.",
+      feedback:
+        getLanguage() === "de"
+          ? "Deine Funktion braucht einen klaren Endfall fuer [] und einen Schritt fuer [H | T], der wieder sum(T) aufruft."
+          : "Your function needs a clear [] base case and a [H | T] step that calls sum(T) again.",
+    };
+  }
+
+  if (exercise === "process") {
+    const checks = [
+      has("receive"),
+      has("increment"),
+      has("from !") || has("from!"),
+      has("loop("),
+    ];
+    const score = checks.filter(Boolean).length;
+    if (score >= 4) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Prozesslogik erkannt." : "Process logic recognized.",
+        feedback:
+          getLanguage() === "de"
+            ? "Sehr gut. Dein Entwurf zeigt Mailbox-Denken: Nachricht empfangen, Zustand anpassen, dann weiter loopen."
+            : "Very good. Your draft shows mailbox thinking: receive a message, update state, then loop again.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Mehr Mailbox-Denken." : "Need more mailbox thinking.",
+      feedback:
+        getLanguage() === "de"
+          ? "Zeige explizit ein receive, eine increment-Nachricht, eine Antwort an From und den naechsten loop-Aufruf."
+          : "Show an explicit receive, an increment message, a reply to From, and the next loop call.",
+    };
+  }
+
+  return {
+    passed: false,
+    status: getLanguage() === "de" ? "Keine Auswertung verfuegbar." : "No evaluation available.",
+    feedback: "",
+  };
+}
+
+function renderCodeExerciseFeedback(exercise) {
+  const input = getCodeInputByExercise(exercise);
+  const statusEl = getCodeStatusEl(exercise);
+  const feedbackEl = getCodeFeedbackEl(exercise);
+  if (!input || !statusEl || !feedbackEl) return false;
+
+  const result = evaluateCodeExercise(exercise, input.value);
+  statusEl.textContent = result.status;
+  feedbackEl.textContent = result.feedback;
+  feedbackEl.classList.toggle("is-correct", result.passed);
+  feedbackEl.classList.toggle("is-wrong", !result.passed && Boolean(String(input.value || "").trim()));
+  return result.passed;
+}
+
+function getCodeExerciseResults() {
+  return codeInputs.map((input) =>
+    evaluateCodeExercise(input.dataset.codeInput || "", input.value),
+  );
+}
+
+function updateLearningFeedback() {
+  const trimmedInputs = userInputs.map((input) => String(input.value || "").trim());
+  const noteEntries = userInputs.filter(
+    (input) => input.dataset.userInput && input.dataset.userInput.endsWith("_notes"),
+  );
+  const noteCountValue = noteEntries.filter((input) => String(input.value || "").trim()).length;
+  const codeResults = getCodeExerciseResults();
+  const codeSolved = codeResults.filter((result) => result.passed).length;
+  const solvedQuiz = quizCards.filter((card) => card.dataset.solved === "true").length;
+  const completedProgress = progressItems.filter((item) => item.checked).length;
+  const substantialInputs = trimmedInputs.filter((value) => value.length > 0).length;
+  const xp = completedProgress * 15 + solvedQuiz * 20 + noteCountValue * 10 + codeSolved * 35 + substantialInputs * 3;
+
+  if (notesCount) notesCount.textContent = String(noteCountValue);
+  if (codeSuccessCount) codeSuccessCount.textContent = String(codeSolved);
+  if (quizSolvedCount) quizSolvedCount.textContent = String(solvedQuiz);
+  if (progressDoneCount) progressDoneCount.textContent = String(completedProgress);
+
+  if (rewardXpValue) {
+    rewardXpValue.textContent = `${xp} XP`;
+  }
+
+  if (rewardMessage) {
+    if (xp === 0) {
+      rewardMessage.textContent =
+        "Start with one lesson note or one code drill to unlock your first progress signal.";
+    } else if (xp < 120) {
+      rewardMessage.textContent =
+        "You are building momentum. Every note, solved quiz card, and code attempt now compounds.";
+    } else if (xp < 260) {
+      rewardMessage.textContent =
+        "Nice. The course now feels interactive because you are feeding it work, not just attention.";
+    } else {
+      rewardMessage.textContent =
+        "Strong pace. You are combining recall, reflection, and hands-on construction like a real learner should.";
+    }
+  }
+
+  if (focusHeading && focusMessage) {
+    if (codeSolved < codeInputs.length) {
+      focusHeading.textContent = "Best next move";
+      focusMessage.textContent =
+        "Run the next coding drill and refine it until the page tells you the core Erlang shape is correct.";
+    } else if (solvedQuiz < quizCards.length) {
+      focusHeading.textContent = "Push retention";
+      focusMessage.textContent =
+        "Finish the remaining quiz cards. Active recall is still the fastest way to prove the ideas are sticking.";
+    } else if (completedProgress < progressItems.length) {
+      focusHeading.textContent = "Lock in progress";
+      focusMessage.textContent =
+        "Mark the milestones you have actually completed so the roadmap reflects what you can already do.";
+    } else if (noteCountValue < noteEntries.length) {
+      focusHeading.textContent = "Explain it back";
+      focusMessage.textContent =
+        "Add one more note in your own words. Explanation is where vague understanding becomes usable knowledge.";
+    } else {
+      focusHeading.textContent = "You are in build mode";
+      focusMessage.textContent =
+        "Move into projects next. At this point, the best reward is turning these patterns into a small working system.";
+    }
+  }
+}
+
 function applyQuizState(state = []) {
   clearQuizVisuals();
   quizCards.forEach((card, cardIndex) => {
@@ -837,6 +1047,7 @@ function applyQuizState(state = []) {
     }
   });
   updateQuizScore();
+  updateLearningFeedback();
 }
 
 function loadLocalState() {
@@ -848,6 +1059,10 @@ function loadLocalState() {
   userInputs.forEach((input) => {
     input.value = inputState[input.dataset.userInput] || "";
   });
+  codeInputs.forEach((input) => {
+    renderCodeExerciseFeedback(input.dataset.codeInput || "");
+  });
+  updateLearningFeedback();
 }
 
 function updateProgress() {
@@ -875,6 +1090,7 @@ function updateQuizScore() {
   } else {
     quizMessage.textContent = langQuiz.complete;
   }
+  updateLearningFeedback();
 }
 
 function refreshQuizFeedbackTexts() {
@@ -945,9 +1161,13 @@ async function loadRemoteState() {
         ? data.input_state[input.dataset.userInput]
         : "";
   });
+  codeInputs.forEach((input) => {
+    renderCodeExerciseFeedback(input.dataset.codeInput || "");
+  });
   if (data.language) {
     setLanguage(data.language);
   }
+  updateLearningFeedback();
   saveLocalState();
 }
 
@@ -1083,6 +1303,7 @@ function bindLearningInteractions() {
   progressItems.forEach((item) => {
     item.addEventListener("change", () => {
       updateProgress();
+      updateLearningFeedback();
       queueRemoteSave();
     });
   });
@@ -1090,6 +1311,10 @@ function bindLearningInteractions() {
   userInputs.forEach((input) => {
     const eventName = input.tagName === "SELECT" ? "change" : "input";
     input.addEventListener(eventName, () => {
+      if (input.dataset.codeInput) {
+        renderCodeExerciseFeedback(input.dataset.codeInput);
+      }
+      updateLearningFeedback();
       queueRemoteSave();
     });
   });
@@ -1110,6 +1335,15 @@ function bindLearningInteractions() {
         updateQuizScore();
         queueRemoteSave();
       });
+    });
+  });
+
+  codeRunButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const exercise = button.dataset.codeRun || "";
+      renderCodeExerciseFeedback(exercise);
+      updateLearningFeedback();
+      queueRemoteSave();
     });
   });
 }

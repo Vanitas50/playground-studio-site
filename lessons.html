@@ -17,6 +17,32 @@
     <header class="site-header"><div class="container nav-shell"><a class="brand" href="/erlang-campus/"><span class="brand-mark">BEAM</span><span>Erlang Campus</span></a><nav class="main-nav" aria-label="Main navigation" data-i18n-aria-label="nav.aria"><a href="/erlang-campus/index.html" data-i18n="nav.start">Start</a><a href="/erlang-campus/roadmap.html" data-i18n="nav.roadmap">Roadmap</a><a class="is-active" href="/erlang-campus/lessons.html" data-i18n="nav.lessons">Lessons</a><a href="/erlang-campus/quiz.html" data-i18n="nav.quiz">Quiz</a><a href="/erlang-campus/projects.html" data-i18n="nav.projects">Projects</a></nav><div class="header-controls"><div class="lang-switch" role="group" aria-label="Language switcher" data-i18n-aria-label="lang.aria"><button class="lang-toggle" type="button" data-lang="en">EN</button><button class="lang-toggle" type="button" data-lang="de">DE</button></div><button class="theme-toggle" type="button" aria-label="Switch color theme" data-i18n="theme.mode" data-i18n-aria-label="theme.aria">Mode</button><a class="auth-open auth-link" href="#auth-access" data-auth-open data-auth-jump="login" data-i18n="auth.open">Login</a></div></div></header>
     <main>
       <section class="hero"><div class="container hero-grid"><div class="hero-copy"><p class="eyebrow" data-i18n="lessons.eyebrow">Lessons</p><h1 data-i18n="lessons.title">Every module combines a model, a rule, an example, and a challenge.</h1><p class="lead" data-i18n="lessons.body">That is how understanding replaces memorization.</p><div class="hero-actions"><a class="btn btn-primary" href="/erlang-campus/quiz.html" data-i18n="nav.quiz">Quiz</a><a class="btn btn-secondary" href="/erlang-campus/projects.html" data-i18n="nav.projects">Projects</a></div></div></div></section>
+      <section class="section section-accent">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Feedback Loop</p>
+            <h2>Make progress visible while you learn.</h2>
+            <p>The page now rewards effort, not just perfect answers. Write notes, solve drills, and build momentum.</p>
+          </div>
+          <div class="roadmap-grid">
+            <article class="roadmap-card">
+              <span class="module-index">XP</span>
+              <h3 id="rewardXpValue">0 XP</h3>
+              <p id="rewardMessage">Start with one lesson note or one code drill to unlock your first progress signal.</p>
+            </article>
+            <article class="roadmap-card">
+              <span class="module-index">FOCUS</span>
+              <h3 id="focusHeading">Best next move</h3>
+              <p id="focusMessage">Open a module, write one thought in the note field, then run one coding drill.</p>
+            </article>
+            <article class="roadmap-card">
+              <span class="module-index">PRACTICE</span>
+              <h3><span id="notesCount">0</span> notes, <span id="codeSuccessCount">0</span> drills</h3>
+              <p><span id="quizSolvedCount">0</span> quiz wins and <span id="progressDoneCount">0</span> checked milestones completed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
       <section class="section" id="lessons">
         <div class="container">
           <div class="section-heading"><p class="eyebrow" data-i18n="lessons.eyebrow">Lessons</p><h2 data-i18n="lessons.title">Every module combines a model, a rule, an example, and a challenge.</h2><p data-i18n="lessons.body">That is how understanding replaces memorization.</p></div>
@@ -48,10 +74,68 @@ end.</code></pre></div><div class="challenge-box"><strong data-i18n="common.chal
           </div>
         </div>
       </section>
+      <section class="section section-accent" id="practice-studio">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Practice Studio</p>
+            <h2>Write Erlang yourself and get instant feedback.</h2>
+            <p>These drills are lightweight browser checks, not a full compiler, but they push learners into active construction instead of only reading.</p>
+          </div>
+          <div class="lesson-stack">
+            <article class="lesson-card code-dojo-card" data-code-exercise="pattern">
+              <div class="lesson-head">
+                <span class="module-index">Drill 1</span>
+                <h3>Pattern Match a Success Tuple</h3>
+              </div>
+              <p>Write one Erlang line that extracts <code>User</code> from a value shaped like <code>{ok, #{name => &lt;&lt;"Ada"&gt;&gt;}}</code>.</p>
+              <textarea class="code-dojo-input" rows="6" data-user-input="code_pattern" data-code-input="pattern" placeholder='{ok, User} = {ok, #{name => &lt;&lt;"Ada"&gt;&gt;}}.'></textarea>
+              <div class="donation-actions">
+                <button class="btn btn-primary" type="button" data-code-run="pattern">Check code</button>
+                <span class="donation-note" data-code-status="pattern">No feedback yet.</span>
+              </div>
+              <p class="quiz-feedback code-dojo-feedback" data-code-feedback="pattern"></p>
+            </article>
+            <article class="lesson-card code-dojo-card" data-code-exercise="recursion">
+              <div class="lesson-head">
+                <span class="module-index">Drill 2</span>
+                <h3>Recursive Sum Function</h3>
+              </div>
+              <p>Write a recursive <code>sum/1</code> function with a base case for <code>[]</code> and a recursive step for <code>[H | T]</code>.</p>
+              <textarea class="code-dojo-input" rows="9" data-user-input="code_recursion" data-code-input="recursion" placeholder='sum([]) -> 0;
+sum([H | T]) -> H + sum(T).'></textarea>
+              <div class="donation-actions">
+                <button class="btn btn-primary" type="button" data-code-run="recursion">Check code</button>
+                <span class="donation-note" data-code-status="recursion">No feedback yet.</span>
+              </div>
+              <p class="quiz-feedback code-dojo-feedback" data-code-feedback="recursion"></p>
+            </article>
+            <article class="lesson-card code-dojo-card" data-code-exercise="process">
+              <div class="lesson-head">
+                <span class="module-index">Drill 3</span>
+                <h3>Mailbox Counter Loop</h3>
+              </div>
+              <p>Sketch a process loop that handles an increment message and a get message that replies back to <code>From</code>.</p>
+              <textarea class="code-dojo-input" rows="11" data-user-input="code_process" data-code-input="process" placeholder='loop(State) ->
+    receive
+        increment ->
+            loop(State + 1);
+        {get, From} ->
+            From ! State,
+            loop(State)
+    end.'></textarea>
+              <div class="donation-actions">
+                <button class="btn btn-primary" type="button" data-code-run="process">Check code</button>
+                <span class="donation-note" data-code-status="process">No feedback yet.</span>
+              </div>
+              <p class="quiz-feedback code-dojo-feedback" data-code-feedback="process"></p>
+            </article>
+          </div>
+        </div>
+      </section>
       <section class="section" id="auth-access"><div class="container"><div class="section-heading"><p class="eyebrow" data-i18n="auth.modalEyebrow">Account</p><h2 data-i18n="auth.modalTitle">Login, register, and save your progress.</h2></div><div class="auth-panel"><div class="auth-tabs" role="tablist" aria-label="Authentication tabs"><button class="auth-tab is-active" type="button" data-auth-tab="login" data-i18n="auth.login">Login</button><button class="auth-tab" type="button" data-auth-tab="register" data-i18n="auth.register">Register</button><button class="auth-tab" type="button" data-auth-tab="reset" data-i18n="auth.reset">Reset password</button></div><p class="auth-modal-status" id="authModalStatus"></p><form class="auth-form is-active" id="loginForm" data-auth-panel="login"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><label><span data-i18n="auth.password">Password</span><input type="password" name="password" required autocomplete="current-password" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.login">Login</button></form><form class="auth-form" id="registerForm" data-auth-panel="register"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><label><span data-i18n="auth.password">Password</span><input type="password" name="password" minlength="8" required autocomplete="new-password" /></label><label><span data-i18n="auth.passwordRepeat">Repeat password</span><input type="password" name="password_repeat" minlength="8" required autocomplete="new-password" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.register">Register</button></form><form class="auth-form" id="resetForm" data-auth-panel="reset"><label><span data-i18n="auth.email">Email</span><input type="email" name="email" required autocomplete="email" /></label><button class="btn btn-primary btn-block" type="submit" data-i18n="auth.reset">Reset password</button></form></div></div></section>
     </main>
     <footer class="site-footer"><div class="container footer-shell"><div><p class="footer-title">Erlang Campus</p><p data-i18n="footer.body">From the first atoms to OTP and distributed systems. Clear, motivating, and directly usable.</p></div><a class="footer-link" href="https://github.com/Vanitas50/erlang-campus" target="_blank" rel="noreferrer" data-i18n="footer.repo">Repository on GitHub</a></div></footer>
     <dialog class="auth-modal" id="authModal"><div class="auth-modal__content"><div class="auth-modal__top"><div><p class="eyebrow" data-i18n="auth.modalEyebrow">Account</p><h2 data-i18n="auth.modalTitle">Login, register, and save your progress.</h2></div><button class="auth-close" type="button" data-auth-close aria-label="Close auth dialog">×</button></div><div id="authModalMount"></div></div></dialog>
-    <script src="script.js?v=9" defer></script>
+    <script src="script.js?v=10" defer></script>
   </body>
 </html>

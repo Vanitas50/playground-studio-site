@@ -57,7 +57,7 @@ const progressKey = "erlang-campus-progress";
 const quizKey = "erlang-campus-quiz";
 const inputKey = "erlang-campus-inputs";
 const authTabKey = "erlang-campus-auth-tab";
-const authRedirectUrl = "https://vanitas50.github.io/erlang-campus/";
+const authRedirectUrl = new URL("index.html", window.location.href).href;
 
 const defaultText = new Map(
   Array.from(document.querySelectorAll("[data-i18n]")).map((element) => [

@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vanitas50.github.io/erlang-campus/</loc>
+    <loc>https://erlang-campus-public.netlify.app/</loc>
     <lastmod>2026-03-27T13:35:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vanitas50.github.io/erlang-campus/roadmap.html</loc>
+    <loc>https://erlang-campus-public.netlify.app/roadmap.html</loc>
     <lastmod>2026-03-27T13:35:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vanitas50.github.io/erlang-campus/lessons.html</loc>
+    <loc>https://erlang-campus-public.netlify.app/lessons.html</loc>
     <lastmod>2026-03-27T13:35:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vanitas50.github.io/erlang-campus/quiz.html</loc>
+    <loc>https://erlang-campus-public.netlify.app/quiz.html</loc>
     <lastmod>2026-03-27T13:35:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vanitas50.github.io/erlang-campus/projects.html</loc>
+    <loc>https://erlang-campus-public.netlify.app/projects.html</loc>
     <lastmod>2026-03-27T13:35:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

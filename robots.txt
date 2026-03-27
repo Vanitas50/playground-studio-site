@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://vanitas50.github.io/erlang-campus/sitemap.xml
+Sitemap: https://erlang-campus-public.netlify.app/sitemap.xml

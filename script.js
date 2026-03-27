@@ -628,6 +628,25 @@ function setSyncStatus(message) {
   }
 }
 
+function mapAuthErrorMessage(error) {
+  const fallback = getLangCopy().auth.unknownError;
+  const message = error && error.message ? String(error.message).toLowerCase() : "";
+
+  if (!message) return fallback;
+  if (message.includes("email rate limit exceeded")) {
+    return getLanguage() === "de"
+      ? "Zu viele Bestätigungs-E-Mails in kurzer Zeit. Bitte warte kurz und versuche es später erneut."
+      : "Too many confirmation emails were requested in a short time. Please wait a bit and try again.";
+  }
+  if (message.includes("email not confirmed")) {
+    return getLanguage() === "de"
+      ? "Deine E-Mail ist noch nicht bestätigt. Öffne die Bestätigungs-Mail und versuche es dann erneut."
+      : "Your email is not confirmed yet. Open the confirmation email first, then try again.";
+  }
+
+  return error.message || fallback;
+}
+
 function updateAuthUI() {
   const langCopy = getLangCopy();
   const isLoggedIn = Boolean(currentUser);
@@ -887,7 +906,7 @@ async function handleRegister(event) {
   });
 
   if (error) {
-    setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
+    setAuthModalStatus(mapAuthErrorMessage(error));
     return;
   }
 
@@ -907,7 +926,7 @@ async function handleLogin(event) {
 
   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
   if (error) {
-    setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
+    setAuthModalStatus(mapAuthErrorMessage(error));
     return;
   }
 }
@@ -926,7 +945,7 @@ async function handleReset(event) {
   });
 
   if (error) {
-    setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
+    setAuthModalStatus(mapAuthErrorMessage(error));
     return;
   }
 
@@ -937,7 +956,7 @@ async function handleLogout() {
   if (!supabaseClient) return;
   const { error } = await supabaseClient.auth.signOut();
   if (error) {
-    setAuthModalStatus(error.message || getLangCopy().auth.unknownError);
+    setAuthModalStatus(mapAuthErrorMessage(error));
   }
 }
 

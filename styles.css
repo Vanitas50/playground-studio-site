@@ -667,6 +667,7 @@ body.dark .progress-bar {
 
 .lesson-card {
   padding: 1.5rem;
+  scroll-margin-top: 6.5rem;
 }
 
 .lesson-head {
@@ -719,6 +720,43 @@ body.dark .progress-bar {
 .practice-field textarea {
   resize: vertical;
   min-height: 110px;
+}
+
+.jump-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.jump-card,
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.jump-card {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1.35rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.jump-card span:last-child {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--muted);
+}
+
+.jump-card:hover,
+.jump-card:focus-visible,
+.card-link:hover,
+.card-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(196, 79, 41, 0.35);
 }
 
 .code-dojo-card {
@@ -878,6 +916,7 @@ body.dark .code-dojo-input {
   .split-heading,
   .lesson-grid,
   .roadmap-grid,
+  .jump-grid,
   .retention-grid,
   .pitfall-grid,
   .quiz-grid,

@@ -535,6 +535,18 @@ const germanText = {
   "faq.q4": "Ist der Kurs fuer Einsteiger oder fuer Fortgeschrittene?",
   "faq.a4":
     "Beides. Der Einstieg ist anfaengerfreundlich, aber die spaeteren Module fuehren bereits an produktionsnahe Konzepte heran.",
+  "seoHub.eyebrow": "Themen-Guides",
+  "seoHub.title": "Oeffne fokussierte Einsteiger-Guides fuer konkrete Erlang-Themen und Suchanfragen.",
+  "seoHub.body":
+    "Diese Seiten sind eigenstaendige Lern-Guides fuer Syntax, Pattern Matching, Rekursion, OTP Basics und weitere Kernbausteine.",
+  "seoHub.enTitle": "Englischer Themen-Hub",
+  "seoHub.enBody":
+    "Eigene englische Seiten fuer Suchanfragen wie erlang tutorial for beginners und erlang otp basics.",
+  "seoHub.deTitle": "Deutscher Themen-Hub",
+  "seoHub.deBody":
+    "Saubere deutsche Landingpages fuer Suchanfragen wie erlang lernen anfaenger und rekursion erklaert.",
+  "seoHub.openEn": "Englische Guides oeffnen",
+  "seoHub.openDe": "Deutsche Guides oeffnen",
   "footer.body":
     "Von den ersten Atomen bis zu OTP und verteilten Systemen. Klar, motivierend und direkt nutzbar.",
   "footer.repo": "Repository auf GitHub",

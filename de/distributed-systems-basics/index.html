@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Distributed Systems Basics in Erlang | Erlang Campus</title>
+    <meta name="description" content="Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/de/distributed-systems-basics/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/distributed-systems-basics/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/distributed-systems-basics/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Distributed Systems Basics in Erlang | Erlang Campus" />
+    <meta property="og:description" content="Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/de/distributed-systems-basics/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Distributed Systems Basics in Erlang | Erlang Campus" />
+    <meta name="twitter:description" content="Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/de/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO-Navigation">
+          <a href="https://erlang-campus-public.netlify.app/de/" class="active">Themen</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interaktiver Kurs</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projekte</a>
+          <a href="https://erlang-campus-public.netlify.app/en/distributed-systems-basics/">English</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/de/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/de/">Themen</a><span>/</span><span>Distributed Systems Basics</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang-Lektion</p><h1>Distributed Systems Basics in Erlang</h1><p class="intro">Verteiltes Erlang ist der Punkt, an dem lokale Korrektheit nicht mehr reicht. Sobald Nachrichten Maschinen grenzen ueberschreiten, werden Latenz, Teilausfaelle und Timeouts Teil des Designs.</p><section><h2>Was sich aendert, wenn ein System verteilt wird</h2><p>Auf einer Maschine bleiben viele Annahmen unsichtbar. Ueber mehrere Maschinen hinweg werden sie Teil des Problems. Antworten koennen spaet kommen, Nodes koennen wegfallen, ein Request kann remote erfolgreich sein, waehrend der Aufrufer lokal in den Timeout laeuft. Deshalb darf verteiltes Denken nicht einfach von lokalem Code uebernommen werden.</p><p>Die erste Lektion fuer Anfaenger ist daher nicht „Node-Syntax auswendig lernen“, sondern „Ausfall und Verzoegerung als normale Design-Eingaben behandeln“. Das macht verteiltes Erlang realistisch.</p></section><section><h2>Nodes und Remote Messaging</h2><p>Ein Node ist eine laufende Erlang-Instanz, die mit anderen Instanzen kommunizieren kann, wenn Namen und Erreichbarkeit stimmen. Remote Messaging sieht syntaktisch oft einfach aus. Genau das ist Staerke und Gefahr zugleich. Die Syntax ist leicht, die Betriebsannahmen dahinter nicht.</p><p>Deshalb sollte jedes Remote-Beispiel sofort mit einer Frage verbunden werden: was passiert, wenn keine Antwort kommt? Was passiert bei Node-Ausfall? Wie reagiert der Caller dann?</p><pre><code>{service, 'worker@host'} ! ping.
+receive
+    reply -> ok
+after 2000 ->
+    timeout
+end.</code></pre></section><section><h2>Warum Timeouts in den ersten Entwurf gehoeren</h2><p>Ein Timeout ist kein Spaet-Patch, sondern Teil des Protokolls. Wenn eine Antwort remote spaet oder gar nicht kommen kann, braucht der Caller eine definierte Reaktion. Retry, Logging, Fehler rueckgeben oder Eskalation sind Designentscheidungen.</p><p>Genau hier unterscheidet sich verteiltes Denken vom lokalen. Ein robustes verteiltes System plant den schwierigen Pfad von Anfang an ein.</p></section><section><h2>Typische Anfaengerfehler bei verteiltem Erlang</h2><p>Ein haeufiger Fehler ist, Verteilung zu frueh einzubauen, bevor das Modell auf einem Node sauber ist. Ein anderer ist, Remote-Beispiele ohne Timeout-Handling zu schreiben. Ausserdem wird Netzwerkausfall oft wie ein Ausnahmefall statt wie ein normaler Systemzustand behandelt.</p><p>Die staerkste Uebung ist, Erfolgs- und Fehlerpfad nebeneinander zu designen. Wenn ein entfernter Node wegfaellt, was ist dann nur verzoegert, was kann retryen und was muss sauber stoppen? Genau diese Fragen fuehren zu besseren Systemen.</p></section><section><h2>Was du danach tun solltest</h2><ul><li>Einen receive-Block um einen Timeout erweitern.</li><li>Einen Remote-Fehler und eine passende Reaktion benennen.</li><li>Das Ein-Node-Design erst sauber machen, dann verteilen.</li><li>Danach das Abschlussprojekt bauen.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-6">Im interaktiven Kurs ueben</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a></div></section><section><h2>Hauefige Fragen</h2><div class="faq-grid"><article class="faq-card"><h3>Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?</h3><p>Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu.</p></article><article class="faq-card"><h3>Warum sind Timeouts so wichtig?</h3><p>Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/de/supervisor-thinking/">Vorherige Lektion: Supervisor Thinking</a><a class="primary" href="https://erlang-campus-public.netlify.app/projects.html">Weiter zu Projekten</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Warum diese Seite existiert</h3><p>Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.</p></div><div class="panel"><p class="eyebrow">Naechster Schritt</p><h3>Interaktiv weiterlernen</h3><p>Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen, Code-Feedback und Fortschrittsspeicherung.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-6">Zum Modul</a></div><div class="panel"><p class="eyebrow">Sprache</p><h3>Alternative Sprachversion</h3><p>Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit hreflang-Verknuepfung.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/distributed-systems-basics/">Zur englischen Version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Distributed Systems Basics","item":"https://erlang-campus-public.netlify.app/de/distributed-systems-basics/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Distributed Systems Basics in Erlang","inLanguage":"de","description":"Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/de/distributed-systems-basics/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?","acceptedAnswer":{"@type":"Answer","text":"Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu."}},{"@type":"Question","name":"Warum sind Timeouts so wichtig?","acceptedAnswer":{"@type":"Answer","text":"Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO-Hub und interaktiver Erlang-Kurs fuer langfristig sichtbare Lerninhalte.</div>
+        <a href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a>
+      </div>
+    </footer>
+  </body>
+</html>

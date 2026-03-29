@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erlang Pattern Matching Explained | Erlang Campus</title>
+    <meta name="description" content="Understand Erlang pattern matching with practical examples, common mistakes, and beginner-friendly explanations." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/en/pattern-matching/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/pattern-matching/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/pattern-matching/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Erlang Pattern Matching Explained | Erlang Campus" />
+    <meta property="og:description" content="Understand Erlang pattern matching with practical examples, common mistakes, and beginner-friendly explanations." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/en/pattern-matching/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erlang Pattern Matching Explained | Erlang Campus" />
+    <meta name="twitter:description" content="Understand Erlang pattern matching with practical examples, common mistakes, and beginner-friendly explanations." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/en/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO navigation">
+          <a href="https://erlang-campus-public.netlify.app/en/" class="active">Topics</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interactive course</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projects</a>
+          <a href="https://erlang-campus-public.netlify.app/de/pattern-matching/">Deutsch</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/en/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/en/">Topics</a><span>/</span><span>Pattern Matching</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang lesson</p><h1>Erlang pattern matching explained clearly</h1><p class="intro">Pattern matching is one of the most important Erlang ideas because it turns data shapes directly into program flow. It is more than comparison. It is how the language unpacks, validates, and routes values.</p><section><h2>Why pattern matching matters so much</h2><p>In many languages, you first inspect data and then manually pull values out of it. In Erlang, the match itself already describes the structure you expect. That means a line like {ok, User} = Result says two things at once: the value must have the right shape, and the second element becomes available as User.</p><p>This approach removes a lot of defensive noise. Instead of writing several lines of checks, you encode the expected structure directly into the expression or the function head. That makes happy paths and error paths much easier to see.</p></section><section><h2>Where you meet pattern matching every day</h2><p>You meet matching in assignments, function clauses, case branches, receive blocks, and list decomposition. A function can match on multiple input shapes. A case expression can react differently to {ok, Value} and {error, Reason}. A receive block can route messages by pattern rather than by manual branching.</p><p>Because matching is used everywhere, strong Erlang learners practice it early. The more natural it feels to read and write patterns, the faster the rest of the language becomes.</p><pre><code>case fetch_user(Id) of
+    {ok, User} -> User;
+    {error, Reason} -> {failed, Reason}
+end.</code></pre></section><section><h2>How to think about bindings and failures</h2><p>A variable in a pattern gets bound if the shape matches. If the structure does not match, the clause or expression fails. That failure is often useful because it tells you immediately that the data is not in the form you thought it was. Pattern matching is therefore both a readability tool and a correctness tool.</p><p>Beginners should get comfortable predicting matches before running code. Ask: what form is expected, what part becomes bound, and what would make this fail? That simple three-question habit builds strong intuition.</p></section><section><h2>Mistakes beginners make with matching</h2><p>A common mistake is assuming matching behaves like assignment in imperative languages. Another is forgetting that a previously bound variable must match the same value again. Learners also write patterns that are too vague, missing a chance to make the program self-checking.</p><p>The best fix is to practice with small tuples, lists, and maps. Match successes, match failures, and explain them in plain language. When you can predict the result before running code, you are learning correctly.</p></section><section><h2>A strong next step</h2><ul><li>Match on {ok, Value} and {error, Reason} in a case expression.</li><li>Destructure a list with [H | T].</li><li>Write two function clauses that match two different shapes.</li><li>Move on to functions and guards next.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-1">Practice in the interactive course</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/">All topics</a></div></section><section><h2>Frequently asked questions</h2><div class="faq-grid"><article class="faq-card"><h3>Is pattern matching the same as assignment?</h3><p>No. It checks that a value has the expected shape and binds matching parts. It is structural, not mutable assignment.</p></article><article class="faq-card"><h3>Why is pattern matching so important in Erlang?</h3><p>Because it is a core tool for routing logic, unpacking values, and making expectations explicit in code.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/en/erlang-syntax/">Previous lesson: Erlang Syntax</a><a class="primary" href="https://erlang-campus-public.netlify.app/en/functions-and-guards/">Next lesson: Functions and Guards</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Why this page exists</h3><p>This page is built as a dedicated learning landing page for Google and for specific search intent, not only as part of a long course page.</p></div><div class="panel"><p class="eyebrow">Next step</p><h3>Continue interactively</h3><p>If you want to practice right after reading, jump into the matching course module with notes, code feedback, and saved progress.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-1">Open module</a></div><div class="panel"><p class="eyebrow">Language</p><h3>Alternate language version</h3><p>Google and users get one dedicated German URL and one dedicated English URL for this topic, connected via hreflang.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/pattern-matching/">Open German version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":3,"name":"Pattern Matching","item":"https://erlang-campus-public.netlify.app/en/pattern-matching/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang pattern matching explained clearly","inLanguage":"en","description":"Understand Erlang pattern matching with practical examples, common mistakes, and beginner-friendly explanations.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/en/pattern-matching/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is pattern matching the same as assignment?","acceptedAnswer":{"@type":"Answer","text":"No. It checks that a value has the expected shape and binds matching parts. It is structural, not mutable assignment."}},{"@type":"Question","name":"Why is pattern matching so important in Erlang?","acceptedAnswer":{"@type":"Answer","text":"Because it is a core tool for routing logic, unpacking values, and making expectations explicit in code."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO hub and interactive Erlang course built for long-term discoverability.</div>
+        <a href="https://erlang-campus-public.netlify.app/en/">All topics</a>
+      </div>
+    </footer>
+  </body>
+</html>

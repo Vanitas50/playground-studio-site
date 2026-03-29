@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supervisor Thinking in Erlang verstehen | Erlang Campus</title>
+    <meta name="description" content="Verstehe Supervisor Thinking in Erlang, let it crash und warum Fehlertoleranz in OTP strukturell gedacht wird." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/de/supervisor-thinking/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/supervisor-thinking/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/supervisor-thinking/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Supervisor Thinking in Erlang verstehen | Erlang Campus" />
+    <meta property="og:description" content="Verstehe Supervisor Thinking in Erlang, let it crash und warum Fehlertoleranz in OTP strukturell gedacht wird." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/de/supervisor-thinking/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Supervisor Thinking in Erlang verstehen | Erlang Campus" />
+    <meta name="twitter:description" content="Verstehe Supervisor Thinking in Erlang, let it crash und warum Fehlertoleranz in OTP strukturell gedacht wird." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/de/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO-Navigation">
+          <a href="https://erlang-campus-public.netlify.app/de/" class="active">Themen</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interaktiver Kurs</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projekte</a>
+          <a href="https://erlang-campus-public.netlify.app/en/supervisor-thinking/">English</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/de/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/de/">Themen</a><span>/</span><span>Supervisor Thinking</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang-Lektion</p><h1>Supervisor Thinking in Erlang erklaert</h1><p class="intro">Supervisor Thinking ist der Punkt, an dem Lernende Abstuerze nicht mehr nur als Defekt sehen, sondern als Teil des Systemdesigns. In Erlang ist Robustheit strukturell organisiert. Das ist ein ganz anderes Denken als „niemals abstuerzen“.</p><section><h2>Warum let it crash nicht heisst Fehler zu ignorieren</h2><p>Der Satz „let it crash“ wird oft falsch verstanden. Er bedeutet nicht, dass ein System sorglos sein soll. Er bedeutet, dass ein Worker nicht jeden moeglichen Fehler intern verknoten muss. Oft ist es sicherer, schnell zu scheitern, sauberen Zustand wiederherzustellen und den Worker unter klaren Regeln neu zu starten.</p><p>Das funktioniert, weil Erlang-Systeme mit Supervisor-Baeumen entworfen werden. Fehlerbehandlung wird dadurch Architektur statt verstreute Sonderlogik.</p></section><section><h2>Was ein Supervisor wirklich entscheidet</h2><p>Ein Supervisor legt fest, welche Worker beobachtet werden und wie Neustarts passieren. Soll nur ein Worker neu starten oder die ganze Gruppe? Wie viele Fehler sind in einem Zeitfenster akzeptabel? Diese Entscheidungen praegen das Verhalten eines Systems lange vor der Produktion.</p><p>Anfaenger muessen nicht sofort jede Strategie beherrschen, aber sie muessen verstehen, dass Robustheit ein Baum von Verantwortlichkeiten ist. Genau darin liegt eine der staerksten OTP-Ideen.</p><pre><code>{one_for_one, 5, 10}</code></pre></section><section><h2>Wie du ueber saubere Wiederherstellung denkst</h2><p>Ein Supervisor ist wertvoll, weil ein neu gestarteter Worker oft in einen bekannten sauberen Zustand zurueckkehrt, statt in einem korrupten Zustand weiterzulaufen. Darin liegt der eigentliche Nutzen. Es geht nicht darum, Abstuerze zu feiern, sondern darum, einen disziplinierten Wiederherstellungspfad zu haben.</p><p>Je sauberer deine Prozessgrenzen sind, desto besser wirkt Supervision. Klare Zustandsgrenzen und klare Nachrichtenprotokolle machen sichere Neustarts moeglich.</p></section><section><h2>Typische Fehler beim Lernen von Fehlertoleranz</h2><p>Viele versuchen, jeden Crash im selben Worker zu verhindern. Andere uebernehmen Supervisor-Spezifikationen, ohne zu verstehen, welche Restart-Strategie zur Abhaengigkeitsstruktur passt. Ausserdem wird oft unterschaetzt, wie viel sauberer Systeme werden, wenn Zustand so isoliert ist, dass Neustarts problemlos sind.</p><p>Ein praktischer Lernweg ist, einen Crash in Alltagssprache zu beschreiben und dann zu fragen: was sollte neu starten, was sollte weiterlaufen und warum? So wird ein abstraktes OTP-Thema zu echtem Design-Denken.</p></section><section><h2>Was du danach ueben solltest</h2><ul><li>one_for_one in Alltagssprache erklaeren.</li><li>Einen Fall nennen, in dem ein einzelner Neustart besser ist als ein globaler.</li><li>Eine Worker-Supervisor-Beziehung skizzieren.</li><li>Danach mit Distributed Systems Basics weitermachen.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-4">Im interaktiven Kurs ueben</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a></div></section><section><h2>Hauefige Fragen</h2><div class="faq-grid"><article class="faq-card"><h3>Was ist ein Supervisor in Erlang?</h3><p>Ein Supervisor ueberwacht Worker oder Child-Prozesse und startet sie nach einer definierten Strategie neu.</p></article><article class="faq-card"><h3>Was bedeutet let it crash wirklich?</h3><p>Dass manche Fehler sicherer ueber Supervision und sauberen Neustart behandelt werden als ueber verworrene lokale Fehlerlogik.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/de/otp-basics/">Vorherige Lektion: OTP Basics</a><a class="primary" href="https://erlang-campus-public.netlify.app/de/distributed-systems-basics/">Naechste Lektion: Distributed Systems Basics</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Warum diese Seite existiert</h3><p>Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.</p></div><div class="panel"><p class="eyebrow">Naechster Schritt</p><h3>Interaktiv weiterlernen</h3><p>Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen, Code-Feedback und Fortschrittsspeicherung.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-4">Zum Modul</a></div><div class="panel"><p class="eyebrow">Sprache</p><h3>Alternative Sprachversion</h3><p>Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit hreflang-Verknuepfung.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/supervisor-thinking/">Zur englischen Version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Supervisor Thinking","item":"https://erlang-campus-public.netlify.app/de/supervisor-thinking/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Supervisor Thinking in Erlang erklaert","inLanguage":"de","description":"Verstehe Supervisor Thinking in Erlang, let it crash und warum Fehlertoleranz in OTP strukturell gedacht wird.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/de/supervisor-thinking/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was ist ein Supervisor in Erlang?","acceptedAnswer":{"@type":"Answer","text":"Ein Supervisor ueberwacht Worker oder Child-Prozesse und startet sie nach einer definierten Strategie neu."}},{"@type":"Question","name":"Was bedeutet let it crash wirklich?","acceptedAnswer":{"@type":"Answer","text":"Dass manche Fehler sicherer ueber Supervision und sauberen Neustart behandelt werden als ueber verworrene lokale Fehlerlogik."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO-Hub und interaktiver Erlang-Kurs fuer langfristig sichtbare Lerninhalte.</div>
+        <a href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a>
+      </div>
+    </footer>
+  </body>
+</html>

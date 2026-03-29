@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erlang Syntax Tutorial for Beginners | Erlang Campus</title>
+    <meta name="description" content="Learn Erlang syntax for beginners with atoms, tuples, lists, binaries, and practical reading rules." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/en/erlang-syntax/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/erlang-syntax/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/erlang-syntax/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Erlang Syntax Tutorial for Beginners | Erlang Campus" />
+    <meta property="og:description" content="Learn Erlang syntax for beginners with atoms, tuples, lists, binaries, and practical reading rules." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/en/erlang-syntax/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erlang Syntax Tutorial for Beginners | Erlang Campus" />
+    <meta name="twitter:description" content="Learn Erlang syntax for beginners with atoms, tuples, lists, binaries, and practical reading rules." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/en/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO navigation">
+          <a href="https://erlang-campus-public.netlify.app/en/" class="active">Topics</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interactive course</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projects</a>
+          <a href="https://erlang-campus-public.netlify.app/de/erlang-syntax/">Deutsch</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/en/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/en/">Topics</a><span>/</span><span>Erlang Syntax</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang lesson</p><h1>Erlang syntax explained for beginners</h1><p class="intro">Erlang syntax feels unusual at first because it is built around values, pattern matching, and explicit structure instead of mutable variables and braces. Once the visual rules click, the rest of the language gets dramatically easier.</p><section><h2>What Erlang syntax is really teaching you</h2><p>The first thing worth understanding is that Erlang syntax is not just surface decoration. The punctuation tells you how data is shaped and how the runtime expects you to think. Atoms such as ok and error describe meaning. Tuples such as {ok, Value} describe fixed structures. Lists such as [1,2,3] describe sequences. Binaries such as <<"Ada">> are often used for raw bytes or text. Each form carries intent.</p><p>That matters for beginners because Erlang programs become easy to read when you stop asking “what variable changes next?” and start asking “what shape does this value have?” Syntax is the first door into that way of thinking. Once a learner can read shapes confidently, pattern matching, recursion, and OTP all become much less mysterious.</p></section><section><h2>Core forms you should recognize immediately</h2><p>A solid beginner should quickly recognize a few recurring forms. An atom like ok is a named constant. A tuple like {error, timeout} is a fixed-size container with meaning attached to position. A list like [H | T] is either empty [] or made from a head and a tail. A map like #{name => <<"Ada">>} groups labeled values. A binary like <<1,2,3>> represents bytes. Function clauses end with a period, and multiple clauses are separated by semicolons.</p><p>These details look small, but they shape reading speed. If you can instantly identify whether you are looking at a tuple, list, map, or binary, you spend less time decoding notation and more time understanding the actual program.</p><pre><code>User = #{name => <<"Ada">>, role => admin}.
+Result = {ok, User}.
+Numbers = [1, 2, 3].</code></pre></section><section><h2>A practical reading rule that saves beginners time</h2><p>Read Erlang from the outside in. If you see {ok, Value}, first say “this is a two-element tuple whose first position must be ok.” If you see [H | T], first say “this is a non-empty list.” If you see fun, receive, case, or if, identify the construct before worrying about the body. This habit makes dense code much easier to parse.</p><p>Beginners often try to translate Erlang into another language while reading. That slows learning down. A better approach is to say the form out loud in Erlang terms: atom, tuple, guard, clause, branch, mailbox, reply. Your reading speed improves when the syntax becomes its own mental model.</p></section><section><h2>Common mistakes when learning syntax</h2><p>A classic mistake is treating an atom like a mutable variable. Atoms do not change. Another is forgetting that variables begin with uppercase letters while atoms usually begin with lowercase letters. Beginners also confuse strings and lists, or assume tuples can be extended like arrays. Erlang is strict about structure, and that strictness is part of what makes the language reliable.</p><p>The fastest way to fix these issues is to write and read tiny examples repeatedly. Identify the form, explain what it means, and predict whether a match should succeed. Small syntax drills pay off far more than reading long theory blocks once.</p></section><section><h2>What to practice next</h2><ul><li>Read five values and name each shape without hesitation.</li><li>Write one success tuple and one error tuple.</li><li>Match a user map out of a tuple such as {ok, User}.</li><li>Move into pattern matching once the value shapes feel natural.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-1">Practice in the interactive course</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/">All topics</a></div></section><section><h2>Frequently asked questions</h2><div class="faq-grid"><article class="faq-card"><h3>Is Erlang syntax hard for beginners?</h3><p>It feels unfamiliar at first, but it becomes manageable quickly once you learn to read data shapes such as tuples, lists, maps, and binaries.</p></article><article class="faq-card"><h3>What should I learn first in Erlang syntax?</h3><p>Start with atoms, variables, tuples, lists, and binaries. Those forms appear everywhere else in the language.</p></article></div></section><div class="pager"><span></span><a class="primary" href="https://erlang-campus-public.netlify.app/en/pattern-matching/">Next lesson: Pattern Matching</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Why this page exists</h3><p>This page is built as a dedicated learning landing page for Google and for specific search intent, not only as part of a long course page.</p></div><div class="panel"><p class="eyebrow">Next step</p><h3>Continue interactively</h3><p>If you want to practice right after reading, jump into the matching course module with notes, code feedback, and saved progress.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-1">Open module</a></div><div class="panel"><p class="eyebrow">Language</p><h3>Alternate language version</h3><p>Google and users get one dedicated German URL and one dedicated English URL for this topic, connected via hreflang.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/erlang-syntax/">Open German version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":3,"name":"Erlang Syntax","item":"https://erlang-campus-public.netlify.app/en/erlang-syntax/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang syntax explained for beginners","inLanguage":"en","description":"Learn Erlang syntax for beginners with atoms, tuples, lists, binaries, and practical reading rules.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/en/erlang-syntax/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Erlang syntax hard for beginners?","acceptedAnswer":{"@type":"Answer","text":"It feels unfamiliar at first, but it becomes manageable quickly once you learn to read data shapes such as tuples, lists, maps, and binaries."}},{"@type":"Question","name":"What should I learn first in Erlang syntax?","acceptedAnswer":{"@type":"Answer","text":"Start with atoms, variables, tuples, lists, and binaries. Those forms appear everywhere else in the language."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO hub and interactive Erlang course built for long-term discoverability.</div>
+        <a href="https://erlang-campus-public.netlify.app/en/">All topics</a>
+      </div>
+    </footer>
+  </body>
+</html>

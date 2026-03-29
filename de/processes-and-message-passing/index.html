@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erlang Prozesse und Message Passing | Erlang Campus</title>
+    <meta name="description" content="Lerne Erlang Prozesse und Message Passing mit Mailbox-Denken, Prozess-Loops und klaren Beispielen fuer Anfaenger." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/de/processes-and-message-passing/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/processes-and-message-passing/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/processes-and-message-passing/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Erlang Prozesse und Message Passing | Erlang Campus" />
+    <meta property="og:description" content="Lerne Erlang Prozesse und Message Passing mit Mailbox-Denken, Prozess-Loops und klaren Beispielen fuer Anfaenger." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/de/processes-and-message-passing/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erlang Prozesse und Message Passing | Erlang Campus" />
+    <meta name="twitter:description" content="Lerne Erlang Prozesse und Message Passing mit Mailbox-Denken, Prozess-Loops und klaren Beispielen fuer Anfaenger." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/de/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO-Navigation">
+          <a href="https://erlang-campus-public.netlify.app/de/" class="active">Themen</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interaktiver Kurs</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projekte</a>
+          <a href="https://erlang-campus-public.netlify.app/en/processes-and-message-passing/">English</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/de/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/de/">Themen</a><span>/</span><span>Prozesse und Message Passing</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang-Lektion</p><h1>Erlang Prozesse und Message Passing erklaert</h1><p class="intro">Erlang Prozesse sind leichte, isolierte Akteure. Sie teilen keinen Zustand so, wie viele es aus anderen Sprachen erwarten. Stattdessen senden sie Nachrichten. Genau diese Entscheidung veraendert das Denken ueber Nebenlaeufigkeit.</p><section><h2>Warum Erlang-Prozesse anders wirken</h2><p>Ein Erlang-Prozess ist nicht einfach nur ein kleiner Thread. Er ist eine getrennte Arbeitseinheit mit eigener Mailbox und eigener Zustandsgrenze. Ein Prozess kann also nicht heimlich den Zustand eines anderen aendern. Kommunikation wird explizit, weil der normale Weg nur ueber Nachrichten fuehrt.</p><p>Das ist einer der Hauptgruende, warum Erlang-Systeme unter Nebenlaeufigkeit so gut nachvollziehbar bleiben. Besitz bleibt lokal, Zusammenarbeit laeuft ueber Protokolle, versteckte Shared-State-Fehler werden seltener.</p></section><section><h2>Was Message Passing dir bringt</h2><p>Message Passing macht Grenzen sichtbar. Wenn ein Prozess Informationen will, muss er fragen. Wenn er Zustand veraendern moechte, muss er eine definierte Nachricht senden. So entstehen klarere APIs und sauberer Besitz.</p><p>Fuer Anfaenger ist das die richtige Denkweise: nicht einfach „viele Dinge gleichzeitig“, sondern „isolierte Akteure arbeiten ueber Nachrichten zusammen“. Wenn diese Idee sitzt, wirkt OTP spaeter viel logischer.</p><pre><code>Pid = spawn(fun() -> loop(0) end).
+Pid ! increment.
+Pid ! {get, self()}.</code></pre></section><section><h2>Wie ein Prozess-Loop funktioniert</h2><p>Ein zustandsbehafteter Erlang-Prozess ist oft einfach eine rekursive Schleife um receive. Er wartet auf eine Nachricht, reagiert auf genau eine, aktualisiert bei Bedarf seinen lokalen Zustand und ruft sich wieder auf. Die Rekursion haelt den Prozess am Leben und macht den Zustandsuebergang explizit.</p><p>Das ist die Bruecke zwischen Rekursion und Nebenlaeufigkeit. Statt an eine while-Schleife ueber ein Objekt zu denken, denkst du an einen Prozess, der nacheinander Nachrichten verarbeitet und in den naechsten Zustand uebergeht.</p></section><section><h2>Typische Fehler mit Prozessen</h2><p>Ein haeufiger Fehler ist, Prozesse wie Objekte mit direktem Feldzugriff zu behandeln. Ein anderer ist, dem Aufrufer in Request-Response-Mustern nicht zu antworten. Ausserdem werden Nachrichten oft zu vage entworfen und ergeben dann kein stabiles Protokoll.</p><p>Die beste Korrektur ist, Nachrichtenformen klar zu designen. Nutze Tupel wie {get, From} oder {put, Key, Value}. Lege fest, was jede Nachricht bedeutet, welche Antwort erwartet wird und ob sich der Zustand danach aendert.</p></section><section><h2>Was du als Naechstes ueben solltest</h2><ul><li>Einen kleinen Loop fuer increment schreiben.</li><li>Eine Nachricht {get, From} mit Antwort ergaenzen.</li><li>In einem Satz sagen, welcher Prozess den Zustand besitzt.</li><li>Danach mit OTP Basics weitermachen.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-3">Im interaktiven Kurs ueben</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a></div></section><section><h2>Hauefige Fragen</h2><div class="faq-grid"><article class="faq-card"><h3>Teilen Erlang-Prozesse Zustand?</h3><p>Nein. Normale Erlang-Prozesse teilen keinen veraenderbaren Zustand. Sie kommunizieren ueber Nachrichten.</p></article><article class="faq-card"><h3>Warum ist Message Passing nützlich?</h3><p>Weil Besitz sichtbar bleibt, Protokolle klarer werden und viele klassische Shared-Memory-Probleme verschwinden.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/de/recursion/">Vorherige Lektion: Rekursion</a><a class="primary" href="https://erlang-campus-public.netlify.app/de/otp-basics/">Naechste Lektion: OTP Basics</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Warum diese Seite existiert</h3><p>Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.</p></div><div class="panel"><p class="eyebrow">Naechster Schritt</p><h3>Interaktiv weiterlernen</h3><p>Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen, Code-Feedback und Fortschrittsspeicherung.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-3">Zum Modul</a></div><div class="panel"><p class="eyebrow">Sprache</p><h3>Alternative Sprachversion</h3><p>Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit hreflang-Verknuepfung.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/processes-and-message-passing/">Zur englischen Version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Prozesse und Message Passing","item":"https://erlang-campus-public.netlify.app/de/processes-and-message-passing/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang Prozesse und Message Passing erklaert","inLanguage":"de","description":"Lerne Erlang Prozesse und Message Passing mit Mailbox-Denken, Prozess-Loops und klaren Beispielen fuer Anfaenger.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/de/processes-and-message-passing/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Teilen Erlang-Prozesse Zustand?","acceptedAnswer":{"@type":"Answer","text":"Nein. Normale Erlang-Prozesse teilen keinen veraenderbaren Zustand. Sie kommunizieren ueber Nachrichten."}},{"@type":"Question","name":"Warum ist Message Passing nützlich?","acceptedAnswer":{"@type":"Answer","text":"Weil Besitz sichtbar bleibt, Protokolle klarer werden und viele klassische Shared-Memory-Probleme verschwinden."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO-Hub und interaktiver Erlang-Kurs fuer langfristig sichtbare Lerninhalte.</div>
+        <a href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -16,6 +16,11 @@
     cache-control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/seo.css"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
   for = "/index.html"
   [headers.values]
     cache-control = "public, max-age=0, must-revalidate"

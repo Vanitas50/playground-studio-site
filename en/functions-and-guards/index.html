@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erlang Functions and Guards for Beginners | Erlang Campus</title>
+    <meta name="description" content="Learn Erlang functions and guard clauses with examples that make function heads and matching easier to understand." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/en/functions-and-guards/" />
+    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/functions-and-guards/" />
+    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/functions-and-guards/" />
+    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Erlang Functions and Guards for Beginners | Erlang Campus" />
+    <meta property="og:description" content="Learn Erlang functions and guard clauses with examples that make function heads and matching easier to understand." />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/en/functions-and-guards/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erlang Functions and Guards for Beginners | Erlang Campus" />
+    <meta name="twitter:description" content="Learn Erlang functions and guard clauses with examples that make function heads and matching easier to understand." />
+    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-shell">
+        <a class="brand" href="https://erlang-campus-public.netlify.app/en/">
+          <span class="brand-mark">BEAM</span>
+          <span>Erlang Campus</span>
+        </a>
+        <nav class="topnav" aria-label="SEO navigation">
+          <a href="https://erlang-campus-public.netlify.app/en/" class="active">Topics</a>
+          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interactive course</a>
+          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
+          <a href="https://erlang-campus-public.netlify.app/projects.html">Projects</a>
+          <a href="https://erlang-campus-public.netlify.app/de/functions-and-guards/">Deutsch</a>
+        </nav>
+      </div>
+    </header>
+    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/en/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/en/">Topics</a><span>/</span><span>Functions and Guards</span></div></div></section>
+    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang lesson</p><h1>Erlang functions and guards for beginners</h1><p class="intro">Functions in Erlang are built around multiple clauses, pattern matching, and optional guards. That sounds abstract until you see the benefit: each clause can describe exactly when it should run.</p><section><h2>Why Erlang function heads feel different</h2><p>In many languages, you write one function body and branch inside it. In Erlang, you often write several clauses instead. Each clause can match a different shape or value range. This keeps the structure of the function visible at the top instead of hiding it deep inside nested logic.</p><p>For beginners, this is one of the most important style shifts. A good Erlang function reads almost like a list of cases. You can often understand what it does just by reading the function heads in order.</p></section><section><h2>What a guard clause adds</h2><p>A guard lets you narrow a function clause further. Pattern matching says what shape the input has. A guard says what extra condition must be true. That makes code more precise without making it noisy. Guards are especially useful when two clauses have a similar shape but should only run under different value conditions.</p><p>The beginner mindset should be: pattern first, guard second, body third. If you learn that rhythm early, you will write cleaner functions and debug them faster.</p><pre><code>classify(N) when N < 0 -> negative;
+classify(0) -> zero;
+classify(N) when N > 0 -> positive.</code></pre></section><section><h2>How to read multi-clause functions</h2><p>Read multi-clause functions top to bottom. Ask what the clause is trying to catch and what would fall through to the next one. Clause order matters. A broad clause placed too early can swallow cases that should have been handled later.</p><p>This makes function design feel closer to writing rules than writing instructions. You are declaring the situations in which each clause applies. That fits Erlang extremely well.</p></section><section><h2>What beginners usually get wrong</h2><p>A frequent mistake is putting too much logic into the function body instead of the head and guard. Another is writing guards that should really be separate clauses. Learners also forget that guards can only use a limited safe subset of expressions, which exists to keep matching predictable.</p><p>The cure is to simplify. If a clause can be explained in one sentence, it probably belongs in its own head. If a condition is just narrowing when a clause should apply, it is usually a guard.</p></section><section><h2>Next step after this lesson</h2><ul><li>Write one two-clause function for empty and non-empty input.</li><li>Add one guard that distinguishes positive from negative values.</li><li>Re-read the clauses top to bottom and explain why the order matters.</li><li>Then move into recursion.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-2">Practice in the interactive course</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/">All topics</a></div></section><section><h2>Frequently asked questions</h2><div class="faq-grid"><article class="faq-card"><h3>What is a guard in Erlang?</h3><p>A guard is an extra condition on a clause, such as when N > 0, that decides whether that clause is allowed to match.</p></article><article class="faq-card"><h3>Why use multiple function clauses?</h3><p>They make program flow easier to read because each case is explicit at the function boundary.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/en/pattern-matching/">Previous lesson: Pattern Matching</a><a class="primary" href="https://erlang-campus-public.netlify.app/en/recursion/">Next lesson: Recursion</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Why this page exists</h3><p>This page is built as a dedicated learning landing page for Google and for specific search intent, not only as part of a long course page.</p></div><div class="panel"><p class="eyebrow">Next step</p><h3>Continue interactively</h3><p>If you want to practice right after reading, jump into the matching course module with notes, code feedback, and saved progress.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-2">Open module</a></div><div class="panel"><p class="eyebrow">Language</p><h3>Alternate language version</h3><p>Google and users get one dedicated German URL and one dedicated English URL for this topic, connected via hreflang.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/functions-and-guards/">Open German version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://erlang-campus-public.netlify.app/en/"},{"@type":"ListItem","position":3,"name":"Functions and Guards","item":"https://erlang-campus-public.netlify.app/en/functions-and-guards/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang functions and guards for beginners","inLanguage":"en","description":"Learn Erlang functions and guard clauses with examples that make function heads and matching easier to understand.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/en/functions-and-guards/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a guard in Erlang?","acceptedAnswer":{"@type":"Answer","text":"A guard is an extra condition on a clause, such as when N > 0, that decides whether that clause is allowed to match."}},{"@type":"Question","name":"Why use multiple function clauses?","acceptedAnswer":{"@type":"Answer","text":"They make program flow easier to read because each case is explicit at the function boundary."}}]}]</script>
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div>SEO hub and interactive Erlang course built for long-term discoverability.</div>
+        <a href="https://erlang-campus-public.netlify.app/en/">All topics</a>
+      </div>
+    </footer>
+  </body>
+</html>

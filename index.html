@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Erlang Campus | Home</title>
+    <title>Learn Erlang for Beginners | Erlang Campus</title>
     <meta
       name="description"
-      content="A complete Erlang course with focused pages for roadmap, lessons, quizzes, and projects."
+      content="Learn Erlang for beginners with a structured course, topic guides, practice labs, quizzes, and projects."
     />
     <meta
       http-equiv="Content-Security-Policy"
@@ -14,13 +14,15 @@
     />
     <meta name="theme-color" content="#f4efe4" />
     <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://erlang-campus-public.netlify.app/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Erlang Campus | Home" />
+    <meta property="og:title" content="Learn Erlang for Beginners | Erlang Campus" />
     <meta
       property="og:description"
-      content="Learn Erlang step by step with dedicated course pages instead of one long scroll."
+      content="Learn Erlang step by step with topic guides, practice labs, quizzes, and projects."
     />
-    <meta property="og:image" content="social-card.svg" />
+    <meta property="og:url" content="https://erlang-campus-public.netlify.app/" />
+    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
     <meta property="og:locale" content="en_US" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -160,6 +162,32 @@
         </div>
       </section>
 
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="seoHub.eyebrow">Topic guides</p>
+            <h2 data-i18n="seoHub.title">Open the focused beginner guides built for specific Erlang search topics.</h2>
+            <p data-i18n="seoHub.body">
+              These pages are separate learning guides for syntax, pattern matching, recursion, OTP basics, and other core beginner topics.
+            </p>
+          </div>
+          <div class="roadmap-grid">
+            <article class="roadmap-card">
+              <span class="module-index">EN</span>
+              <h3 data-i18n="seoHub.enTitle">English topic hub</h3>
+              <p data-i18n="seoHub.enBody">Dedicated English pages for queries such as erlang tutorial for beginners and erlang otp basics.</p>
+              <a class="footer-link" href="en/" data-i18n="seoHub.openEn">Open English guides</a>
+            </article>
+            <article class="roadmap-card">
+              <span class="module-index">DE</span>
+              <h3 data-i18n="seoHub.deTitle">German topic hub</h3>
+              <p data-i18n="seoHub.deBody">Saubere deutsche Landingpages fuer Suchanfragen wie erlang lernen anfaenger und rekursion erklaert.</p>
+              <a class="footer-link" href="de/" data-i18n="seoHub.openDe">Open German guides</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="today">
         <div class="container">
           <div class="daily-card">
@@ -274,7 +302,46 @@
         <div id="authModalMount"></div>
       </div>
     </dialog>
-
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How should I use this course most effectively?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Do not just read passively. Always go in this order: lesson, repeat the memory line, think through the challenge, answer the quiz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if recursion still feels unfamiliar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Draw the input, the next step, and the end case on paper. Recursion becomes easier when you can see the data flow."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When am I ready for OTP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Once you can confidently model processes, messages, and stateful loops in your head, OTP starts to feel natural."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this course for beginners or more advanced developers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both. The progression is beginner-friendly, but the later modules move toward production-level concepts."
+            }
+          }
+        ]
+      }
+    </script>
     <script src="script.js?v=10" defer></script>
   </body>
 </html>

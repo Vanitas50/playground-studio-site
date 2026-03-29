@@ -186,6 +186,10 @@ const germanText = {
   "lessons.body": "So entsteht Verstaendnis statt Auswendiglernen.",
   "common.challenge": "Mini-Challenge",
   "common.practiceLab": "Praxis-Labor",
+  "common.moduleGoal": "Modulziel",
+  "common.outcomes": "Du wirst koennen",
+  "common.guidedBuild": "Gefuehrter Aufbau",
+  "common.checkpoint": "Checkpoint",
   "common.codeMission": "Code-Mission",
   "common.checkCode": "Code pruefen",
   "common.showTip": "Tipp zeigen",
@@ -218,6 +222,17 @@ const germanText = {
   "m1.codePlaceholder": "{ok, User} = {ok, #{name => <<\"Ada\">>}}.",
   "m1.tip":
     "Gehe zuerst von der Tupel-Form aus. Matche {ok, User}, damit Erlang den Erfolgsfall prueft und den zweiten Wert bindet.",
+  "m1.goal":
+    "Baue ein verlaessliches Denkmodell fuer Erlang-Werte, Namen und Pattern Matching auf.",
+  "m1.outcome1": "Atome, Tupel und Binaries an ihrer Form erkennen",
+  "m1.outcome2": "Bindings von links nach rechts lesen, ohne zu raten",
+  "m1.outcome3": "vorhersagen, wann ein Pattern Match fehlschlaegt",
+  "m1.build1":
+    "Benenne drei Werte mit unterschiedlicher Form und lies sie dir laut selbst vor.",
+  "m1.build2":
+    "Matche danach ein Erfolgs-Tupel und ein Fehler-Tupel, bis sich das linke Pattern natuerlich anfuehlt.",
+  "m1.checkpoint":
+    "Wenn du erklaeren kannst, warum {ok, User} = Value fehlschlagen kann, bist du bereit fuer das naechste Modul.",
   "m2.label": "Modul 2",
   "m2.title": "Funktionen, Guards und Rekursion",
   "m2.l1t": "Lektion 3: Mehrere Funktionskoepfe",
@@ -238,6 +253,17 @@ const germanText = {
   "m2.codePlaceholder": "sum([]) -> 0;\nsum([H | T]) -> H + sum(T).",
   "m2.tip":
     "Denke in zwei Klauseln: die leere Liste gibt einen einfachen Wert zurueck, die nicht-leere Liste zerfaellt in Kopf und Rest.",
+  "m2.goal":
+    "Gehe von statischen Werten zu ausfuehrbaren Regeln und rekursivem Denken ueber.",
+  "m2.outcome1": "den richtigen Funktionskopf fuer die Eingabeform waehlen",
+  "m2.outcome2": "einen Endfall vor dem rekursiven Schritt schreiben",
+  "m2.outcome3": "erklaeren, warum Rekursion stoppt statt endlos zu laufen",
+  "m2.build1":
+    "Starte jede rekursive Funktion damit, den leeren oder einfachen Fall zuerst zu schreiben.",
+  "m2.build2":
+    "Fuege dann den [H | T]-Fall hinzu und sage laut, was bei jedem Aufruf kleiner wird.",
+  "m2.checkpoint":
+    "Wenn du sum/1 skizzieren und erklaeren kannst, warum es stoppt, beginnt Rekursion zu sitzen.",
   "m3.label": "Modul 3",
   "m3.title": "Prozesse und Message Passing",
   "m3.l1t": "Lektion 6: Prozesse starten",
@@ -260,6 +286,17 @@ const germanText = {
     "loop(State) ->\n    receive\n        increment ->\n            loop(State + 1);\n        {get, From} ->\n            From ! State,\n            loop(State)\n    end.",
   "m3.tip":
     "Ein Counter-Loop braucht meist einen Zweig, der den Zustand aendert, und einen Zweig, der dem Aufrufer antwortet und dann weiterlaeuft.",
+  "m3.goal":
+    "Denke in Prozessen, Mailboxen und expliziten Nachrichtenprotokollen statt in geteiltem Zustand.",
+  "m3.outcome1": "erklaeren, welchen Zustand ein Prozess besitzt",
+  "m3.outcome2": "Nachrichtenformen fuer Aendern und Lesen entwerfen",
+  "m3.outcome3": "aus einem Protokoll einen receive-Loop bauen",
+  "m3.build1":
+    "Schreibe zuerst die Nachrichtenformate auf, bevor du den receive-Block formulierst.",
+  "m3.build2":
+    "Entscheide fuer jeden Zweig, ob Zustand geaendert wird, eine Antwort gesendet wird oder beides.",
+  "m3.checkpoint":
+    "Wenn du increment und {get, From} als Protokoll beschreiben kannst, lernst du bereits den Erlang-Weg.",
   "m4.label": "Modul 4",
   "m4.title": "OTP und Fehlertoleranz",
   "m4.l1t": "Lektion 9: Let it crash",
@@ -282,6 +319,17 @@ const germanText = {
     "handle_call(get, _From, State) ->\n    {reply, State, State}.",
   "m4.tip":
     "Ein minimales GenServer-Callback sollte die Nachricht benennen, den Caller-Slot enthalten und sowohl Reply als auch naechsten State zurueckgeben.",
+  "m4.goal":
+    "Verstehe, warum OTP rohe Prozesse in produktionsreife Bausteine verwandelt.",
+  "m4.outcome1": "erklaeren, wofuer handle_call verantwortlich ist",
+  "m4.outcome2": "Worker-Logik und Supervisions-Logik trennen",
+  "m4.outcome3": "eine einfache Supervisionsstrategie mit Begruendung waehlen",
+  "m4.build1":
+    "Sprich aus, welcher Teil zum Worker gehoert und welcher Teil zur Supervision gehoert.",
+  "m4.build2":
+    "Mappe danach eine einfache Anfrage auf handle_call und ein Reply-Tupel.",
+  "m4.checkpoint":
+    "Wenn du one_for_one in Klartext begruenden kannst, bist du ueber das reine Syntaxstadium hinaus.",
   "m5.label": "Modul 5",
   "m5.title": "Concurrency Patterns",
   "m5.l1t": "Lektion 12: Worker Pools",
@@ -301,6 +349,17 @@ const germanText = {
     "store_loop(State) ->\n    receive\n        {put, Key, Val} ->\n            store_loop(maps:put(Key, Val, State));\n        {get, From, Key} ->\n            From ! maps:get(Key, State),\n            store_loop(State)\n    end.",
   "m5.tip":
     "Zeige, dass genau ein Prozess die Map besitzt. Eine Nachricht soll schreiben, eine andere lesen und dem Caller antworten.",
+  "m5.goal":
+    "Nutze Isolation und Nachrichtenfluss, um konkurrierende Arbeit sauber zu strukturieren.",
+  "m5.outcome1": "entscheiden, welcher Prozess welchen Zustand besitzt",
+  "m5.outcome2": "eine Pipeline in fokussierte Stufen zerlegen",
+  "m5.outcome3": "gemeinsame Daten durch ein Protokoll schuetzen",
+  "m5.build1":
+    "Waehle genau einen Prozess, der die Map oder Queue besitzt.",
+  "m5.build2":
+    "Definiere danach, welche Nachrichten hineingehen, welche Antworten herausgehen und wo Validierung passiert.",
+  "m5.checkpoint":
+    "Wenn jeder Prozess genau eine Aufgabe und eine Zustandsgrenze hat, wird dein Design professioneller.",
   "m6.label": "Modul 6",
   "m6.l1t": "Lektion 14: Nodes",
   "m6.l1b":
@@ -324,6 +383,17 @@ const germanText = {
     "receive\n    reply -> ok\nafter 2000 ->\n    timeout\nend.",
   "m6.tip":
     "Zeige fuer verteilte Arbeit beide Ausgaenge: einen normalen Reply-Zweig und einen Timeout-Zweig in receive ... after.",
+  "m6.goal":
+    "Fuege fehlerbewusstes Denken hinzu, sobald Nachrichten Maschinen-Grenzen ueberschreiten.",
+  "m6.outcome1": "Timeout und Retry als Teil der API mitdenken",
+  "m6.outcome2": "Erfolgsweg und Netzwerkfehlerweg sauber trennen",
+  "m6.outcome3": "Verteilung als Designproblem statt als Magie behandeln",
+  "m6.build1":
+    "Schreibe zuerst den Erfolgsweg und ergaenze dann sofort den Timeout-Zweig.",
+  "m6.build2":
+    "Entscheide, was der Caller nach Timeout tun soll: retry, loggen oder eskalieren.",
+  "m6.checkpoint":
+    "Wenn Timeout schon im ersten Entwurf vorkommt, denkst du langsam wie jemand fuer verteilte Systeme.",
   "quiz.eyebrow": "Quiz Arena",
   "quiz.title": "Kurze Fragen machen aus passivem Lesen aktives Erinnern.",
   "quiz.body":

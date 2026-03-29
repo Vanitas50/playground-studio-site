@@ -674,6 +674,49 @@ body.dark .progress-bar {
   margin-bottom: 1rem;
 }
 
+.module-meta-grid,
+.unit-flow {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.module-meta-grid {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.module-meta-card,
+.unit-step,
+.checkpoint-box {
+  padding: 1rem 1.1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.outcome-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.outcome-list li + li {
+  margin-top: 0.4rem;
+}
+
+.unit-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.unit-step h4 {
+  margin-bottom: 0.45rem;
+}
+
+.checkpoint-box {
+  margin-bottom: 1rem;
+  border-style: dashed;
+  background: rgba(196, 79, 41, 0.04);
+}
+
 .lesson-grid {
   grid-template-columns: 1fr 0.9fr;
   align-items: start;
@@ -933,6 +976,8 @@ body.dark .code-dojo-input {
   .daily-card,
   .split-heading,
   .lesson-grid,
+  .module-meta-grid,
+  .unit-flow,
   .roadmap-grid,
   .jump-grid,
   .retention-grid,

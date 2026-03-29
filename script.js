@@ -184,10 +184,29 @@ const germanText = {
   "lessons.eyebrow": "Lektionen",
   "lessons.title": "Jedes Modul kombiniert Denkmodell, Regel, Beispiel und Challenge.",
   "lessons.body": "So entsteht Verstaendnis statt Auswendiglernen.",
+  "lessons.feedbackEyebrow": "Feedback-Schleife",
+  "lessons.feedbackTitle": "Mache Fortschritt sichtbar, waehrend du lernst.",
+  "lessons.feedbackBody":
+    "Die Seite belohnt jetzt Einsatz, nicht nur perfekte Antworten. Schreibe Notizen, loese Drills und baue Momentum auf.",
+  "lessons.jump1Title": "Syntax und Datentypen",
+  "lessons.jump1Body": "Atome, Tupel, Binaries und Pattern Matching.",
+  "lessons.jump2Title": "Funktionen und Rekursion",
+  "lessons.jump2Body": "Funktionskoepfe, Guards und rekursives Denken.",
+  "lessons.jump3Title": "Prozesse und Mailboxen",
+  "lessons.jump3Body": "Spawn, Send, Receive und Prozess-Loops.",
+  "lessons.jump4Title": "OTP und Robustheit",
+  "lessons.jump4Body": "GenServer-Basics, Supervisoren und Fehlertoleranz.",
+  "lessons.jump5Title": "Concurrency-Patterns",
+  "lessons.jump5Body": "Worker-Pools, Isolation und Pipelines.",
+  "lessons.jump6Title": "Verteiltes Erlang",
+  "lessons.jump6Body": "Nodes, Remote Messaging und Produktionsdenken.",
   "common.challenge": "Mini-Challenge",
   "common.practiceLab": "Praxis-Labor",
   "common.moduleGoal": "Modulziel",
   "common.outcomes": "Du wirst koennen",
+  "common.step1": "Schritt 1",
+  "common.step2": "Schritt 2",
+  "common.step3": "Schritt 3",
   "common.guidedBuild": "Gefuehrter Aufbau",
   "common.checkpoint": "Checkpoint",
   "common.codeMission": "Code-Mission",
@@ -398,6 +417,22 @@ const germanText = {
   "quiz.title": "Kurze Fragen machen aus passivem Lesen aktives Erinnern.",
   "quiz.body":
     "Beantworte jede Frage direkt. Das ist einer der staerksten Hebel fuer Lernerfolg.",
+  "practice.eyebrow": "Praxis-Studio",
+  "practice.title": "Schreibe Erlang selbst und erhalte sofortiges Feedback.",
+  "practice.body":
+    "Diese Drills sind bewusst leichte Browser-Checks, kein voller Compiler. Aber sie zwingen dich ins aktive Bauen statt nur ins Lesen.",
+  "practice.drill1Label": "Drill 1",
+  "practice.drill1Title": "Erfolgs-Tupel per Pattern Match",
+  "practice.drill1Body":
+    "Schreibe eine Erlang-Zeile, die <code>User</code> aus einem Wert der Form <code>{ok, #{name => &lt;&lt;\"Ada\"&gt;&gt;}}</code> extrahiert.",
+  "practice.drill2Label": "Drill 2",
+  "practice.drill2Title": "Rekursive Summenfunktion",
+  "practice.drill2Body":
+    "Schreibe eine rekursive <code>sum/1</code>-Funktion mit Endfall fuer <code>[]</code> und Rekursionsschritt fuer <code>[H | T]</code>.",
+  "practice.drill3Label": "Drill 3",
+  "practice.drill3Title": "Mailbox-Counter-Loop",
+  "practice.drill3Body":
+    "Skizziere einen Prozess-Loop, der auf <code>increment</code> reagiert und bei <code>get</code> an <code>From</code> zurueckantwortet.",
   "quiz.q2.topic": "Rekursion",
   "quiz.q2.question": "Warum ist Rekursion in Erlang so zentral?",
   "quiz.q2.a1": "Weil OTP-Loops schneller sind als Datenverarbeitung.",
@@ -1273,6 +1308,7 @@ function getCodeExerciseResults() {
 }
 
 function updateLearningFeedback() {
+  const isGerman = getLanguage() === "de";
   const trimmedInputs = userInputs.map((input) => String(input.value || "").trim());
   const noteEntries = userInputs.filter(
     (input) => input.dataset.userInput && input.dataset.userInput.endsWith("_notes"),
@@ -1297,40 +1333,58 @@ function updateLearningFeedback() {
   if (rewardMessage) {
     if (xp === 0) {
       rewardMessage.textContent =
-        "Start with one lesson note or one code drill to unlock your first progress signal.";
+        isGerman
+          ? "Starte mit einer Notiz oder einem Code-Drill, um dein erstes sichtbares Fortschrittssignal auszulosen."
+          : "Start with one lesson note or one code drill to unlock your first progress signal.";
     } else if (xp < 120) {
       rewardMessage.textContent =
-        "You are building momentum. Every note, solved quiz card, and code attempt now compounds.";
+        isGerman
+          ? "Du baust Momentum auf. Jede Notiz, jede geloeste Quizkarte und jeder Codeversuch zaehlt jetzt zusammen."
+          : "You are building momentum. Every note, solved quiz card, and code attempt now compounds.";
     } else if (xp < 260) {
       rewardMessage.textContent =
-        "Nice. The course now feels interactive because you are feeding it work, not just attention.";
+        isGerman
+          ? "Gut. Der Kurs fuehlt sich jetzt interaktiv an, weil du echte Arbeit hineinsteckst statt nur Aufmerksamkeit."
+          : "Nice. The course now feels interactive because you are feeding it work, not just attention.";
     } else {
       rewardMessage.textContent =
-        "Strong pace. You are combining recall, reflection, and hands-on construction like a real learner should.";
+        isGerman
+          ? "Starkes Tempo. Du verbindest aktives Erinnern, Reflexion und praktisches Bauen genau so, wie guter Lernerfolg entsteht."
+          : "Strong pace. You are combining recall, reflection, and hands-on construction like a real learner should.";
     }
   }
 
   if (focusHeading && focusMessage) {
     if (codeSolved < codeInputs.length) {
-      focusHeading.textContent = "Best next move";
+      focusHeading.textContent = isGerman ? "Bester naechster Schritt" : "Best next move";
       focusMessage.textContent =
-        "Run the next coding drill and refine it until the page tells you the core Erlang shape is correct.";
+        isGerman
+          ? "Bearbeite den naechsten Coding-Drill und verbessere ihn, bis die Seite bestaetigt, dass die Erlang-Grundform sitzt."
+          : "Run the next coding drill and refine it until the page tells you the core Erlang shape is correct.";
     } else if (solvedQuiz < quizCards.length) {
-      focusHeading.textContent = "Push retention";
+      focusHeading.textContent = isGerman ? "Behaltewissen verstaerken" : "Push retention";
       focusMessage.textContent =
-        "Finish the remaining quiz cards. Active recall is still the fastest way to prove the ideas are sticking.";
+        isGerman
+          ? "Schliesse die restlichen Quizkarten ab. Aktives Erinnern ist weiterhin der schnellste Beweis, dass die Ideen haengen bleiben."
+          : "Finish the remaining quiz cards. Active recall is still the fastest way to prove the ideas are sticking.";
     } else if (completedProgress < progressItems.length) {
-      focusHeading.textContent = "Lock in progress";
+      focusHeading.textContent = isGerman ? "Fortschritt festhalten" : "Lock in progress";
       focusMessage.textContent =
-        "Mark the milestones you have actually completed so the roadmap reflects what you can already do.";
+        isGerman
+          ? "Markiere die Meilensteine, die du wirklich geschafft hast, damit die Roadmap widerspiegelt, was du schon kannst."
+          : "Mark the milestones you have actually completed so the roadmap reflects what you can already do.";
     } else if (noteCountValue < noteEntries.length) {
-      focusHeading.textContent = "Explain it back";
+      focusHeading.textContent = isGerman ? "Erklaere es zurueck" : "Explain it back";
       focusMessage.textContent =
-        "Add one more note in your own words. Explanation is where vague understanding becomes usable knowledge.";
+        isGerman
+          ? "Fuege noch eine Notiz in deinen eigenen Worten hinzu. Genau dort wird vages Verstehen zu nutzbarem Wissen."
+          : "Add one more note in your own words. Explanation is where vague understanding becomes usable knowledge.";
     } else {
-      focusHeading.textContent = "You are in build mode";
+      focusHeading.textContent = isGerman ? "Du bist im Build-Modus" : "You are in build mode";
       focusMessage.textContent =
-        "Move into projects next. At this point, the best reward is turning these patterns into a small working system.";
+        isGerman
+          ? "Gehe als Naechstes in die Projekte. Ab hier ist die beste Belohnung, diese Muster in ein kleines funktionierendes System zu verwandeln."
+          : "Move into projects next. At this point, the best reward is turning these patterns into a small working system.";
     }
   }
 }

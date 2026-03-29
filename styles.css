@@ -804,6 +804,24 @@ body.dark .code-dojo-input {
   color: var(--accent-strong);
 }
 
+.module-code-lab {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.code-tip {
+  margin-top: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.code-tip.is-hidden {
+  display: none;
+}
+
 .quiz-grid,
 .project-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));

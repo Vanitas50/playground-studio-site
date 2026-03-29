@@ -39,6 +39,7 @@ const quizCards = Array.from(document.querySelectorAll("[data-quiz-card]"));
 const userInputs = Array.from(document.querySelectorAll("[data-user-input]"));
 const codeInputs = Array.from(document.querySelectorAll("[data-code-input]"));
 const codeRunButtons = Array.from(document.querySelectorAll("[data-code-run]"));
+const codeTipButtons = Array.from(document.querySelectorAll("[data-code-tip-toggle]"));
 const quizScore = document.getElementById("quizScore");
 const quizTotal = document.getElementById("quizTotal");
 const quizMessage = document.getElementById("quizMessage");
@@ -185,6 +186,12 @@ const germanText = {
   "lessons.body": "So entsteht Verstaendnis statt Auswendiglernen.",
   "common.challenge": "Mini-Challenge",
   "common.practiceLab": "Praxis-Labor",
+  "common.codeMission": "Code-Mission",
+  "common.checkCode": "Code pruefen",
+  "common.showTip": "Tipp zeigen",
+  "common.hideTip": "Tipp ausblenden",
+  "common.tip": "Tipp",
+  "common.feedbackPending": "Noch kein Feedback.",
   "common.yourNotes": "Deine Notizen",
   "common.yourAnswer": "Dein Loesungsansatz",
   "common.confidence": "Selbsteinschaetzung",
@@ -208,6 +215,9 @@ const germanText = {
     "Erklaere mit deinen eigenen Worten Atome, Tupel und Pattern Matching.",
   "m1.answerPlaceholder":
     "Beschreibe, wie du {error, timeout} matchen und welche Variablen du binden wuerdest.",
+  "m1.codePlaceholder": "{ok, User} = {ok, #{name => <<\"Ada\">>}}.",
+  "m1.tip":
+    "Gehe zuerst von der Tupel-Form aus. Matche {ok, User}, damit Erlang den Erfolgsfall prueft und den zweiten Wert bindet.",
   "m2.label": "Modul 2",
   "m2.title": "Funktionen, Guards und Rekursion",
   "m2.l1t": "Lektion 3: Mehrere Funktionskoepfe",
@@ -225,6 +235,9 @@ const germanText = {
     "Erklaere mit deinen eigenen Worten, warum Rekursion in Erlang Schleifen ersetzt.",
   "m2.answerPlaceholder":
     "Skizziere Startfall, Rekursionsschritt und Endfall fuer all_even/1.",
+  "m2.codePlaceholder": "sum([]) -> 0;\nsum([H | T]) -> H + sum(T).",
+  "m2.tip":
+    "Denke in zwei Klauseln: die leere Liste gibt einen einfachen Wert zurueck, die nicht-leere Liste zerfaellt in Kopf und Rest.",
   "m3.label": "Modul 3",
   "m3.title": "Prozesse und Message Passing",
   "m3.l1t": "Lektion 6: Prozesse starten",
@@ -243,6 +256,10 @@ const germanText = {
     "Fasse die Beziehung zwischen Prozessen, Mailboxen und Nachrichten zusammen.",
   "m3.answerPlaceholder":
     "Schreibe den Nachrichtenfluss fuer einen Counter-Prozess mit increment und get auf.",
+  "m3.codePlaceholder":
+    "loop(State) ->\n    receive\n        increment ->\n            loop(State + 1);\n        {get, From} ->\n            From ! State,\n            loop(State)\n    end.",
+  "m3.tip":
+    "Ein Counter-Loop braucht meist einen Zweig, der den Zustand aendert, und einen Zweig, der dem Aufrufer antwortet und dann weiterlaeuft.",
   "m4.label": "Modul 4",
   "m4.title": "OTP und Fehlertoleranz",
   "m4.l1t": "Lektion 9: Let it crash",
@@ -261,6 +278,10 @@ const germanText = {
     "Erklaere let it crash mit deinen eigenen Worten und wann es hilft.",
   "m4.answerPlaceholder":
     "Beschreibe einen kleinen Service, bei dem one_for_one die bessere Strategie ist.",
+  "m4.codePlaceholder":
+    "handle_call(get, _From, State) ->\n    {reply, State, State}.",
+  "m4.tip":
+    "Ein minimales GenServer-Callback sollte die Nachricht benennen, den Caller-Slot enthalten und sowohl Reply als auch naechsten State zurueckgeben.",
   "m5.label": "Modul 5",
   "m5.title": "Concurrency Patterns",
   "m5.l1t": "Lektion 12: Worker Pools",
@@ -276,6 +297,10 @@ const germanText = {
     "Erklaere, warum isolierter Zustand parallele Systeme leichter verstaendlich macht.",
   "m5.answerPlaceholder":
     "Skizziere die drei Prozesse deiner Pipeline und was jeder einzelne besitzt.",
+  "m5.codePlaceholder":
+    "store_loop(State) ->\n    receive\n        {put, Key, Val} ->\n            store_loop(maps:put(Key, Val, State));\n        {get, From, Key} ->\n            From ! maps:get(Key, State),\n            store_loop(State)\n    end.",
+  "m5.tip":
+    "Zeige, dass genau ein Prozess die Map besitzt. Eine Nachricht soll schreiben, eine andere lesen und dem Caller antworten.",
   "m6.label": "Modul 6",
   "m6.l1t": "Lektion 14: Nodes",
   "m6.l1b":
@@ -295,6 +320,10 @@ const germanText = {
     "Fasse die wichtigsten Risiken zusammen, die auftreten, sobald ein System verteilt wird.",
   "m6.answerPlaceholder":
     "Liste die Fehlerfaelle auf, fuer die du designen wuerdest, wenn ein Remote-Node ausfaellt.",
+  "m6.codePlaceholder":
+    "receive\n    reply -> ok\nafter 2000 ->\n    timeout\nend.",
+  "m6.tip":
+    "Zeige fuer verteilte Arbeit beide Ausgaenge: einen normalen Reply-Zweig und einen Timeout-Zweig in receive ... after.",
   "quiz.eyebrow": "Quiz Arena",
   "quiz.title": "Kurze Fragen machen aus passivem Lesen aktives Erinnern.",
   "quiz.body":
@@ -638,6 +667,7 @@ function setLanguage(language) {
   updateAuthUI();
   refreshQuizFeedbackTexts();
   updateQuizScore();
+  updateCodeExerciseUI();
 }
 
 function setAuthModalStatus(message = "") {
@@ -825,9 +855,7 @@ function resetLearningStateUI() {
     }
   });
 
-  codeInputs.forEach((input) => {
-    renderCodeExerciseFeedback(input.dataset.codeInput || "");
-  });
+  updateCodeExerciseUI();
 
   updateProgress();
   updateQuizScore();
@@ -873,6 +901,14 @@ function getCodeStatusEl(exercise) {
 
 function getCodeFeedbackEl(exercise) {
   return document.querySelector(`[data-code-feedback="${exercise}"]`);
+}
+
+function getCodeTipEl(exercise) {
+  return document.querySelector(`[data-code-tip="${exercise}"]`);
+}
+
+function getCodeTipToggleEl(exercise) {
+  return document.querySelector(`[data-code-tip-toggle="${exercise}"]`);
 }
 
 function evaluateCodeExercise(exercise, source) {
@@ -973,6 +1009,151 @@ function evaluateCodeExercise(exercise, source) {
     };
   }
 
+  if (exercise === "m1") {
+    const checks = [has("{ok, user}"), has("="), has("#{name =>")];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Pattern sitzt." : "Pattern looks right.",
+        feedback:
+          getLanguage() === "de"
+            ? "Gut. Du hast die Erfolgsform direkt gematcht und User an die zweite Position gebunden."
+            : "Good. You matched the success tuple directly and bound User to the second position.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Form noch unklar." : "Shape still off.",
+      feedback:
+        getLanguage() === "de"
+          ? "Achte auf die Form {ok, User} und darauf, dass rechts ein passender Erfolgswert steht."
+          : "Focus on the shape {ok, User} and make sure the right side is a matching success value.",
+    };
+  }
+
+  if (exercise === "m2") {
+    const checks = [has("sum([])"), has("[h | t]"), has("sum(t)")];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Rekursion passt." : "Recursion is on track.",
+        feedback:
+          getLanguage() === "de"
+            ? "Sauber. Du hast den Endfall und den rekursiven Schritt in einer typischen Erlang-Form modelliert."
+            : "Clean. You modeled the base case and recursive step in a typical Erlang shape.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Rekursion noch lueckig." : "Recursion still incomplete.",
+      feedback:
+        getLanguage() === "de"
+          ? "Du brauchst einen klaren Endfall fuer [] und einen Schritt fuer [H | T], der wieder sum(T) aufruft."
+          : "You need a clear [] base case and a [H | T] step that calls sum(T) again.",
+    };
+  }
+
+  if (exercise === "m3") {
+    const checks = [
+      has("receive"),
+      has("increment"),
+      has("{get, from}"),
+      has("from !") || has("from!"),
+      has("loop("),
+    ];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Mailbox-Logik passt." : "Mailbox logic looks good.",
+        feedback:
+          getLanguage() === "de"
+            ? "Stark. Dein Prozess empfaengt, aendert Zustand und antwortet dem Caller in einer klaren Loop-Struktur."
+            : "Strong. Your process receives, updates state, and replies to the caller in a clear loop structure.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Noch nicht vollstaendig." : "Not complete yet.",
+      feedback:
+        getLanguage() === "de"
+          ? "Zeige receive, einen increment-Zweig, einen {get, From}-Zweig, eine Antwort an From und den naechsten loop-Aufruf."
+          : "Show receive, an increment branch, a {get, From} branch, a reply to From, and the next loop call.",
+    };
+  }
+
+  if (exercise === "m4") {
+    const checks = [has("handle_call(get"), has("_from"), has("{reply, state, state}")];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "OTP-Grundform erkannt." : "OTP callback shape recognized.",
+        feedback:
+          getLanguage() === "de"
+            ? "Gut. Du hast die klassische GenServer-Form fuer einen get-Call sauber getroffen."
+            : "Good. You captured the classic GenServer shape for a get call cleanly.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Callback noch unscharf." : "Callback still fuzzy.",
+      feedback:
+        getLanguage() === "de"
+          ? "Ein minimaler get-Callback braucht handle_call(get, _From, State) und ein Reply-Tupel mit Reply und State."
+          : "A minimal get callback needs handle_call(get, _From, State) and a reply tuple containing reply and state.",
+    };
+  }
+
+  if (exercise === "m5") {
+    const checks = [
+      has("receive"),
+      has("{put, key, val}"),
+      has("maps:put"),
+      has("{get, from, key}"),
+      has("from !") || has("from!"),
+      has("store_loop("),
+    ];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Zustandsbesitz klar." : "State ownership is clear.",
+        feedback:
+          getLanguage() === "de"
+            ? "Sehr gut. Dein Prozess besitzt den Zustand selbst und reagiert ueber Nachrichten auf Schreiben und Lesen."
+            : "Very good. Your process owns the state itself and reacts to writes and reads through messages.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Isolierung noch unklar." : "Isolation still unclear.",
+      feedback:
+        getLanguage() === "de"
+          ? "Zeige einen Schreib-Zweig mit maps:put und einen Lese-Zweig, der dem Caller ueber From antwortet."
+          : "Show a write branch with maps:put and a read branch that replies to the caller through From.",
+    };
+  }
+
+  if (exercise === "m6") {
+    const checks = [has("receive"), has("after 2000"), has("timeout"), has("reply -> ok")];
+    if (checks.every(Boolean)) {
+      return {
+        passed: true,
+        status: getLanguage() === "de" ? "Timeout-Denken passt." : "Timeout thinking is solid.",
+        feedback:
+          getLanguage() === "de"
+            ? "Gut. Du zeigst sowohl den Erfolgsfall als auch den Timeout-Fall, genau das braucht verteilte Kommunikation."
+            : "Good. You show both the success path and the timeout path, which distributed communication needs.",
+      };
+    }
+    return {
+      passed: false,
+      status: getLanguage() === "de" ? "Fehlerfall fehlt noch." : "Failure branch still missing.",
+      feedback:
+        getLanguage() === "de"
+          ? "Ergaenze neben dem normalen Reply-Zweig auch einen after-Timeout, damit der Code einen Netzwerkausfall mitdenkt."
+          : "Add an after-timeout next to the normal reply branch so the code accounts for a network failure.",
+    };
+  }
+
   return {
     passed: false,
     status: getLanguage() === "de" ? "Keine Auswertung verfuegbar." : "No evaluation available.",
@@ -992,6 +1173,27 @@ function renderCodeExerciseFeedback(exercise) {
   feedbackEl.classList.toggle("is-correct", result.passed);
   feedbackEl.classList.toggle("is-wrong", !result.passed && Boolean(String(input.value || "").trim()));
   return result.passed;
+}
+
+function updateTipToggleLabels() {
+  codeTipButtons.forEach((button) => {
+    const exercise = button.dataset.codeTipToggle || "";
+    const tip = getCodeTipEl(exercise);
+    if (!tip) return;
+    const isHidden = tip.classList.contains("is-hidden");
+    if (getLanguage() === "de") {
+      button.textContent = isHidden ? germanText["common.showTip"] : germanText["common.hideTip"];
+      return;
+    }
+    button.textContent = isHidden ? "Show tip" : "Hide tip";
+  });
+}
+
+function updateCodeExerciseUI() {
+  codeInputs.forEach((input) => {
+    renderCodeExerciseFeedback(input.dataset.codeInput || "");
+  });
+  updateTipToggleLabels();
 }
 
 function getCodeExerciseResults() {
@@ -1097,9 +1299,7 @@ function loadLocalState() {
   userInputs.forEach((input) => {
     input.value = inputState[input.dataset.userInput] || "";
   });
-  codeInputs.forEach((input) => {
-    renderCodeExerciseFeedback(input.dataset.codeInput || "");
-  });
+  updateCodeExerciseUI();
   updateLearningFeedback();
 }
 
@@ -1199,9 +1399,7 @@ async function loadRemoteState() {
         ? data.input_state[input.dataset.userInput]
         : "";
   });
-  codeInputs.forEach((input) => {
-    renderCodeExerciseFeedback(input.dataset.codeInput || "");
-  });
+  updateCodeExerciseUI();
   if (data.language) {
     setLanguage(data.language);
   }
@@ -1382,6 +1580,16 @@ function bindLearningInteractions() {
       renderCodeExerciseFeedback(exercise);
       updateLearningFeedback();
       queueRemoteSave();
+    });
+  });
+
+  codeTipButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const exercise = button.dataset.codeTipToggle || "";
+      const tip = getCodeTipEl(exercise);
+      if (!tip) return;
+      tip.classList.toggle("is-hidden");
+      updateTipToggleLabels();
     });
   });
 }

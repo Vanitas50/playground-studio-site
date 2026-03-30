@@ -6,50 +6,250 @@
     <title>Erlang Funktionen und Guards einfach erklaert | Erlang Campus</title>
     <meta name="description" content="Lerne Erlang Funktionen und Guards mit Beispielen, die Funktionskoepfe, Klauseln und Fallunterscheidungen klar machen." />
     <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://erlang-campus-public.netlify.app/de/functions-and-guards/" />
-    <link rel="alternate" hreflang="en" href="https://erlang-campus-public.netlify.app/en/functions-and-guards/" />
-    <link rel="alternate" hreflang="de" href="https://erlang-campus-public.netlify.app/de/functions-and-guards/" />
-    <link rel="alternate" hreflang="x-default" href="https://erlang-campus-public.netlify.app/en/" />
+    <link rel="canonical" href="https://playgroundstudio.de/de/functions-and-guards/" />
+    <link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/functions-and-guards/" />
+    <link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/functions-and-guards/" />
+    <link rel="alternate" hreflang="x-default" href="https://playgroundstudio.de/en/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Erlang Funktionen und Guards einfach erklaert | Erlang Campus" />
     <meta property="og:description" content="Lerne Erlang Funktionen und Guards mit Beispielen, die Funktionskoepfe, Klauseln und Fallunterscheidungen klar machen." />
-    <meta property="og:url" content="https://erlang-campus-public.netlify.app/de/functions-and-guards/" />
+    <meta property="og:url" content="https://playgroundstudio.de/de/functions-and-guards/" />
     <meta property="og:locale" content="de_DE" />
-    <meta property="og:image" content="https://erlang-campus-public.netlify.app/social-card.svg" />
+    <meta property="og:image" content="https://playgroundstudio.de/social-card.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Erlang Funktionen und Guards einfach erklaert | Erlang Campus" />
     <meta name="twitter:description" content="Lerne Erlang Funktionen und Guards mit Beispielen, die Funktionskoepfe, Klauseln und Fallunterscheidungen klar machen." />
-    <link rel="icon" type="image/svg+xml" href="https://erlang-campus-public.netlify.app/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="https://playgroundstudio.de/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://erlang-campus-public.netlify.app/seo.css" />
+    <link rel="stylesheet" href="https://playgroundstudio.de/seo.css" />
     
   </head>
   <body>
     <header class="topbar">
       <div class="container topbar-shell">
-        <a class="brand" href="https://erlang-campus-public.netlify.app/de/">
+        <a class="brand" href="https://playgroundstudio.de/de/">
           <span class="brand-mark">BEAM</span>
           <span>Erlang Campus</span>
         </a>
         <nav class="topnav" aria-label="SEO-Navigation">
-          <a href="https://erlang-campus-public.netlify.app/de/" class="active">Themen</a>
-          <a href="https://erlang-campus-public.netlify.app/lessons.html">Interaktiver Kurs</a>
-          <a href="https://erlang-campus-public.netlify.app/quiz.html">Quiz</a>
-          <a href="https://erlang-campus-public.netlify.app/projects.html">Projekte</a>
-          <a href="https://erlang-campus-public.netlify.app/en/functions-and-guards/">English</a>
+          <a href="https://playgroundstudio.de/de/" class="active">Themen</a>
+          <a href="https://playgroundstudio.de/lessons.html">Interaktiver Kurs</a>
+          <a href="https://playgroundstudio.de/quiz.html">Quiz</a>
+          <a href="https://playgroundstudio.de/projects.html">Projekte</a>
+          <a href="https://playgroundstudio.de/en/functions-and-guards/">English</a>
         </nav>
       </div>
     </header>
-    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://erlang-campus-public.netlify.app/de/">Erlang Campus</a><span>/</span><a href="https://erlang-campus-public.netlify.app/de/">Themen</a><span>/</span><span>Funktionen und Guards</span></div></div></section>
-    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang-Lektion</p><h1>Erlang Funktionen und Guards fuer Anfaenger</h1><p class="intro">Funktionen in Erlang sind um mehrere Klauseln, Pattern Matching und optionale Guards gebaut. Das klingt zunaechst theoretisch, ist aber praktisch sehr stark: jede Klausel beschreibt genau, wann sie aktiv sein soll.</p><section><h2>Warum Erlang-Funktionskoepfe anders wirken</h2><p>In vielen Sprachen schreibst du einen Funktionskoerper und verzweigst dann innen weiter. In Erlang schreibst du oft mehrere Klauseln. Jede Klausel kann eine andere Form oder einen anderen Wertebereich abdecken. Dadurch bleibt die Struktur der Funktion direkt oben sichtbar.</p><p>Fuer Anfaenger ist das ein entscheidender Stilwechsel. Gute Erlang-Funktionen lesen sich fast wie eine Liste von Faellen. Oft reicht es schon, die Koepfe der Funktion in Reihenfolge zu lesen, um die Logik zu verstehen.</p></section><section><h2>Was ein Guard hinzufuegt</h2><p>Ein Guard verengt eine Klausel weiter. Pattern Matching sagt, welche Form die Eingabe hat. Ein Guard sagt, welche Zusatzbedingung noch gelten muss. Dadurch wird Code praeziser, ohne unnoetig laut zu werden. Guards sind besonders stark, wenn zwei Klauseln aehnlich aussehen, aber nur unter unterschiedlichen Wertbedingungen laufen sollen.</p><p>Das beste Anfaenger-Muster ist: zuerst Pattern, dann Guard, dann Koerper. Wer diesen Rhythmus frueh lernt, schreibt deutlich sauberere Funktionen.</p><pre><code>classify(N) when N < 0 -> negative;
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="https://playgroundstudio.de/de/">Erlang Campus</a>
+          <span>/</span>
+          <a href="https://playgroundstudio.de/de/">Themen</a>
+          <span>/</span>
+          <span>Funktionen und Guards</span>
+        </div>
+      </div>
+    </section>
+    <main class="section">
+      <div class="container article-wrap">
+        <article class="article">
+          <p class="eyebrow">Erlang-Lektion</p>
+          <h1>Erlang Funktionen und Guards fuer Anfaenger</h1>
+          <p class="intro">
+            Funktionen in Erlang sind um mehrere Klauseln, Pattern Matching und optionale Guards gebaut.
+            Das klingt zunaechst theoretisch, ist aber praktisch sehr stark: jede Klausel beschreibt genau,
+            wann sie aktiv sein soll und warum spaetere Faelle ueberhaupt noch existieren.
+          </p>
+
+          <section>
+            <h2>Warum Erlang-Funktionskoepfe anders wirken</h2>
+            <p>
+              In vielen Sprachen schreibst du einen Funktionskoerper und verzweigst dann innen weiter. In
+              Erlang schreibst du oft mehrere Klauseln. Jede Klausel kann eine andere Form oder einen
+              anderen Wertebereich abdecken. Dadurch bleibt die Struktur der Funktion direkt oben sichtbar.
+            </p>
+            <p>
+              Fuer Anfaenger ist das ein entscheidender Stilwechsel. Gute Erlang-Funktionen lesen sich fast
+              wie eine Liste von Faellen. Oft reicht es schon, die Koepfe der Funktion in Reihenfolge zu
+              lesen, um die Logik zu verstehen.
+            </p>
+          </section>
+
+          <section>
+            <h2>Was ein Guard hinzufuegt</h2>
+            <p>
+              Ein Guard verengt eine Klausel weiter. Pattern Matching sagt, welche Form die Eingabe hat. Ein
+              Guard sagt, welche Zusatzbedingung noch gelten muss. Dadurch wird Code praeziser, ohne
+              unnoetig laut zu werden. Guards sind besonders stark, wenn zwei Klauseln aehnlich aussehen,
+              aber nur unter unterschiedlichen Wertbedingungen laufen sollen.
+            </p>
+            <p>
+              Das beste Anfaenger-Muster ist: zuerst Pattern, dann Guard, dann Koerper. Wer diesen Rhythmus
+              frueh lernt, schreibt deutlich sauberere Funktionen.
+            </p>
+            <pre><code>classify(N) when N < 0 -> negative;
 classify(0) -> zero;
-classify(N) when N > 0 -> positive.</code></pre></section><section><h2>So liest du mehrklauselige Funktionen</h2><p>Lies solche Funktionen von oben nach unten. Frage dich bei jeder Klausel: welchen Fall faengt sie ab, und was faellt noch zur naechsten weiter? Die Reihenfolge ist wichtig. Eine zu breite Klausel am Anfang kann spaetere, spezifischere Faelle verschlucken.</p><p>Dadurch fuehlt sich Funktionsdesign in Erlang eher wie das Formulieren von Regeln an als wie das Schreiben eines Ablaufplans. Genau das passt zur Sprache.</p></section><section><h2>Was Anfaenger oft falsch machen</h2><p>Ein haeufiger Fehler ist, zu viel Logik in den Funktionskoerper zu verschieben statt in Kopf und Guard. Ein anderer ist, Guards fuer Dinge zu verwenden, die eigentlich eigene Klauseln sein sollten. Ausserdem wird oft vergessen, dass Guards bewusst nur einen sicheren Teil der Sprache erlauben.</p><p>Die beste Korrektur ist Vereinfachung. Wenn sich ein Fall in einem Satz erklaeren laesst, verdient er meist eine eigene Klausel. Wenn etwas nur beschreibt, wann die Klausel gelten soll, ist es oft ein Guard.</p></section><section><h2>Was du danach ueben solltest</h2><ul><li>Eine Funktion mit zwei Klauseln fuer leere und nicht leere Eingaben schreiben.</li><li>Einen Guard fuer positive und negative Werte hinzufuegen.</li><li>Die Reihenfolge der Klauseln laut erklaeren.</li><li>Danach direkt Rekursion lernen.</li></ul><div class="inline-links"><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-2">Im interaktiven Kurs ueben</a><a class="button secondary" href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a></div></section><section><h2>Hauefige Fragen</h2><div class="faq-grid"><article class="faq-card"><h3>Was ist ein Guard in Erlang?</h3><p>Ein Guard ist eine Zusatzbedingung an einer Klausel, zum Beispiel when N > 0, die bestimmt, ob diese Klausel wirklich matchen darf.</p></article><article class="faq-card"><h3>Warum mehrere Funktionsklauseln verwenden?</h3><p>Weil der Programmfluss dadurch direkt am Funktionskopf sichtbar und lesbar wird.</p></article></div></section><div class="pager"><a class="secondary" href="https://erlang-campus-public.netlify.app/de/pattern-matching/">Vorherige Lektion: Pattern Matching</a><a class="primary" href="https://erlang-campus-public.netlify.app/de/recursion/">Naechste Lektion: Rekursion</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Warum diese Seite existiert</h3><p>Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.</p></div><div class="panel"><p class="eyebrow">Naechster Schritt</p><h3>Interaktiv weiterlernen</h3><p>Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen, Code-Feedback und Fortschrittsspeicherung.</p><a class="button primary" href="https://erlang-campus-public.netlify.app/lessons.html#module-2">Zum Modul</a></div><div class="panel"><p class="eyebrow">Sprache</p><h3>Alternative Sprachversion</h3><p>Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit hreflang-Verknuepfung.</p><a class="button secondary" href="https://erlang-campus-public.netlify.app/en/functions-and-guards/">Zur englischen Version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://erlang-campus-public.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Funktionen und Guards","item":"https://erlang-campus-public.netlify.app/de/functions-and-guards/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang Funktionen und Guards fuer Anfaenger","inLanguage":"de","description":"Lerne Erlang Funktionen und Guard-Klauseln mit Beispielen, die Funktionskoepfe und Fallunterscheidungen klar machen.","mainEntityOfPage":"https://erlang-campus-public.netlify.app/de/functions-and-guards/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was ist ein Guard in Erlang?","acceptedAnswer":{"@type":"Answer","text":"Ein Guard ist eine Zusatzbedingung an einer Klausel, zum Beispiel when N > 0, die bestimmt, ob diese Klausel wirklich matchen darf."}},{"@type":"Question","name":"Warum mehrere Funktionsklauseln verwenden?","acceptedAnswer":{"@type":"Answer","text":"Weil der Programmfluss dadurch direkt am Funktionskopf sichtbar und lesbar wird."}}]}]</script>
+classify(N) when N > 0 -> positive.</code></pre>
+          </section>
+
+          <section>
+            <h2>So liest du mehrklauselige Funktionen</h2>
+            <p>
+              Lies solche Funktionen von oben nach unten. Frage dich bei jeder Klausel: welchen Fall faengt
+              sie ab, und was faellt noch zur naechsten weiter? Die Reihenfolge ist wichtig. Eine zu breite
+              Klausel am Anfang kann spaetere, spezifischere Faelle verschlucken.
+            </p>
+            <p>
+              Dadurch fuehlt sich Funktionsdesign in Erlang eher wie das Formulieren von Regeln an als wie
+              das Schreiben eines Ablaufplans. Genau das passt zur Sprache.
+            </p>
+          </section>
+
+          <section>
+            <h2>Wie Funktionsklauseln aus Pattern Matching echte Regeln machen</h2>
+            <p>
+              Viele Suchende kommen von Pattern Matching hierher und fragen sich, was jetzt neu ist. Die
+              Antwort: Pattern Matching beschreibt einzelne Formen, aber Funktionen und Guards machen daraus
+              eine geordnete Regelsammlung fuer echtes Verhalten. Eine Klausel passt auf leere Listen, die
+              naechste auf nicht leere Listen, eine weitere vielleicht nur auf positive Zahlen.
+            </p>
+            <p>
+              Genau dadurch entsteht der typische Erlang-Stil. Du schreibst nicht erst einen grossen
+              Sammelkoerper und sortierst innen chaotisch nach Bedingungen. Du formulierst am Kopf, welcher
+              Fall gilt, und im Guard, unter welcher Zusatzregel er laufen darf.
+            </p>
+          </section>
+
+          <section>
+            <h2>Eine kleine Walkthrough-Leseprobe</h2>
+            <p>
+              Stell dir eine Funktion vor, die Temperaturen in drei Gruppen einteilt. Lies nicht zuerst den
+              Rueckgabewert, sondern die Reihenfolge: negative Werte, genau null, positive Werte. Jetzt
+              verstehst du die Funktion schon fast vollstaendig, bevor du den Koerper ueberhaupt betrachtest.
+            </p>
+            <pre><code>temperature_label(N) when N < 0 -> cold;
+temperature_label(0) -> neutral;
+temperature_label(N) when N > 0 -> warm.</code></pre>
+            <p>
+              Das ist der Kern dieses Themas: Guard und Klausel machen die Absicht sichtbar. Gute
+              Erlang-Funktionen sind deshalb oft leichter zu lesen, als sie fuer Einsteiger zuerst wirken.
+            </p>
+          </section>
+
+          <section>
+            <h2>Typische Fehler bei Funktionen und Guards</h2>
+            <p>
+              Ein haeufiger Fehler ist, zu viel Logik in den Funktionskoerper zu verschieben statt in Kopf
+              und Guard. Ein anderer ist, Guards fuer Dinge zu verwenden, die eigentlich eigene Klauseln sein
+              sollten. Ausserdem wird oft vergessen, dass Guards bewusst nur einen sicheren Teil der Sprache
+              erlauben.
+            </p>
+            <p>
+              Die beste Korrektur ist Vereinfachung. Wenn sich ein Fall in einem Satz erklaeren laesst,
+              verdient er meist eine eigene Klausel. Wenn etwas nur beschreibt, wann die Klausel gelten soll,
+              ist es oft ein Guard.
+            </p>
+          </section>
+
+          <section>
+            <h2>Warum diese Seite fuer den Einsteigerpfad wichtig ist</h2>
+            <p>
+              Wer nach <em>erlang functions and guards</em> oder nach einer deutschen Erklaerung dazu sucht,
+              will in der Regel nicht nur eine API-Liste. Die eigentliche Suchintention ist: Wie baue ich
+              aus Pattern Matching und Fallunterscheidung endlich lesbare Funktionen?
+            </p>
+            <p>
+              Genau deshalb liegt diese Seite zwischen Pattern Matching und Rekursion. Erst wenn du
+              Funktionskoepfe wirklich verstehst, fuehlen sich rekursive Funktionen nicht mehr wie kryptische
+              Spezialfaelle an.
+            </p>
+          </section>
+
+          <section>
+            <h2>Was du danach ueben solltest</h2>
+            <ul>
+              <li>Eine Funktion mit zwei Klauseln fuer leere und nicht leere Eingaben schreiben.</li>
+              <li>Einen Guard fuer positive und negative Werte hinzufuegen.</li>
+              <li>Die Reihenfolge der Klauseln laut erklaeren.</li>
+              <li>Danach direkt Rekursion lernen.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="button primary" href="https://playgroundstudio.de/lessons.html#module-2">Im interaktiven Kurs ueben</a>
+              <a class="button secondary" href="https://playgroundstudio.de/de/">Alle Themen</a>
+              <a class="button secondary" href="https://playgroundstudio.de/de/recursion/">Weiter zu Rekursion</a>
+            </div>
+          </section>
+
+          <section>
+            <h2>Hauefige Fragen</h2>
+            <div class="faq-grid">
+              <article class="faq-card">
+                <h3>Was ist ein Guard in Erlang?</h3>
+                <p>
+                  Ein Guard ist eine Zusatzbedingung an einer Klausel, zum Beispiel when N &gt; 0, die
+                  bestimmt, ob diese Klausel wirklich matchen darf.
+                </p>
+              </article>
+              <article class="faq-card">
+                <h3>Warum mehrere Funktionsklauseln verwenden?</h3>
+                <p>Weil der Programmfluss dadurch direkt am Funktionskopf sichtbar und lesbar wird.</p>
+              </article>
+            </div>
+          </section>
+
+          <div class="pager">
+            <a class="secondary" href="https://playgroundstudio.de/de/pattern-matching/">Vorherige Lektion: Pattern Matching</a>
+            <a class="primary" href="https://playgroundstudio.de/de/recursion/">Naechste Lektion: Rekursion</a>
+          </div>
+        </article>
+
+        <aside class="side-stack">
+          <div class="panel">
+            <p class="eyebrow">SEO</p>
+            <h3>Warum diese Seite existiert</h3>
+            <p>
+              Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete
+              Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.
+            </p>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Naechster Schritt</p>
+            <h3>Interaktiv weiterlernen</h3>
+            <p>
+              Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen,
+              Code-Feedback und Fortschrittsspeicherung.
+            </p>
+            <a class="button primary" href="https://playgroundstudio.de/lessons.html#module-2">Zum Modul</a>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Sprache</p>
+            <h3>Alternative Sprachversion</h3>
+            <p>
+              Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit
+              hreflang-Verknuepfung.
+            </p>
+            <a class="button secondary" href="https://playgroundstudio.de/en/functions-and-guards/">Zur englischen Version</a>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Verwandte Themen</p>
+            <h3>Womit du dieses Thema logisch verbindest</h3>
+            <ul>
+              <li><a href="https://playgroundstudio.de/de/pattern-matching/">Erlang Pattern Matching einfach erklaert</a></li>
+              <li><a href="https://playgroundstudio.de/de/recursion/">Erlang Rekursion einfach erklaert</a></li>
+              <li><a href="https://playgroundstudio.de/de/processes-and-message-passing/">Erlang Prozesse und Message Passing erklaert</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://playgroundstudio.de/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://playgroundstudio.de/de/"},{"@type":"ListItem","position":3,"name":"Funktionen und Guards","item":"https://playgroundstudio.de/de/functions-and-guards/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Erlang Funktionen und Guards fuer Anfaenger","inLanguage":"de","description":"Lerne Erlang Funktionen und Guard-Klauseln mit Beispielen, die Funktionskoepfe und Fallunterscheidungen klar machen.","mainEntityOfPage":"https://playgroundstudio.de/de/functions-and-guards/","dateModified":"2026-03-30","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was ist ein Guard in Erlang?","acceptedAnswer":{"@type":"Answer","text":"Ein Guard ist eine Zusatzbedingung an einer Klausel, zum Beispiel when N > 0, die bestimmt, ob diese Klausel wirklich matchen darf."}},{"@type":"Question","name":"Warum mehrere Funktionsklauseln verwenden?","acceptedAnswer":{"@type":"Answer","text":"Weil der Programmfluss dadurch direkt am Funktionskopf sichtbar und lesbar wird."}}]}]</script>
     <footer class="site-footer">
       <div class="container footer-shell">
         <div>SEO-Hub und interaktiver Erlang-Kurs fuer langfristig sichtbare Lerninhalte.</div>
-        <a href="https://erlang-campus-public.netlify.app/de/">Alle Themen</a>
+        <a href="https://playgroundstudio.de/de/">Alle Themen</a>
       </div>
     </footer>
   </body>

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://erlang-campus-public.netlify.app/sitemap.xml
+Sitemap: https://playgroundstudio.de/sitemap.xml

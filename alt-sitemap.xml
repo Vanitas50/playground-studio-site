@@ -1,177 +1,177 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://playgroundstudio.de/</loc>
+    <loc>https://playground-studio.netlify.app/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://playgroundstudio.de/roadmap.html</loc>
+    <loc>https://playground-studio.netlify.app/roadmap.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://playgroundstudio.de/lessons.html</loc>
+    <loc>https://playground-studio.netlify.app/lessons.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://playgroundstudio.de/quiz.html</loc>
+    <loc>https://playground-studio.netlify.app/quiz.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://playgroundstudio.de/projects.html</loc>
+    <loc>https://playground-studio.netlify.app/projects.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/</loc>
+    <loc>https://playground-studio.netlify.app/en/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/</loc>
+    <loc>https://playground-studio.netlify.app/de/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/erlang-syntax/</loc>
+    <loc>https://playground-studio.netlify.app/en/erlang-syntax/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/erlang-syntax/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/erlang-syntax/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/erlang-syntax/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/erlang-syntax/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/erlang-syntax/</loc>
+    <loc>https://playground-studio.netlify.app/de/erlang-syntax/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/erlang-syntax/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/erlang-syntax/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/erlang-syntax/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/erlang-syntax/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/pattern-matching/</loc>
+    <loc>https://playground-studio.netlify.app/en/pattern-matching/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/pattern-matching/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/pattern-matching/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/pattern-matching/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/pattern-matching/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/pattern-matching/</loc>
+    <loc>https://playground-studio.netlify.app/de/pattern-matching/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/pattern-matching/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/pattern-matching/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/pattern-matching/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/pattern-matching/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/functions-and-guards/</loc>
+    <loc>https://playground-studio.netlify.app/en/functions-and-guards/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/functions-and-guards/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/functions-and-guards/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/functions-and-guards/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/functions-and-guards/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/functions-and-guards/</loc>
+    <loc>https://playground-studio.netlify.app/de/functions-and-guards/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/functions-and-guards/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/functions-and-guards/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/functions-and-guards/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/functions-and-guards/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/recursion/</loc>
+    <loc>https://playground-studio.netlify.app/en/recursion/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/recursion/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/recursion/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/recursion/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/recursion/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/recursion/</loc>
+    <loc>https://playground-studio.netlify.app/de/recursion/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/recursion/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/recursion/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/recursion/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/recursion/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/processes-and-message-passing/</loc>
+    <loc>https://playground-studio.netlify.app/en/processes-and-message-passing/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/processes-and-message-passing/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/processes-and-message-passing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/processes-and-message-passing/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/processes-and-message-passing/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/processes-and-message-passing/</loc>
+    <loc>https://playground-studio.netlify.app/de/processes-and-message-passing/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/processes-and-message-passing/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/processes-and-message-passing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/processes-and-message-passing/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/processes-and-message-passing/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/otp-basics/</loc>
+    <loc>https://playground-studio.netlify.app/en/otp-basics/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/otp-basics/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/otp-basics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/otp-basics/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/otp-basics/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/otp-basics/</loc>
+    <loc>https://playground-studio.netlify.app/de/otp-basics/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/otp-basics/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/otp-basics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/otp-basics/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/otp-basics/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/supervisor-thinking/</loc>
+    <loc>https://playground-studio.netlify.app/en/supervisor-thinking/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/supervisor-thinking/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/supervisor-thinking/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/supervisor-thinking/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/supervisor-thinking/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/supervisor-thinking/</loc>
+    <loc>https://playground-studio.netlify.app/de/supervisor-thinking/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/supervisor-thinking/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/supervisor-thinking/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/supervisor-thinking/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/supervisor-thinking/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/en/distributed-systems-basics/</loc>
+    <loc>https://playground-studio.netlify.app/en/distributed-systems-basics/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/distributed-systems-basics/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/distributed-systems-basics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/distributed-systems-basics/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/distributed-systems-basics/" />
   </url>
   <url>
-    <loc>https://playgroundstudio.de/de/distributed-systems-basics/</loc>
+    <loc>https://playground-studio.netlify.app/de/distributed-systems-basics/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://playgroundstudio.de/en/distributed-systems-basics/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://playgroundstudio.de/de/distributed-systems-basics/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground-studio.netlify.app/en/distributed-systems-basics/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://playground-studio.netlify.app/de/distributed-systems-basics/" />
   </url>
 </urlset>

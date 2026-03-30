@@ -2,3 +2,6 @@
 
 # Local Netlify folder
 .netlify
+
+# Local Lighthouse reports
+.lighthouseci/

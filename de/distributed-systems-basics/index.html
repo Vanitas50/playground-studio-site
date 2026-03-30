@@ -42,13 +42,204 @@
         </nav>
       </div>
     </header>
-    <section class="hero"><div class="container"><div class="breadcrumbs"><a href="https://playground-studio.netlify.app/de/">Erlang Campus</a><span>/</span><a href="https://playground-studio.netlify.app/de/">Themen</a><span>/</span><span>Distributed Systems Basics</span></div></div></section>
-    <main class="section"><div class="container article-wrap"><article class="article"><p class="eyebrow">Erlang-Lektion</p><h1>Distributed Systems Basics in Erlang</h1><p class="intro">Verteiltes Erlang ist der Punkt, an dem lokale Korrektheit nicht mehr reicht. Sobald Nachrichten Maschinen grenzen ueberschreiten, werden Latenz, Teilausfaelle und Timeouts Teil des Designs.</p><section><h2>Was sich aendert, wenn ein System verteilt wird</h2><p>Auf einer Maschine bleiben viele Annahmen unsichtbar. Ueber mehrere Maschinen hinweg werden sie Teil des Problems. Antworten koennen spaet kommen, Nodes koennen wegfallen, ein Request kann remote erfolgreich sein, waehrend der Aufrufer lokal in den Timeout laeuft. Deshalb darf verteiltes Denken nicht einfach von lokalem Code uebernommen werden.</p><p>Die erste Lektion fuer Anfaenger ist daher nicht „Node-Syntax auswendig lernen“, sondern „Ausfall und Verzoegerung als normale Design-Eingaben behandeln“. Das macht verteiltes Erlang realistisch.</p></section><section><h2>Nodes und Remote Messaging</h2><p>Ein Node ist eine laufende Erlang-Instanz, die mit anderen Instanzen kommunizieren kann, wenn Namen und Erreichbarkeit stimmen. Remote Messaging sieht syntaktisch oft einfach aus. Genau das ist Staerke und Gefahr zugleich. Die Syntax ist leicht, die Betriebsannahmen dahinter nicht.</p><p>Deshalb sollte jedes Remote-Beispiel sofort mit einer Frage verbunden werden: was passiert, wenn keine Antwort kommt? Was passiert bei Node-Ausfall? Wie reagiert der Caller dann?</p><pre><code>{service, 'worker@host'} ! ping.
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="https://playground-studio.netlify.app/de/">Erlang Campus</a>
+          <span>/</span>
+          <a href="https://playground-studio.netlify.app/de/">Themen</a>
+          <span>/</span>
+          <span>Distributed Systems Basics</span>
+        </div>
+      </div>
+    </section>
+    <main class="section">
+      <div class="container article-wrap">
+        <article class="article">
+          <p class="eyebrow">Erlang-Lektion</p>
+          <h1>Distributed Systems Basics in Erlang</h1>
+          <p class="intro">
+            Verteiltes Erlang ist der Punkt, an dem lokale Korrektheit nicht mehr reicht. Sobald Nachrichten
+            Maschinen grenzen ueberschreiten, werden Latenz, Teilausfaelle und Timeouts Teil des Designs.
+          </p>
+
+          <section>
+            <h2>Was sich aendert, wenn ein System verteilt wird</h2>
+            <p>
+              Auf einer Maschine bleiben viele Annahmen unsichtbar. Ueber mehrere Maschinen hinweg werden sie
+              Teil des Problems. Antworten koennen spaet kommen, Nodes koennen wegfallen, ein Request kann
+              remote erfolgreich sein, waehrend der Aufrufer lokal in den Timeout laeuft. Deshalb darf
+              verteiltes Denken nicht einfach von lokalem Code uebernommen werden.
+            </p>
+            <p>
+              Die erste Lektion fuer Anfaenger ist daher nicht „Node-Syntax auswendig lernen“, sondern
+              „Ausfall und Verzoegerung als normale Design-Eingaben behandeln“. Das macht verteiltes Erlang
+              realistisch.
+            </p>
+          </section>
+
+          <section>
+            <h2>Nodes und Remote Messaging</h2>
+            <p>
+              Ein Node ist eine laufende Erlang-Instanz, die mit anderen Instanzen kommunizieren kann, wenn
+              Namen und Erreichbarkeit stimmen. Remote Messaging sieht syntaktisch oft einfach aus. Genau das
+              ist Staerke und Gefahr zugleich. Die Syntax ist leicht, die Betriebsannahmen dahinter nicht.
+            </p>
+            <p>
+              Deshalb sollte jedes Remote-Beispiel sofort mit einer Frage verbunden werden: was passiert,
+              wenn keine Antwort kommt? Was passiert bei Node-Ausfall? Wie reagiert der Caller dann?
+            </p>
+            <pre><code>{service, 'worker@host'} ! ping.
 receive
     reply -> ok
 after 2000 ->
     timeout
-end.</code></pre></section><section><h2>Warum Timeouts in den ersten Entwurf gehoeren</h2><p>Ein Timeout ist kein Spaet-Patch, sondern Teil des Protokolls. Wenn eine Antwort remote spaet oder gar nicht kommen kann, braucht der Caller eine definierte Reaktion. Retry, Logging, Fehler rueckgeben oder Eskalation sind Designentscheidungen.</p><p>Genau hier unterscheidet sich verteiltes Denken vom lokalen. Ein robustes verteiltes System plant den schwierigen Pfad von Anfang an ein.</p></section><section><h2>Typische Anfaengerfehler bei verteiltem Erlang</h2><p>Ein haeufiger Fehler ist, Verteilung zu frueh einzubauen, bevor das Modell auf einem Node sauber ist. Ein anderer ist, Remote-Beispiele ohne Timeout-Handling zu schreiben. Ausserdem wird Netzwerkausfall oft wie ein Ausnahmefall statt wie ein normaler Systemzustand behandelt.</p><p>Die staerkste Uebung ist, Erfolgs- und Fehlerpfad nebeneinander zu designen. Wenn ein entfernter Node wegfaellt, was ist dann nur verzoegert, was kann retryen und was muss sauber stoppen? Genau diese Fragen fuehren zu besseren Systemen.</p></section><section><h2>Was du danach tun solltest</h2><ul><li>Einen receive-Block um einen Timeout erweitern.</li><li>Einen Remote-Fehler und eine passende Reaktion benennen.</li><li>Das Ein-Node-Design erst sauber machen, dann verteilen.</li><li>Danach das Abschlussprojekt bauen.</li></ul><div class="inline-links"><a class="button primary" href="https://playground-studio.netlify.app/lessons.html#module-6">Im interaktiven Kurs ueben</a><a class="button secondary" href="https://playground-studio.netlify.app/de/">Alle Themen</a></div></section><section><h2>Hauefige Fragen</h2><div class="faq-grid"><article class="faq-card"><h3>Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?</h3><p>Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu.</p></article><article class="faq-card"><h3>Warum sind Timeouts so wichtig?</h3><p>Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss.</p></article></div></section><div class="pager"><a class="secondary" href="https://playground-studio.netlify.app/de/supervisor-thinking/">Vorherige Lektion: Supervisor Thinking</a><a class="primary" href="https://playground-studio.netlify.app/projects.html">Weiter zu Projekten</a></div></article><aside class="side-stack"><div class="panel"><p class="eyebrow">SEO</p><h3>Warum diese Seite existiert</h3><p>Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.</p></div><div class="panel"><p class="eyebrow">Naechster Schritt</p><h3>Interaktiv weiterlernen</h3><p>Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen, Code-Feedback und Fortschrittsspeicherung.</p><a class="button primary" href="https://playground-studio.netlify.app/lessons.html#module-6">Zum Modul</a></div><div class="panel"><p class="eyebrow">Sprache</p><h3>Alternative Sprachversion</h3><p>Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit hreflang-Verknuepfung.</p><a class="button secondary" href="https://playground-studio.netlify.app/en/distributed-systems-basics/">Zur englischen Version</a></div></aside></div></main><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://playground-studio.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://playground-studio.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Distributed Systems Basics","item":"https://playground-studio.netlify.app/de/distributed-systems-basics/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Distributed Systems Basics in Erlang","inLanguage":"de","description":"Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken.","mainEntityOfPage":"https://playground-studio.netlify.app/de/distributed-systems-basics/","dateModified":"2026-03-29","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?","acceptedAnswer":{"@type":"Answer","text":"Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu."}},{"@type":"Question","name":"Warum sind Timeouts so wichtig?","acceptedAnswer":{"@type":"Answer","text":"Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss."}}]}]</script>
+end.</code></pre>
+          </section>
+
+          <section>
+            <h2>Warum Timeouts in den ersten Entwurf gehoeren</h2>
+            <p>
+              Ein Timeout ist kein Spaet-Patch, sondern Teil des Protokolls. Wenn eine Antwort remote spaet
+              oder gar nicht kommen kann, braucht der Caller eine definierte Reaktion. Retry, Logging,
+              Fehler rueckgeben oder Eskalation sind Designentscheidungen.
+            </p>
+            <p>
+              Genau hier unterscheidet sich verteiltes Denken vom lokalen. Ein robustes verteiltes System
+              plant den schwierigen Pfad von Anfang an ein.
+            </p>
+          </section>
+
+          <section>
+            <h2>Wie dieses Thema an Supervisoren und Fehlertoleranz anschliesst</h2>
+            <p>
+              Nach Supervisor Thinking folgt hier der naechste logische Schritt: Nicht nur lokale Worker
+              koennen scheitern, auch Verbindungen zwischen Nodes sind unsicher. Damit werden Ausfall,
+              Wiederholung und Zeitgrenzen nicht mehr nur OTP-Fragen, sondern Teil verteilter Protokolle.
+            </p>
+            <p>
+              Genau deshalb ist diese Seite mehr als eine Sammlung von Node-Befehlen. Sie soll das Denken
+              verschieben: von „es funktioniert auf meinem Rechner“ hin zu „wie reagiert mein System, wenn
+              ein entfernter Teil zu spaet, gar nicht oder nur teilweise antwortet?“
+            </p>
+          </section>
+
+          <section>
+            <h2>Eine kleine Walkthrough-Leseprobe</h2>
+            <p>
+              Stell dir einen Service vor, der auf einem anderen Node laeuft. Dein Prozess sendet
+              <code>ping</code> und wartet zwei Sekunden. Wenn eine Antwort kommt, ist der Fall klar. Wenn
+              keine kommt, musst du nicht nur „Fehler“ sagen, sondern dich entscheiden: retry, aufgeben,
+              loggen oder den Nutzer informieren.
+            </p>
+            <p>
+              Diese kleine Entscheidung ist genau der Kern verteilter Systeme. Das Systemdesign ist nicht
+              erst dort gut, wo alles antwortet, sondern dort, wo auch das Ausbleiben einer Antwort klar
+              modelliert ist.
+            </p>
+          </section>
+
+          <section>
+            <h2>Typische Anfaengerfehler bei verteiltem Erlang</h2>
+            <p>
+              Ein haeufiger Fehler ist, Verteilung zu frueh einzubauen, bevor das Modell auf einem Node
+              sauber ist. Ein anderer ist, Remote-Beispiele ohne Timeout-Handling zu schreiben. Ausserdem
+              wird Netzwerkausfall oft wie ein Ausnahmefall statt wie ein normaler Systemzustand behandelt.
+            </p>
+            <p>
+              Die staerkste Uebung ist, Erfolgs- und Fehlerpfad nebeneinander zu designen. Wenn ein
+              entfernter Node wegfaellt, was ist dann nur verzoegert, was kann retryen und was muss sauber
+              stoppen? Genau diese Fragen fuehren zu besseren Systemen.
+            </p>
+          </section>
+
+          <section>
+            <h2>Warum diese Seite fuer Suchende wichtig ist</h2>
+            <p>
+              Wer nach verteilten Systemen in Erlang sucht, will in der Regel nicht nur Syntax, sondern ein
+              Gefuehl dafuer, wie sich Denken und Verantwortung bei Remote-Kommunikation veraendern.
+            </p>
+            <p>
+              Genau darauf zielt diese Seite: Nodes, Remote Messaging, Timeouts und Teilausfall werden zu
+              einem zusammenhaengenden Modell verbunden, statt als lose Einzelbegriffe stehenzubleiben.
+            </p>
+          </section>
+
+          <section>
+            <h2>Was du danach tun solltest</h2>
+            <ul>
+              <li>Einen <code>receive</code>-Block um einen Timeout erweitern.</li>
+              <li>Einen Remote-Fehler und eine passende Reaktion benennen.</li>
+              <li>Das Ein-Node-Design erst sauber machen, dann verteilen.</li>
+              <li>Danach das Abschlussprojekt bauen.</li>
+            </ul>
+            <div class="inline-links">
+              <a class="button primary" href="https://playground-studio.netlify.app/lessons.html#module-6">Im interaktiven Kurs ueben</a>
+              <a class="button secondary" href="https://playground-studio.netlify.app/de/">Alle Themen</a>
+              <a class="button secondary" href="https://playground-studio.netlify.app/projects.html">Weiter zu Projekten</a>
+            </div>
+          </section>
+
+          <section>
+            <h2>Hauefige Fragen</h2>
+            <div class="faq-grid">
+              <article class="faq-card">
+                <h3>Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?</h3>
+                <p>Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu.</p>
+              </article>
+              <article class="faq-card">
+                <h3>Warum sind Timeouts so wichtig?</h3>
+                <p>Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss.</p>
+              </article>
+            </div>
+          </section>
+
+          <div class="pager">
+            <a class="secondary" href="https://playground-studio.netlify.app/de/supervisor-thinking/">Vorherige Lektion: Supervisor Thinking</a>
+            <a class="primary" href="https://playground-studio.netlify.app/projects.html">Weiter zu Projekten</a>
+          </div>
+        </article>
+
+        <aside class="side-stack">
+          <div class="panel">
+            <p class="eyebrow">SEO</p>
+            <h3>Warum diese Seite existiert</h3>
+            <p>
+              Diese Seite ist als eigenstaendige Lern-Landingpage fuer Google und fuer konkrete
+              Suchanfragen gebaut, nicht nur als Teil einer langen Kursseite.
+            </p>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Naechster Schritt</p>
+            <h3>Interaktiv weiterlernen</h3>
+            <p>
+              Wenn du nach dem Lesen direkt ueben willst, springe in das passende Kursmodul mit Notizen,
+              Code-Feedback und Fortschrittsspeicherung.
+            </p>
+            <a class="button primary" href="https://playground-studio.netlify.app/lessons.html#module-6">Zum Modul</a>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Sprache</p>
+            <h3>Alternative Sprachversion</h3>
+            <p>
+              Google und Nutzer bekommen fuer dieses Thema je eine eigene deutsche und englische URL mit
+              hreflang-Verknuepfung.
+            </p>
+            <a class="button secondary" href="https://playground-studio.netlify.app/en/distributed-systems-basics/">Zur englischen Version</a>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Verwandte Themen</p>
+            <h3>Welche Themen du damit verbinden solltest</h3>
+            <ul>
+              <li><a href="https://playground-studio.netlify.app/de/supervisor-thinking/">Supervisor Thinking in Erlang erklaert</a></li>
+              <li><a href="https://playground-studio.netlify.app/de/processes-and-message-passing/">Erlang Prozesse und Message Passing erklaert</a></li>
+              <li><a href="https://playground-studio.netlify.app/projects.html">Zum Abschlussprojekt</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Erlang Campus","item":"https://playground-studio.netlify.app/de/"},{"@type":"ListItem","position":2,"name":"Themen","item":"https://playground-studio.netlify.app/de/"},{"@type":"ListItem","position":3,"name":"Distributed Systems Basics","item":"https://playground-studio.netlify.app/de/distributed-systems-basics/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Distributed Systems Basics in Erlang","inLanguage":"de","description":"Lerne Distributed Systems Basics in Erlang mit Nodes, Remote Messaging, Timeouts und fehlertolerantem Denken.","mainEntityOfPage":"https://playground-studio.netlify.app/de/distributed-systems-basics/","dateModified":"2026-03-30","author":{"@type":"Organization","name":"Erlang Campus"},"publisher":{"@type":"Organization","name":"Erlang Campus"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist Distributed Erlang nur normales Messaging ueber mehrere Maschinen?","acceptedAnswer":{"@type":"Answer","text":"Die Syntax kann aehnlich wirken, aber betrieblich kommen Latenz, Unterbrechung und Teilausfall hinzu."}},{"@type":"Question","name":"Warum sind Timeouts so wichtig?","acceptedAnswer":{"@type":"Answer","text":"Weil remote Kommunikation verzoegert oder unterbrochen sein kann und der Aufrufer auf fehlende Antworten vorbereitet sein muss."}}]}]</script>
     <footer class="site-footer">
       <div class="container footer-shell">
         <div>SEO-Hub und interaktiver Erlang-Kurs fuer langfristig sichtbare Lerninhalte.</div>

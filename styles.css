@@ -772,6 +772,78 @@ body.dark .progress-bar {
   margin-bottom: 1.5rem;
 }
 
+.topic-link-panel {
+  margin-bottom: 1.75rem;
+  padding: 1.1rem;
+  border-radius: 1.35rem;
+  border: 1px solid var(--line);
+  background: rgba(23, 73, 86, 0.05);
+}
+
+.section-heading--compact {
+  margin-bottom: 1rem;
+}
+
+.topic-link-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.topic-link-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 1.05rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.topic-link-card strong,
+.topic-link-card span:last-child {
+  display: block;
+}
+
+.topic-link-card span:last-child {
+  margin-top: 0.45rem;
+  color: var(--muted);
+}
+
+.topic-link-card:hover,
+.topic-link-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(196, 79, 41, 0.35);
+}
+
+.module-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.mini-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mini-link:hover,
+.mini-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(196, 79, 41, 0.35);
+}
+
 .jump-card,
 .card-link {
   display: block;
@@ -980,6 +1052,7 @@ body.dark .code-dojo-input {
   .unit-flow,
   .roadmap-grid,
   .jump-grid,
+  .topic-link-grid,
   .retention-grid,
   .pitfall-grid,
   .quiz-grid,

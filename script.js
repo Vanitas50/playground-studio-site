@@ -200,6 +200,10 @@ const germanText = {
   "lessons.jump5Body": "Worker-Pools, Isolation und Pipelines.",
   "lessons.jump6Title": "Verteiltes Erlang",
   "lessons.jump6Body": "Nodes, Remote Messaging und Produktionsdenken.",
+  "lessons.topicNavEyebrow": "Lektionsseiten",
+  "lessons.topicNavTitle": "Suchst du eigenstaendige Lektionsseiten?",
+  "lessons.topicNavBody":
+    "Nutze diese direkten Lektionsseiten-Links, wenn du eine eigene Seite statt nur der Modul-Uebersicht willst.",
   "common.challenge": "Mini-Challenge",
   "common.practiceLab": "Praxis-Labor",
   "common.moduleGoal": "Modulziel",
@@ -222,6 +226,16 @@ const germanText = {
   "common.confidenceLow": "Noch unsicher",
   "common.confidenceMedium": "Ich komme rein",
   "common.confidenceHigh": "Ich kann es erklaeren",
+  "common.openPage": "Seite oeffnen",
+  "links.syntax": "Syntax-Lektionsseite",
+  "links.pattern": "Pattern-Matching-Lektionsseite",
+  "links.functionsGuards": "Funktionen-und-Guards-Lektionsseite",
+  "links.recursion": "Rekursions-Lektionsseite",
+  "links.processes": "Prozesse-und-Message-Passing-Seite",
+  "links.otp": "OTP-Basics-Lektionsseite",
+  "links.supervisors": "Supervisoren-Seite",
+  "links.distributed": "Verteilte-Systeme-Lektionsseite",
+  "links.projects": "Projektuebungen oeffnen",
   "m1.label": "Modul 1",
   "m1.title": "Syntax und Datentypen",
   "m1.l1t": "Lektion 1: Atome, Zahlen, Strings",
@@ -781,10 +795,18 @@ function setLanguage(language) {
     toggle.classList.toggle("is-active", toggle.dataset.lang === lang);
   });
 
+  updateLanguageAwareLinks(lang);
+
   updateAuthUI();
   refreshQuizFeedbackTexts();
   updateQuizScore();
   updateCodeExerciseUI();
+}
+
+function updateLanguageAwareLinks(language) {
+  document.querySelectorAll("[data-href-en][data-href-de]").forEach((element) => {
+    element.setAttribute("href", language === "de" ? element.dataset.hrefDe : element.dataset.hrefEn);
+  });
 }
 
 function setAuthModalStatus(message = "") {
